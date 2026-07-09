@@ -1,40 +1,6 @@
-#link__wiz {
-}
-
-#link__wiz_result {
-    background-color: __background__;
-    width:  293px;
-    height: 193px;
-    overflow: auto;
-    border: 1px solid __border__;
-    margin: 3px auto;
-    text-align: left;
-}
-
-#link__wiz_result div.type_u {
-    padding: 3px 3px 3px 22px;
-    background: transparent url(../../images/up.png) 3px 3px no-repeat;
-}
-
-#link__wiz_result div.type_f {
-    padding: 3px 3px 3px 22px;
-    background: transparent url(../../images/page.png) 3px 3px no-repeat;
-}
-
-#link__wiz_result div.type_d {
-    padding: 3px 3px 3px 22px;
-    background: transparent url(../../images/ns.png) 3px 3px no-repeat;
-}
-
-#link__wiz_result div.even {
-    background-color: __background_neu__;
-}
-
-#link__wiz_result div.selected {
-    background-color: __background_alt__;
-}
-
-#link__wiz_result span {
-    display: block;
-    color: __text_neu__;
-}
+/* Link Wizard - Modern + Dark */
+#link__wiz_result{background:var(--c-bg2);width:293px;height:193px;overflow:auto;border:1px solid var(--c-bd);border-radius:var(--r);margin:3px auto;text-align:left;transition:all var(--trans)}
+#link__wiz_result div{padding:3px 3px 3px 22px;color:var(--c-fg)}
+#link__wiz_result div.even{background-color:var(--c-bg3)}
+#link__wiz_result div.selected{background-color:var(--c-bg4);font-weight:700}
+#link__wiz_result span{display:block;color:var(--c-fg3)}

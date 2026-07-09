@@ -1,21 +1,4 @@
-/**
- * Styles for the subscription page
- */
-
-form#subscribe__form {
-    display: block;
-    width: 300px;
-    text-align: center;
-}
-
-form#subscribe__form fieldset {
-    text-align: left;
-    margin: 0.5em 0;
-}
-
-form#subscribe__form label {
-    display:block;
-    margin: 0 0.5em 0.5em;
-}
-
-
+/* Subscription - Modern + Dark */
+form#subscribe__form{display:block;width:300px;text-align:center;color:var(--c-fg)}
+form#subscribe__form fieldset{text-align:left;margin:.5em 0;border:1px solid var(--c-bd);border-radius:var(--r);background:var(--c-bg2)}
+form#subscribe__form label{display:block;margin:0 .5em .5em;color:var(--c-fg)}

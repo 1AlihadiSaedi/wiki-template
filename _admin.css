@@ -1,19 +1,43 @@
-/**
- * Modern Admin Section
- * Mobile-friendly, clean design
- */
-#admin__version{clear:left;float:right;color:var(--c-fg3);font-size:.85rem}
-[dir="rtl"] #admin__version{float:left}
-
-.dokuwiki ul.admin_tasks{font-size:1rem;display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:.75em;list-style:none;padding:0;margin:1em 0;float:none;width:auto}
-.dokuwiki ul.admin_tasks li{line-height:1.5;padding:1em 1em 1em 3em;margin:0;background:var(--c-bg2);border:1px solid var(--c-bd);border-radius:var(--r);text-align:left;transition:all var(--trans);box-shadow:var(--c-sh);position:relative;cursor:default}
+/** Modern Admin - Grid + Dark + Mobile */
+#admin__version{clear:left;float:right;color:var(--c-fg3);font-size:.85rem}[dir=rtl] #admin__version{float:left}
+.dokuwiki ul.admin_tasks{font-size:1rem;display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:.75em;list-style:none;padding:0;margin:1em 0;float:none;width:auto}
+.dokuwiki ul.admin_tasks li{line-height:1.5;padding:1em 1em 1em 3em;margin:0;background:var(--c-bg2);border:1px solid var(--c-bd);border-radius:var(--r);text-align:left;transition:all var(--trans);box-shadow:var(--c-sh);position:relative;cursor:default;color:var(--c-fg)}
 .dokuwiki ul.admin_tasks li:hover{box-shadow:var(--c-sh2);border-color:var(--c-pr);transform:translateY(-2px)}
 .dokuwiki ul.admin_tasks li div.li{font-weight:600;margin-bottom:.2em;font-size:1rem;color:var(--c-fg)}
-[dir="rtl"] .dokuwiki ul.admin_tasks li{text-align:right;padding:1em 3em 1em 1em}
+[dir=rtl] .dokuwiki ul.admin_tasks li{text-align:right;padding:1em 3em 1em 1em}
+@media screen and (max-width:600px){.dokuwiki ul.admin_tasks{grid-template-columns:1fr}.dokuwiki ul.admin_tasks li{padding:.85em .85em .85em 2.5em}[dir=rtl] .dokuwiki ul.admin_tasks li{padding:.85em 2.5em .85em .85em}}
 
-/* Mobile fix */
+/* Plugin list / extension manager */
+.dokuwiki div.pluginlist{width:100%}
+.dokuwiki table.inline.pluginlist td,.dokuwiki table.inline.pluginlist th{padding:.6em .8em;font-size:.9em;color:var(--c-fg)}
+
+/* Config manager - mobile + dark fix */
+#config__manager fieldset{border:1px solid var(--c-bd);border-radius:var(--r);padding:1.2em;margin:1em 0;background:var(--c-bg2);width:auto;box-shadow:var(--c-sh);transition:all var(--trans)}
+#config__manager legend{font-weight:700;color:var(--c-pr);padding:0 .5em}
+#config__manager td{color:var(--c-fg);transition:color var(--trans)}
+#config__manager td.label{font-weight:600;color:var(--c-fg2);padding:.4em .8em}
+#config__manager td.value{color:var(--c-fg)}
+#config__manager input.edit,#config__manager select.edit,#config__manager textarea.edit{color:var(--c-fg)!important;background:var(--c-bg2)!important;border:1px solid var(--c-bd)!important;border-radius:var(--r2);padding:.4em .6em;transition:all var(--trans);font-size:.9em}
+#config__manager input.edit:focus,#config__manager select.edit:focus,#config__manager textarea.edit:focus{outline:none;border-color:var(--c-pr)!important;box-shadow:0 0 0 3px var(--c-prl)}
+#config__manager .other{color:var(--c-fg3);font-size:.85em}
 @media screen and (max-width:600px){
-.dokuwiki ul.admin_tasks{grid-template-columns:1fr}
-.dokuwiki ul.admin_tasks li{padding:.85em .85em .85em 2.5em}
-[dir="rtl"] .dokuwiki ul.admin_tasks li{padding:.85em 2.5em .85em .85em}
+#config__manager td,#config__manager tr{display:block;width:100%}
+#config__manager td.label{padding:.5em 0 0}
+#config__manager td.value{padding:0 0 .8em}
+#config__manager fieldset{padding:.8em;margin:.6em 0}
+#config__manager input.edit,#config__manager select.edit,#config__manager textarea.edit{width:100%!important;max-width:100%!important;box-sizing:border-box}
 }
+
+/* User manager - mobile + dark fix */
+#user__manager{overflow-x:auto;-webkit-overflow-scrolling:touch}
+#user__manager table{min-width:600px;width:100%}
+#user__manager td,#user__manager th{color:var(--c-fg);padding:.5em .7em}
+#user__manager input.edit,#user__manager select.edit{color:var(--c-fg)!important;background:var(--c-bg2)!important;border:1px solid var(--c-bd)!important;border-radius:var(--r2);padding:.4em .6em}
+
+/* Extension manager tabs */
+.dokuwiki .plugin_manager .tabs li a{color:var(--c-fg)}
+.dokuwiki .plugin_manager .tabs li a:hover,.dokuwiki .plugin_manager .tabs li strong{color:var(--c-pr)}
+
+/* General admin page fixes */
+.dokuwiki div.ui-admin{color:var(--c-fg);transition:color var(--trans)}
+.dokuwiki dl.file dt,.dokuwiki dl.code dt{background:var(--c-bg3);border-color:var(--c-bd);color:var(--c-fg)}
