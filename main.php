@@ -1,9 +1,9 @@
 <?php
-/** DokuWiki Modern Green Silk Template - Translation Plugin compatible */
-if (!defined('DOKU_INC')) die();
-$dir_attr = $lang['direction'];
-$has_logo = @file_exists(__DIR__.'/images/logo.png');
-$logo_path = DOKU_TPL.'images/logo.png';
+/** DokuWiki Modern Green Silk Template */
+if(!defined('DOKU_INC'))die();
+$dir_attr=$lang['direction'];
+$has_logo=@file_exists(__DIR__.'/images/logo.png');
+$logo_path=DOKU_TPL.'images/logo.png';
 ?><!DOCTYPE html>
 <html lang="<?php echo $conf['lang']?>" dir="<?php echo $dir_attr?>" data-theme="light">
 <head>
@@ -19,10 +19,7 @@ $logo_path = DOKU_TPL.'images/logo.png';
 <div class="mobile-overlay" id="mobile-overlay" aria-hidden="true"></div>
 <nav class="side-drawer" id="side-drawer" aria-label="Menu">
 <div class="drawer-header">
-<div class="drawer-logo">
-<?php if($has_logo):?><img src="<?php echo $logo_path?>" alt="" class="drawer-logo-img" width="32" height="32"><?php endif?>
-<?php tpl_link(wl(),$conf['title'])?>
-</div>
+<div class="drawer-logo"><?php if($has_logo):?><img src="<?php echo $logo_path?>" alt="" class="drawer-logo-img" width="32" height="32"><?php endif?><?php tpl_link(wl(),$conf['title'])?></div>
 <button class="drawer-close" id="drawer-close" aria-label="Close"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M15 5L5 15M5 5l10 10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
 </div>
 <div class="drawer-content">
@@ -31,8 +28,7 @@ $logo_path = DOKU_TPL.'images/logo.png';
 <div class="drawer-section"><span class="drawer-title">User</span><div class="drawer-userinfo"><?php tpl_userinfo()?></div><div class="drawer-buttons"><?php tpl_button('profile')?><?php tpl_button('login')?><?php tpl_button('subscribe')?></div></div>
 </div>
 </nav>
-<div class="dokuwiki">
-<?php html_msgarea()?>
+<div class="dokuwiki"><?php html_msgarea()?>
 <header class="site-header" id="site-header">
 <div class="header-inner">
 <button class="hamburger" id="hamburger-btn" aria-label="Menu" aria-expanded="false"><span class="hamburger-line"></span><span class="hamburger-line"></span><span class="hamburger-line"></span></button>
@@ -41,17 +37,17 @@ $logo_path = DOKU_TPL.'images/logo.png';
 <nav class="desktop-nav" aria-label="Main"><div class="nav-search"><?php tpl_searchform()?></div><div class="nav-actions"><?php tpl_button('edit')?><?php tpl_button('history')?><?php tpl_button('recent')?><?php tpl_button('media')?><?php tpl_button('index')?><?php tpl_button('admin')?></div></nav>
 <div class="lang-selector">
 <?php
-  $langs = array('fa'=>'فارسی','en'=>'English','ar'=>'العربية');
-  $lang_prefixes = array('fa','en','ar');
-  $current = $conf['lang'];
-  echo '<button class="lang-toggle" id="lang-toggle" aria-label="Language" aria-expanded="false"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg><span class="lang-current">'.strtoupper($current).'</span></button>';
+  $langs=['fa'=>'فارسی','en'=>'English','ar'=>'العربية'];
+  $lang_pf=['fa','en','ar'];
+  $cur=$conf['lang'];
+  echo '<button class="lang-toggle" id="lang-toggle" aria-label="Language" aria-expanded="false"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg><span class="lang-current">'.strtoupper($cur).'</span></button>';
   echo '<div class="lang-dropdown" id="lang-dropdown">';
-  foreach($langs as $code=>$name){
-    $active = ($current==$code)?' active':'';
-    $parts = explode(':', $ID, 2);
-    $new_id = (count($parts)==2 && in_array($parts[0], $lang_prefixes)) ? $code.':'.$parts[1] : $code.':'.$ID;
-    $url = wl($new_id, array('do'=>'lang', 'lang'=>$code));
-    echo '<a href="'.$url.'" class="lang-option'.$active.'" hreflang="'.$code.'">'.$name.'</a>';
+  foreach($langs as $c=>$n){
+    $ac=($cur==$c)?' active':'';
+    $p=explode(':',$ID,2);
+    $nid=(count($p)==2&&in_array($p[0],$lang_pf))?$c.':'.$p[1]:$c.':'.$ID;
+    $u=wl($nid);
+    echo '<a href="'.$u.'" class="lang-option'.$ac.'" hreflang="'.$c.'">'.$n.'</a>';
   }
   echo '</div>';
 ?>
@@ -64,7 +60,7 @@ $logo_path = DOKU_TPL.'images/logo.png';
 <?php if($conf['breadcrumbs']):?><nav class="breadcrumbs-wrapper" aria-label="Breadcrumb"><div class="breadcrumbs"><?php tpl_breadcrumbs()?></div></nav><?php endif?>
 <?php if($conf['youarehere']):?><nav class="breadcrumbs-wrapper" aria-label="Breadcrumb"><div class="breadcrumbs"><?php tpl_youarehere()?></div></nav><?php endif?>
 <?php tpl_flush()?><?php @include(dirname(__FILE__).'/pageheader.html')?>
-<main class="page-content"><div class="page"><!-- wikipage start --><?php tpl_content()?><!-- wikipage stop --></div></main>
+<main class="page-content"><div class="page"><?php tpl_content()?></div></main>
 <?php tpl_flush()?>
 <footer class="page-footer"><div class="meta"><div class="meta-left"><span class="meta-user"><?php tpl_userinfo()?></span><span class="meta-sep" aria-hidden="true">&middot;</span><span class="meta-pageinfo"><?php tpl_pageinfo()?></span></div><div class="meta-right"><?php tpl_button('edit')?><?php tpl_button('history')?><?php tpl_button('revert')?><?php tpl_button('subscribe')?><?php tpl_button('top')?></div></div>
 <?php @include(dirname(__FILE__).'/pagefooter.html')?><?php tpl_license(false)?></footer>
@@ -75,15 +71,17 @@ $logo_path = DOKU_TPL.'images/logo.png';
 (function(){var h=document.getElementById('hamburger-btn'),d=document.getElementById('side-drawer'),o=document.getElementById('mobile-overlay'),c=document.getElementById('drawer-close');
 function open(){d.classList.add('is-open');o.classList.add('is-visible');o.setAttribute('aria-hidden','false');document.body.classList.add('menu-open');h.classList.add('is-active');h.setAttribute('aria-expanded','true')}
 function close(){d.classList.remove('is-open');o.classList.remove('is-visible');o.setAttribute('aria-hidden','true');document.body.classList.remove('menu-open');h.classList.remove('is-active');h.setAttribute('aria-expanded','false')}
-if(h)h.addEventListener('click',function(e){e.stopPropagation();d.classList.contains('is-open')?close():open()});if(c)c.addEventListener('click',close);if(o)o.addEventListener('click',close);
-document.addEventListener('keydown',function(e){if(e.key==='Escape'&&d&&d.classList.contains('is-open'))close()});
-var lt=document.getElementById('lang-toggle'),ld=document.getElementById('lang-dropdown');if(lt&&ld){lt.addEventListener('click',function(e){e.stopPropagation();var is=ld.classList.toggle('is-open');lt.setAttribute('aria-expanded',is)});document.addEventListener('click',function(){ld.classList.remove('is-open');lt.setAttribute('aria-expanded','false')})}
+h.addEventListener('click',function(e){e.stopPropagation();d.classList.contains('is-open')?close():open()});c.addEventListener('click',close);o.addEventListener('click',close);
+document.addEventListener('keydown',function(e){if(e.key==='Escape'&&d.classList.contains('is-open'))close()});
+var lt=document.getElementById('lang-toggle'),ld=document.getElementById('lang-dropdown');
+lt.addEventListener('click',function(e){e.stopPropagation();var is=ld.classList.toggle('is-open');lt.setAttribute('aria-expanded',is)});
+document.addEventListener('click',function(){ld.classList.remove('is-open');lt.setAttribute('aria-expanded','false')});
 var tt=document.getElementById('theme-toggle'),html=document.documentElement;
 function gT(){try{return localStorage.getItem('dokuwiki-theme')}catch(e){return null}}
 function sT(t){try{localStorage.setItem('dokuwiki-theme',t)}catch(e){}}
 function aT(t){if(t==='dark')html.setAttribute('data-theme','dark');else if(t==='light')html.setAttribute('data-theme','light');else{html.setAttribute('data-theme',window.matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light')}}
 var sv=gT();if(sv)aT(sv);else aT('auto');
-if(tt)tt.addEventListener('click',function(){var c=html.getAttribute('data-theme'),n=c==='dark'?'light':'dark';aT(n);sT(n)});
+tt.addEventListener('click',function(){var c=html.getAttribute('data-theme'),n=c==='dark'?'light':'dark';aT(n);sT(n)});
 window.matchMedia('(prefers-color-scheme:dark)').addEventListener('change',function(){if(!gT())aT('auto')})})();
 </script>
 </body>
