@@ -1,8 +1,5 @@
 <?php
-/**
- * DokuWiki Modern Green Silk Template
- * Translation Plugin compatible language selector
- */
+/** DokuWiki Modern Green Silk Template - Translation Plugin compatible */
 if (!defined('DOKU_INC')) die();
 $dir_attr = $lang['direction'];
 $has_logo = @file_exists(__DIR__.'/images/logo.png');
@@ -45,12 +42,15 @@ $logo_path = DOKU_TPL.'images/logo.png';
 <div class="lang-selector">
 <?php
   $langs = array('fa'=>'فارسی','en'=>'English','ar'=>'العربية');
+  $lang_prefixes = array('fa','en','ar');
   $current = $conf['lang'];
   echo '<button class="lang-toggle" id="lang-toggle" aria-label="Language" aria-expanded="false"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg><span class="lang-current">'.strtoupper($current).'</span></button>';
   echo '<div class="lang-dropdown" id="lang-dropdown">';
   foreach($langs as $code=>$name){
     $active = ($current==$code)?' active':'';
-    $url = wl($ID,array('do'=>'lang','lang'=>$code));
+    $parts = explode(':', $ID, 2);
+    $new_id = (count($parts)==2 && in_array($parts[0], $lang_prefixes)) ? $code.':'.$parts[1] : $code.':'.$ID;
+    $url = wl($new_id, array('do'=>'lang', 'lang'=>$code));
     echo '<a href="'.$url.'" class="lang-option'.$active.'" hreflang="'.$code.'">'.$name.'</a>';
   }
   echo '</div>';
