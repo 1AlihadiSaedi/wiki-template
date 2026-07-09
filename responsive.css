@@ -48,7 +48,7 @@ div.dokuwiki h1{font-size:1.4em}div.dokuwiki h2{font-size:1.2em}div.dokuwiki h3{
 .drawer-buttons input.button,.drawer-buttons button{padding:.55em .8em;font-size:.88rem}
 .side-drawer{width:100%;max-width:100vw;left:-100%}
 .meta-right input.button,.meta-right button{padding:.45em .7em;font-size:.82rem}
-div.dokuwiki pre{padding:.75em;font-size:.9em;border-radius:var(--r2)}
+div.dokuwiki pre{padding:.5em .65em;font-size:.9em;border-radius:var(--r2)}
 div.dokuwiki code{font-size:.92em}
 .breadcrumbs-wrapper .breadcrumbs{padding:.3rem .7rem;font-size:.78rem}
 .page-footer{padding:.7rem}
