@@ -56,22 +56,61 @@ div.dokuwiki code{background:var(--c-bg3);padding:.15em .4em;border-radius:var(-
 [data-theme="dark"] div.dokuwiki code{color:#f87171;background:#1e293b}
 
 /* ================================================================
-   CODE BLOCKS — NUCLEAR
-   Zero padding. Zero indent. No wrap.
+   CODE BLOCKS — NUCLEAR + ALWAYS LTR
    ================================================================ */
 div.dokuwiki pre,div.dokuwiki pre.code,div.dokuwiki pre.file,div.dokuwiki pre.pre,
 div.dokuwiki div.code,div.dokuwiki div.file,
 .dokuwiki pre,.dokuwiki pre.code,.dokuwiki pre.file,.dokuwiki pre.pre,
-pre.code,pre.file,pre.pre{padding:0!important;margin:1em 0!important;text-indent:0!important;white-space:pre!important;tab-size:4!important;-moz-tab-size:4!important;border:1px solid var(--c-bd)!important;border-radius:var(--r)!important;overflow-x:auto!important;line-height:1.45!important;background:var(--c-bg2)!important;color:var(--c-fg)!important;font-family:monospace!important;font-size:.9em!important;box-shadow:var(--c-sh)!important;word-spacing:normal!important;letter-spacing:normal!important;word-wrap:normal!important;overflow-wrap:normal!important;word-break:normal!important;display:block}
+pre.code,pre.file,pre.pre{
+  direction:ltr!important;
+  text-align:left!important;
+  unicode-bidi:isolate!important;
+  padding:0!important;
+  margin:1em 0!important;
+  text-indent:0!important;
+  white-space:pre!important;
+  tab-size:4!important;
+  -moz-tab-size:4!important;
+  border:1px solid var(--c-bd)!important;
+  border-radius:var(--r)!important;
+  overflow-x:auto!important;
+  line-height:1.45!important;
+  background:var(--c-bg2)!important;
+  color:var(--c-fg)!important;
+  font-family:monospace!important;
+  font-size:.9em!important;
+  box-shadow:var(--c-sh)!important;
+  word-spacing:normal!important;
+  letter-spacing:normal!important;
+  word-wrap:normal!important;
+  overflow-wrap:normal!important;
+  word-break:normal!important
+}
 
 div.dokuwiki pre>*,div.dokuwiki pre.code>*,div.dokuwiki pre.file>*,
 .dokuwiki pre>*,.dokuwiki pre.code>*,.dokuwiki pre.file>*,
-div.dokuwiki div.code>*,div.dokuwiki div.file>*{padding:0!important;margin:0!important;text-indent:0!important;border:none!important;background:0 0!important}
+div.dokuwiki div.code>*,div.dokuwiki div.file>*{
+  direction:ltr!important;
+  text-align:left!important;
+  padding:0!important;
+  margin:0!important;
+  text-indent:0!important;
+  border:none!important;
+  background:0 0!important
+}
 
 .dokuwiki pre .li1,.dokuwiki pre .li2,.dokuwiki pre .li3,.dokuwiki pre .li4,.dokuwiki pre .li5,.dokuwiki pre .li6,
 div.dokuwiki pre .li1,div.dokuwiki pre .li2,div.dokuwiki pre .li3,div.dokuwiki pre .li4,div.dokuwiki pre .li5,div.dokuwiki pre .li6,
 .dokuwiki pre span.li1,.dokuwiki pre span.li2,.dokuwiki pre span.li3,
-.dokuwiki pre span,.dokuwiki pre code,.dokuwiki pre br{padding:0!important;margin:0!important;text-indent:0!important;background:0 0!important;line-height:inherit!important}
+.dokuwiki pre span,.dokuwiki pre code,.dokuwiki pre br{
+  direction:ltr!important;
+  text-align:left!important;
+  padding:0!important;
+  margin:0!important;
+  text-indent:0!important;
+  background:0 0!important;
+  line-height:inherit!important
+}
 
 [data-theme="dark"] div.dokuwiki pre,[data-theme="dark"] .dokuwiki pre,
 [data-theme="dark"] div.dokuwiki pre.code,[data-theme="dark"] div.dokuwiki pre.file,[data-theme="dark"] div.dokuwiki pre.pre,
@@ -80,9 +119,12 @@ div.dokuwiki pre .li1,div.dokuwiki pre .li2,div.dokuwiki pre .li3,div.dokuwiki p
 /* DARK SYNTAX */
 [data-theme="dark"] .dokuwiki .code .kw1,[data-theme="dark"] .dokuwiki .code .kw2,[data-theme="dark"] .dokuwiki .code .kw3,[data-theme="dark"] .dokuwiki .code .kw4{color:#ff7b72!important}
 [data-theme="dark"] .dokuwiki .code .co1,[data-theme="dark"] .dokuwiki .code .co2,[data-theme="dark"] .dokuwiki .code .coMULTI{color:#8b949e!important;font-style:italic}
-[data-theme="dark"] .dokuwiki .code .es0,[data-theme="dark"] .dokuwiki .code .es1,[data-theme="dark"] .dokuwiki .code .st0,[data-theme="dark"] .dokuwiki .code .st_h,[data-theme="dark"] .dokuwiki .code .nu0,[data-theme="dark"] .dokuwiki .code .nu19,.dokuwiki .code .re0,.dokuwiki .code .re1{color:#79c0ff!important}
+[data-theme="dark"] .dokuwiki .code .es0,[data-theme="dark"] .dokuwiki .code .es1{color:#79c0ff!important}
+[data-theme="dark"] .dokuwiki .code .st0,[data-theme="dark"] .dokuwiki .code .st_h{color:#a5d6ff!important}
+[data-theme="dark"] .dokuwiki .code .nu0,[data-theme="dark"] .dokuwiki .code .nu19{color:#79c0ff!important}
 [data-theme="dark"] .dokuwiki .code .br0,[data-theme="dark"] .dokuwiki .code .sy0{color:#e6edf3!important}
 [data-theme="dark"] .dokuwiki .code .me0,[data-theme="dark"] .dokuwiki .code .me1{color:#d2a8ff!important}
+[data-theme="dark"] .dokuwiki .code .re0,[data-theme="dark"] .dokuwiki .code .re1{color:#79c0ff!important}
 [data-theme="dark"] .dokuwiki .code span,[data-theme="dark"] .dokuwiki pre span{color:#e6edf3!important}
 
 /* TABLES */
@@ -127,7 +169,3 @@ div.dokuwiki img.medialeft{float:left;margin:0 1.5em 1em 0;max-width:50%}div.dok
 div.dokuwiki .clearer{clear:both}div.dokuwiki span.user{color:var(--c-fg3);font-size:.9em}div.dokuwiki li.minor{color:var(--c-fg3)}
 select.edit option,select option{background:var(--c-bg2);color:var(--c-fg)}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
-
-/* LTR FORCE */
-div.dokuwiki pre,div.dokuwiki code,div.dokuwiki textarea.edit{text-align:left!important;unicode-bidi:isolate}
-div.dokuwiki pre *{direction:ltr!important;text-align:left!important}
