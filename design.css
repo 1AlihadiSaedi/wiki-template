@@ -34,8 +34,11 @@ html[dir="rtl"] .dokuwiki div.pagenav-prev{direction:ltr!important}
 html[dir="rtl"] .dokuwiki div.pagenav-next{direction:rtl!important}
 div.dokuwiki code{background:var(--c-bg3);padding:.15em .4em;border-radius:var(--r2);font-size:.9em;font-family:'SF Mono','Fira Code',Menlo,Courier,monospace;color:#e11d48}
 [data-theme="dark"] div.dokuwiki code{color:#f87171;background:#1e293b}
-div.dokuwiki pre{padding:.8em 1em;border:1px solid var(--c-bd);border-radius:var(--r);overflow-x:auto;line-height:1.45;background:var(--c-bg2);color:var(--c-fg);font-family:'SF Mono','Fira Code',Menlo,Courier,monospace;font-size:.9em;box-shadow:var(--c-sh)}
+
+/* Code blocks - no indent, tab-size controlled */
+div.dokuwiki pre{padding:.7em .9em;border:1px solid var(--c-bd);border-radius:var(--r);overflow-x:auto;line-height:1.45;background:var(--c-bg2);color:var(--c-fg);font-family:'SF Mono','Fira Code',Menlo,Courier,monospace;font-size:.9em;box-shadow:var(--c-sh);tab-size:4;-moz-tab-size:4;text-indent:0;white-space:pre}
 [data-theme="dark"] div.dokuwiki pre{background:#0d1117;color:#e6edf3;border-color:#1e3a28}
+
 [data-theme="dark"] .dokuwiki .code .kw1,[data-theme="dark"] .dokuwiki .code .kw2,[data-theme="dark"] .dokuwiki .code .kw3,[data-theme="dark"] .dokuwiki .code .kw4{color:#ff7b72!important}
 [data-theme="dark"] .dokuwiki .code .co1,[data-theme="dark"] .dokuwiki .code .co2,[data-theme="dark"] .dokuwiki .code .coMULTI{color:#8b949e!important;font-style:italic}
 [data-theme="dark"] .dokuwiki .code .es0,[data-theme="dark"] .dokuwiki .code .es1{color:#79c0ff!important}
