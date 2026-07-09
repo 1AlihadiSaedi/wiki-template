@@ -1,33 +1,34 @@
-# Modern Wiki Template for DokuWiki
+# 🟢 Green Silk Wiki Template for DokuWiki
 
-A clean, modern and responsive template for [DokuWiki](http://dokuwiki.org), redesigned from the classic default template.
+A modern, silky-green DokuWiki template with auto dark/light theme, RTL support, language selector, and hamburger menu.
 
 ## Features
 
-- **Modern Design** — Clean aesthetics with indigo accents, rounded corners, and subtle shadows
-- **Hamburger Menu** — Touch-friendly side drawer navigation for mobile devices (Android & iOS)
-- **Fully Responsive** — Adapts beautifully from desktop to tablet to smartphone
-- **Sticky Header** — Navigation bar stays visible while scrolling
-- **Dark Code Blocks** — Modern dark-themed code display
-- **Simple & Clean** — Minimalist design focused on readability
-- **RTL Support** — Full right-to-left language support
-
-## Preview
-
-Desktop and mobile screenshots coming soon.
+- **Silky Green Theme** — Beautiful emerald green color palette with smooth transitions
+- **Auto Dark/Light Mode** — Detects `prefers-color-scheme` automatically, with manual toggle
+- **Full RTL Support** — Proper right-to-left layout for Persian, Arabic, Hebrew
+- **Language Selector** — Quick language switching (FA, EN, AR built-in)
+- **Hamburger Menu** — Smooth side drawer for mobile with gesture support
+- **Logo + Site Name** — Display logo alongside site title in header
+- **Fully Responsive** — Desktop, tablet, and mobile optimized (Android & iOS)
+- **Sticky Header** — with backdrop blur, always accessible
+- **Modern Admin Panel** — Redesigned with CSS Grid, mobile-friendly
+- **Smooth Animations** — All transitions use cubic-bezier easing
+- **CSS Custom Properties** — Easy customization via variables
+- **Reduced Motion** — Respects `prefers-reduced-motion` setting
 
 ## Installation
 
-1. Download or clone this repository
-2. Extract to `lib/tpl/wiki-template/` in your DokuWiki installation
-3. Go to Admin → Configuration Settings → Template and select `wiki-template`
+1. Place `logo.png` in `images/` folder (optional, 64x64 recommended)
+2. Upload to `lib/tpl/wiki-template/` in DokuWiki
+3. Go to Admin → Configuration → Template and select this template
 
 ## Credits
 
-- Original template by [Andreas Gohr](http://splitbrain.org)
-- Maintained by [desbest](http://desbest.com) for DokuWiki Greebo compatibility
+- Original by Andreas Gohr
+- Maintained by desbest for Greebo compatibility
 - Modern redesign by Ali Hadi Saedi
 
 ## License
 
-GPL 2 — see the COPYING file.
+GPL 2

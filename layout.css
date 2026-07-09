@@ -1,311 +1,102 @@
 /**
- * Modern Layout for DokuWiki Template
- * Sticky header, flexbox, clean spacing
+ * Green Silk Layout - RTL, Logo, Theme Toggle, Language Selector
  */
+.site-header{position:sticky;top:0;z-index:100;background:var(--c-bg2);border-bottom:1px solid var(--c-bd);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);transition:background var(--trans),border var(--trans);box-shadow:var(--c-sh)}
+.header-inner{max-width:1200px;margin:0 auto;padding:0 1rem;display:flex;align-items:center;gap:.6rem;height:56px}
 
-/* ========== Site Header ========== */
-.site-header {
-  position: sticky;
-  top: 0;
-  z-index: 100;
-  background: #ffffff;
-  border-bottom: 1px solid __border__;
-  box-shadow: 0 1px 4px rgba(0,0,0,0.04);
-  backdrop-filter: blur(8px);
-}
+/* Hamburger */
+.hamburger{display:none;flex-direction:column;justify-content:center;align-items:center;gap:5px;width:36px;height:36px;padding:6px;background:transparent;border:none;cursor:pointer;border-radius:var(--r2);transition:background var(--trans);flex-shrink:0}
+.hamburger:hover{background:var(--c-bg3)}
+.hamburger-line{display:block;width:20px;height:2px;background:var(--c-fg);border-radius:2px;transition:all .3s cubic-bezier(.68,-.55,.265,1.55)}
+.hamburger.is-active .hamburger-line:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.hamburger.is-active .hamburger-line:nth-child(2){opacity:0;transform:scaleX(0)}
+.hamburger.is-active .hamburger-line:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
 
-.header-inner {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 1.25rem;
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  height: 56px;
-}
+/* Branding */
+.site-branding{flex-shrink:0;display:flex;align-items:center;gap:.5rem}
+.site-logo{width:28px;height:28px;border-radius:var(--r2);object-fit:contain;flex-shrink:0}
+.site-title{font-size:1.15rem;font-weight:700;color:var(--c-fg);text-decoration:none!important;letter-spacing:-.02em;white-space:nowrap;transition:color var(--trans)}
+.site-title:hover{color:var(--c-pr)}
 
-/* ========== Hamburger ========== */
-.hamburger {
-  display: none;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 5px;
-  width: 36px;
-  height: 36px;
-  padding: 6px;
-  background: transparent;
-  border: none;
-  cursor: pointer;
-  border-radius: var(--radius-sm);
-  transition: background var(--transition);
-  flex-shrink: 0;
-}
+/* Page name */
+.page-name{flex:1;min-width:0;font-size:.85rem;color:var(--c-fg3);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.page-name a{color:var(--c-fg3);text-decoration:none;transition:color var(--trans)}
+.page-name a:hover{color:var(--c-pr)}
+.page-name-sep{margin:0 .3rem;color:var(--c-bd)}
 
-.hamburger:hover {
-  background: __background_neu__;
-}
+/* Desktop Nav */
+.desktop-nav{display:flex;align-items:center;gap:.4rem;flex-shrink:0}
+.nav-search form{display:flex}
+.nav-search input{font-size:.82rem;padding:.35em .6em;border:1px solid var(--c-bd);border-radius:var(--r) 0 0 var(--r);outline:none;width:140px;background:var(--c-bg3);color:var(--c-fg);transition:all var(--trans)}
+.nav-search input:focus{border-color:var(--c-pr);background:var(--c-bg2);width:180px;box-shadow:0 0 0 3px var(--c-prl)}
+.nav-search button{font-size:.82rem;padding:.35em .7em;border:1px solid var(--c-pr);border-left:none;border-radius:0 var(--r) var(--r) 0;background:var(--c-pr);color:#fff;cursor:pointer;transition:background var(--trans)}
+.nav-search button:hover{background:var(--c-pr2)}
+.nav-actions{display:flex;align-items:center;gap:2px}.nav-actions form,.nav-actions .plugin_block{display:inline-flex}
+.nav-actions input.button,.nav-actions button{font-size:.78rem;padding:.3em .55em;background:transparent;border:1px solid transparent;border-radius:var(--r2);cursor:pointer;color:var(--c-fg3);transition:all var(--trans)}
+.nav-actions input.button:hover,.nav-actions button:hover{background:var(--c-bg3);color:var(--c-fg);border-color:var(--c-bd)}
 
-.hamburger-line {
-  display: block;
-  width: 20px;
-  height: 2px;
-  background: __text__;
-  border-radius: 2px;
-  transition: all 0.3s ease;
-}
+/* Language Selector */
+.lang-selector{position:relative;flex-shrink:0}
+.lang-toggle{display:flex;align-items:center;gap:.35rem;padding:.3em .55em;border:1px solid transparent;border-radius:var(--r2);background:transparent;color:var(--c-fg3);cursor:pointer;font-size:.78rem;transition:all var(--trans)}
+.lang-toggle:hover{background:var(--c-bg3);border-color:var(--c-bd);color:var(--c-fg)}
+.lang-current{font-weight:600;font-size:.75rem}
+.lang-dropdown{position:absolute;top:100%;right:0;margin-top:.3rem;background:var(--c-bg2);border:1px solid var(--c-bd);border-radius:var(--r);box-shadow:var(--c-sh3);opacity:0;visibility:hidden;transform:translateY(-8px);transition:all .2s ease;z-index:300;min-width:130px;overflow:hidden}
+.lang-dropdown.is-open{opacity:1;visibility:visible;transform:translateY(0)}
+.lang-option{display:block;padding:.5em 1em;color:var(--c-fg);text-decoration:none;font-size:.85rem;transition:all var(--trans);border-left:3px solid transparent}
+.lang-option:hover{background:var(--c-bg4);border-left-color:var(--c-pr)}
+.lang-option.active{background:var(--c-bg4);border-left-color:var(--c-pr);font-weight:600;color:var(--c-pr)}
 
-/* Hamburger Animation */
-.hamburger.is-active .hamburger-line:nth-child(1) {
-  transform: translateY(7px) rotate(45deg);
-}
+/* User Area */
+.user-area{display:flex;align-items:center;gap:.3rem;flex-shrink:0;padding-left:.4rem;border-left:1px solid var(--c-bd);transition:border var(--trans)}
+.user-info{font-size:.78rem;color:var(--c-fg3);white-space:nowrap}
+.user-area input.button,.user-area button{font-size:.78rem;padding:.3em .55em;background:transparent;border:1px solid var(--c-bd);border-radius:var(--r2);cursor:pointer;color:var(--c-fg3);transition:all var(--trans)}
+.user-area input.button:hover,.user-area button:hover{background:var(--c-bg4);color:var(--c-fg)}
 
-.hamburger.is-active .hamburger-line:nth-child(2) {
-  opacity: 0;
-}
+/* Theme Toggle */
+.theme-toggle{display:flex;align-items:center;justify-content:center;width:34px;height:34px;padding:0;border:1px solid transparent;border-radius:var(--r2);background:transparent;color:var(--c-fg3);cursor:pointer;transition:all var(--trans);flex-shrink:0}
+.theme-toggle:hover{background:var(--c-bg3);color:var(--c-fg);border-color:var(--c-bd)}
+[data-theme="light"] .theme-icon-dark,[data-theme="dark"] .theme-icon-light{display:none}
 
-.hamburger.is-active .hamburger-line:nth-child(3) {
-  transform: translateY(-7px) rotate(-45deg);
-}
+/* Breadcrumbs */
+.breadcrumbs-wrapper{background:var(--c-bg2);border-bottom:1px solid var(--c-bd);transition:background var(--trans),border var(--trans)}
 
-/* ========== Site Branding ========== */
-.site-branding {
-  flex-shrink: 0;
-}
+/* Page Footer */
+.page-footer{border-top:2px solid var(--c-bd);background:var(--c-bg2);padding:1rem 1.5rem;margin-top:3rem;transition:background var(--trans),border var(--trans)}
+.page-footer .meta{max-width:900px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:.5rem;font-size:.82rem;color:var(--c-fg3);transition:color var(--trans)}
+.meta-left{display:flex;align-items:center;gap:.4rem;flex-wrap:wrap}.meta-sep{color:var(--c-bd)}
+.meta-right{display:flex;align-items:center;gap:2px}
+.meta-right input.button,.meta-right button{font-size:.78rem;padding:.3em .55em;background:transparent;border:1px solid transparent;border-radius:var(--r2);cursor:pointer;color:var(--c-fg3);transition:all var(--trans)}
+.meta-right input.button:hover,.meta-right button:hover{background:var(--c-bg3);color:var(--c-fg);border-color:var(--c-bd)}
 
-.site-title {
-  font-size: 1.2rem;
-  font-weight: 700;
-  color: #1a1a2e;
-  text-decoration: none !important;
-  letter-spacing: -0.02em;
-  white-space: nowrap;
-}
+/* Lang buttons (mobile) */
+.lang-buttons{display:flex;flex-wrap:wrap;gap:.35rem}
+.lang-btn{padding:.4em .75em;border:1px solid var(--c-bd);border-radius:var(--r2);color:var(--c-fg);text-decoration:none;font-size:.85rem;transition:all var(--trans);background:var(--c-bg2)}
+.lang-btn:hover{background:var(--c-bg4);border-color:var(--c-pr)}
+.lang-btn.active{background:var(--c-pr);color:#fff;border-color:var(--c-pr)}
 
-.site-title:hover {
-  color: #4f46e5;
-}
+/* Hide old elements */
+div.dokuwiki .header,div.dokuwiki .bar,div.dokuwiki .stylehead,div.dokuwiki .pagename,div.dokuwiki .logo{display:none}
 
-/* ========== Page Name (in header) ========== */
-.page-name {
-  flex: 1;
-  min-width: 0;
-  font-size: 0.9rem;
-  color: __text_neu__;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  padding: 0 0.5rem;
-}
+/* RTL Support */
+[dir="rtl"] .nav-search input{border-radius:0 var(--r) var(--r) 0}[dir="rtl"] .nav-search button{border-radius:var(--r) 0 0 var(--r)}
+[dir="rtl"] .lang-dropdown{right:auto;left:0}[dir="rtl"] .lang-option{border-left:none;border-right:3px solid transparent}
+[dir="rtl"] .lang-option:hover,[dir="rtl"] .lang-option.active{border-right-color:var(--c-pr)}
+[dir="rtl"] .user-area{border-left:none;border-right:1px solid var(--c-bd);padding-left:0;padding-right:.4rem}
+[dir="rtl"] .page-name-sep{margin:0 .3rem}
 
-.page-name a {
-  color: __text_neu__;
-  text-decoration: none;
-}
+/* RTL Drawer */
+[dir="rtl"] .side-drawer{left:auto;right:-300px;transition:right .3s cubic-bezier(.4,0,.2,1)}[dir="rtl"] .side-drawer.is-open{right:0}
 
-.page-name a:hover {
-  color: #4f46e5;
-}
-
-/* ========== Desktop Navigation ========== */
-.desktop-nav {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  flex-shrink: 0;
-}
-
-.nav-search form {
-  display: flex;
-  align-items: center;
-}
-
-.nav-search input {
-  font-size: 0.85rem;
-  padding: 0.35em 0.65em;
-  border: 1px solid __border__;
-  border-radius: var(--radius) 0 0 var(--radius);
-  outline: none;
-  width: 150px;
-  transition: all var(--transition);
-  background: __background_neu__;
-}
-
-.nav-search input:focus {
-  border-color: #6366f1;
-  background: #fff;
-  width: 200px;
-  box-shadow: 0 0 0 3px rgba(99,102,241,0.1);
-}
-
-.nav-search button {
-  font-size: 0.85rem;
-  padding: 0.35em 0.75em;
-  border: 1px solid __border__;
-  border-left: none;
-  border-radius: 0 var(--radius) var(--radius) 0;
-  background: #4f46e5;
-  color: #fff;
-  cursor: pointer;
-  transition: background var(--transition);
-  white-space: nowrap;
-}
-
-.nav-search button:hover {
-  background: #4338ca;
-}
-
-.nav-actions {
-  display: flex;
-  align-items: center;
-  gap: 2px;
-}
-
-.nav-actions form,
-.nav-actions .plugin_block {
-  display: inline-flex;
-}
-
-.nav-actions input.button,
-.nav-actions button {
-  font-size: 0.8rem;
-  padding: 0.3em 0.6em;
-  background: transparent;
-  border: 1px solid transparent;
-  border-radius: var(--radius-sm);
-  cursor: pointer;
-  transition: all var(--transition);
-  color: __text_neu__;
-}
-
-.nav-actions input.button:hover,
-.nav-actions button:hover {
-  background: __background_neu__;
-  color: __text__;
-  border-color: __border__;
-}
-
-/* ========== User Area ========== */
-.user-area {
-  display: flex;
-  align-items: center;
-  gap: 0.35rem;
-  flex-shrink: 0;
-  padding-left: 0.5rem;
-  border-left: 1px solid __border__;
-}
-
-.user-info {
-  font-size: 0.8rem;
-  color: __text_neu__;
-  white-space: nowrap;
-}
-
-.user-area input.button,
-.user-area button {
-  font-size: 0.8rem;
-  padding: 0.3em 0.6em;
-  background: transparent;
-  border: 1px solid __border__;
-  border-radius: var(--radius-sm);
-  cursor: pointer;
-  transition: all var(--transition);
-  color: __text_neu__;
-}
-
-.user-area input.button:hover,
-.user-area button:hover {
-  background: __background_neu__;
-  color: __text__;
-}
-
-/* ========== Breadcrumbs ========== */
-.breadcrumbs-wrapper {
-  background: #fff;
-  border-bottom: 1px solid __border__;
-}
-
-.breadcrumbs-wrapper .breadcrumbs {
-  max-width: 900px;
-  margin: 0 auto;
-  padding: 0.5rem 1.5rem;
-  font-size: 0.85rem;
-  color: __text_neu__;
-}
-
-.breadcrumbs-wrapper .breadcrumbs a {
-  color: #6366f1;
-  text-decoration: none;
-}
-
-.breadcrumbs-wrapper .breadcrumbs a:hover {
-  text-decoration: underline;
-}
-
-/* ========== Page Content ========== */
-.page-content {
-  min-height: 60vh;
-}
-
-/* ========== Page Footer ========== */
-.page-footer {
-  border-top: 2px solid __border__;
-  background: #fff;
-  padding: 1rem 1.5rem;
-  margin-top: 3rem;
-}
-
-.page-footer .meta {
-  max-width: 900px;
-  margin: 0 auto;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-  font-size: 0.85rem;
-  color: __text_neu__;
-}
-
-.meta-left {
-  display: flex;
-  align-items: center;
-  gap: 0.4rem;
-  flex-wrap: wrap;
-}
-
-.meta-sep {
-  color: __border__;
-}
-
-.meta-right {
-  display: flex;
-  align-items: center;
-  gap: 2px;
-}
-
-.meta-right input.button,
-.meta-right button {
-  font-size: 0.8rem;
-  padding: 0.3em 0.6em;
-  background: transparent;
-  border: 1px solid transparent;
-  border-radius: var(--radius-sm);
-  cursor: pointer;
-  color: __text_neu__;
-  transition: all var(--transition);
-}
-
-.meta-right input.button:hover,
-.meta-right button:hover {
-  background: __background_neu__;
-  color: __text__;
-  border-color: __border__;
-}
-
-/* ========== Old Layout Compatibility ========== */
-div.dokuwiki .header { display: none; }
-div.dokuwiki .bar { display: none; }
-div.dokuwiki .stylehead { display: none; } /* old stylehead removed in modern layout */
-div.dokuwiki .pagename { display: none; }
-div.dokuwiki .logo { display: none; }
+/* RTL Headings/Content */
+[dir="rtl"] div.dokuwiki div.level2{margin-left:0;margin-right:1.5rem}[dir="rtl"] div.dokuwiki div.level3{margin-left:0;margin-right:3rem}[dir="rtl"] div.dokuwiki div.level4{margin-left:0;margin-right:4.5rem}[dir="rtl"] div.dokuwiki div.level5{margin-left:0;margin-right:6rem}
+[dir="rtl"] div.dokuwiki ul,[dir="rtl"] div.dokuwiki ol{margin:0 2em 1.2em 0}[dir="rtl"] div.dokuwiki li ul,[dir="rtl"] div.dokuwiki li ol{margin:0 1.5em 0 0}
+[dir="rtl"] div.dokuwiki blockquote{border-left:none;border-right:4px solid var(--c-pr);border-radius:var(--r2) 0 0 var(--r2)}
+[dir="rtl"] div.dokuwiki #dw__toc{float:left;margin:0 1.5em 1.5em 0}
+[dir="rtl"] div.dokuwiki table.inline th{text-align:right}
+[dir="rtl"] div.dokuwiki dl.file dt,[dir="rtl"] div.dokuwiki dl.code dt{margin-left:0;margin-right:1em}
+[dir="rtl"] div.dokuwiki label.block{text-align:left}
+[dir="rtl"] div.dokuwiki h1,div.dokuwiki h2,div.dokuwiki h3,div.dokuwiki h4,div.dokuwiki h5{clear:right}
+[dir="rtl"] div.dokuwiki img.medialeft{float:right;margin:0 0 1em 1.5em}[dir="rtl"] div.dokuwiki img.mediaright{float:left;margin:0 1.5em 1em 0}
+[dir="rtl"] div.dokuwiki div.secedit input.button{float:left}[dir="rtl"] .btn_secedit{float:left}
+[dir="rtl"] div.dokuwiki div.img_big{float:right;margin-right:0;margin-left:1em}
+[dir="rtl"] div.dokuwiki a.urlextern{background-position:right 2px;padding:1px 16px 1px 0}[dir="rtl"] div.dokuwiki a.mail{background-position:right 2px;padding:1px 16px 1px 0}

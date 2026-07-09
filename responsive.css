@@ -1,416 +1,77 @@
 /**
- * Modern Responsive Design for DokuWiki Template
- * Mobile-first with hamburger menu and side drawer
+ * Modern Responsive - Mobile, Dark Mode, Admin Fixes
  */
 
-/* ========== Mobile Overlay ========== */
-.mobile-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0,0,0,0.4);
-  z-index: 200;
-  opacity: 0;
-  visibility: hidden;
-  transition: opacity 0.3s ease, visibility 0.3s ease;
-  pointer-events: none;
+/* ===== Overlay ===== */
+.mobile-overlay{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.45);z-index:200;opacity:0;visibility:hidden;transition:opacity .3s ease,visibility .3s ease;pointer-events:none;-webkit-tap-highlight-color:transparent}
+.mobile-overlay.is-visible{opacity:1;visibility:visible;pointer-events:auto}
+
+/* ===== Side Drawer ===== */
+.side-drawer{position:fixed;top:0;left:-300px;width:280px;max-width:85vw;height:100%;height:100dvh;z-index:250;background:var(--c-bg2);box-shadow:2px 0 30px rgba(0,0,0,.15);transition:left .3s cubic-bezier(.4,0,.2,1);overflow-y:auto;-webkit-overflow-scrolling:touch;display:flex;flex-direction:column}
+.side-drawer.is-open{left:0}
+.drawer-header{display:flex;align-items:center;justify-content:space-between;padding:.9rem 1rem;border-bottom:1px solid var(--c-bd);background:var(--c-bg3)}
+.drawer-logo{font-size:1.05rem;font-weight:700;display:flex;align-items:center;gap:.4rem}
+.drawer-logo a{color:var(--c-fg);text-decoration:none}
+.drawer-logo-img{width:28px;height:28px;border-radius:var(--r2)}
+.drawer-close{width:32px;height:32px;display:flex;align-items:center;justify-content:center;border:none;background:transparent;color:var(--c-fg3);cursor:pointer;border-radius:var(--r2);transition:all var(--trans)}
+.drawer-close:hover{background:var(--c-bg2);color:var(--c-fg)}
+.drawer-content{flex:1;padding:.5rem 0}
+.drawer-section{padding:.7rem 1rem;border-bottom:1px solid var(--c-bd)}
+.drawer-section:last-child{border-bottom:none}
+.drawer-title{font-size:.68rem;text-transform:uppercase;letter-spacing:.1em;color:var(--c-fg3);margin-bottom:.6rem;font-weight:600;display:block}
+.drawer-buttons{display:flex;flex-wrap:wrap;gap:.35rem}
+.drawer-buttons form,.drawer-buttons .plugin_block{display:inline-flex}
+.drawer-buttons input.button,.drawer-buttons button{font-size:.85rem;padding:.45em .7em;border:1px solid var(--c-bd);border-radius:var(--r2);background:var(--c-bg2);color:var(--c-fg);cursor:pointer;transition:all var(--trans);display:inline-flex;align-items:center;gap:.3em;white-space:nowrap}
+.drawer-buttons input.button:hover,.drawer-buttons button:hover{background:var(--c-bg4);border-color:var(--c-pr)}
+.drawer-section form#dw__search{display:flex;gap:0}.drawer-section #dw__search input{flex:1;font-size:.88rem;padding:.5em .7em;border:1px solid var(--c-bd);border-right:none;border-radius:var(--r2) 0 0 var(--r2);outline:none;background:var(--c-bg3);color:var(--c-fg);transition:all var(--trans)}
+.drawer-section #dw__search input:focus{border-color:var(--c-pr);background:var(--c-bg2)}
+.drawer-section #dw__search button{padding:.5em .9em;background:var(--c-pr);color:#fff;border:1px solid var(--c-pr);border-radius:0 var(--r2) var(--r2) 0;cursor:pointer;font-size:.88rem}
+.drawer-userinfo{font-size:.82rem;color:var(--c-fg3);margin-bottom:.5rem}
+
+/* ===== Body ===== */
+body.menu-open{overflow:hidden}
+
+/* ===== RTL Drawer ===== */
+[dir="rtl"] .side-drawer{left:auto;right:-300px}[dir="rtl"] .side-drawer.is-open{right:0}
+[dir="rtl"] .drawer-section #dw__search input{border-right:1px solid var(--c-bd);border-left:none;border-radius:0 var(--r2) var(--r2) 0}
+[dir="rtl"] .drawer-section #dw__search button{border-radius:var(--r2) 0 0 var(--r2)}
+
+/* ===== Responsive ≤899px ===== */
+@media screen and (max-width:899px){
+.hamburger{display:flex}.desktop-nav,.user-area,.page-name{display:none}.site-title{font-size:1.05rem}.header-inner{padding:0 .6rem;gap:.3rem}.lang-selector{margin-left:auto}[dir="rtl"] .lang-selector{margin-left:0;margin-right:auto}
+div.dokuwiki div.page{padding:1.25rem 1rem}
+div.dokuwiki #dw__toc{float:none;width:100%;margin:0 0 1.5em}
+div.dokuwiki img.medialeft,div.dokuwiki img.mediaright{float:none;display:block;margin:0 auto 1em;max-width:100%}
+div.dokuwiki table.inline{display:block;overflow-x:auto;-webkit-overflow-scrolling:touch}
+div.dokuwiki h1{font-size:1.6em}div.dokuwiki h2{font-size:1.3em}div.dokuwiki h3{font-size:1.15em}
+div.dokuwiki div.level2{margin-left:.5rem}div.dokuwiki div.level3{margin-left:1rem}div.dokuwiki div.level4{margin-left:1.5rem}div.dokuwiki div.level5{margin-left:2rem}
+[dir="rtl"] div.dokuwiki div.level2{margin-left:0;margin-right:.5rem}[dir="rtl"] div.dokuwiki div.level3{margin-left:0;margin-right:1rem}[dir="rtl"] div.dokuwiki div.level4{margin-left:0;margin-right:1.5rem}[dir="rtl"] div.dokuwiki div.level5{margin-left:0;margin-right:2rem}
+div.dokuwiki ul,div.dokuwiki ol{margin-left:1.5em}[dir="rtl"] div.dokuwiki ul,[dir="rtl"] div.dokuwiki ol{margin-right:1.5em}
+.page-footer .meta{flex-direction:column;align-items:flex-start}
+div.dokuwiki fieldset{width:100%}
 }
 
-.mobile-overlay.is-visible {
-  opacity: 1;
-  visibility: visible;
-  pointer-events: auto;
+/* ===== Responsive ≤480px ===== */
+@media screen and (max-width:480px){
+.header-inner{height:50px;padding:0 .5rem}
+.hamburger{width:32px;height:32px;padding:4px}.hamburger-line{width:18px}
+.site-title{font-size:.95rem}.site-logo{width:24px;height:24px}
+div.dokuwiki div.page{padding:1rem .7rem;font-size:.93em}
+div.dokuwiki h1{font-size:1.4em}div.dokuwiki h2{font-size:1.2em}div.dokuwiki h3{font-size:1.1em}
+.drawer-buttons input.button,.drawer-buttons button{padding:.55em .8em;font-size:.88rem}
+.side-drawer{width:100%;max-width:100vw;left:-100%}[dir="rtl"] .side-drawer{right:-100%}
+.meta-right input.button,.meta-right button{padding:.45em .7em;font-size:.82rem}
+div.dokuwiki pre{padding:.7em;font-size:.78em;border-radius:var(--r2)}
+.breadcrumbs-wrapper .breadcrumbs{padding:.3rem .7rem;font-size:.78rem}
+.page-footer{padding:.7rem}
+/* Admin config fixes */
+#config__manager td,.config td{display:block;padding:.6em 0;max-width:100%;width:100%}
+#config__manager fieldset,.config fieldset{margin:.75em 0;width:100%;box-sizing:border-box;min-width:0}
+#config__manager td .input,.config td .input,#config__manager fieldset td.value,.config fieldset td.value{width:100%;max-width:100%}
+#config__manager td input.edit,.config td input.edit,#config__manager td textarea.edit,.config td textarea.edit{max-width:100%;width:100%}
+#config__manager input.edit,.config input.edit,#config__manager select.edit,.config select.edit{width:100%;box-sizing:border-box}
+fieldset{width:100%!important;min-width:0!important}select{width:100%}
 }
 
-/* ========== Side Drawer ========== */
-.side-drawer {
-  position: fixed;
-  top: 0;
-  left: -300px;
-  width: 280px;
-  max-width: 85vw;
-  height: 100%;
-  z-index: 250;
-  background: #fff;
-  box-shadow: 2px 0 20px rgba(0,0,0,0.15);
-  transition: left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  overflow-y: auto;
-  -webkit-overflow-scrolling: touch;
-  display: flex;
-  flex-direction: column;
-}
-
-.side-drawer.is-open {
-  left: 0;
-}
-
-/* Drawer Header */
-.drawer-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 1rem 1.25rem;
-  border-bottom: 1px solid __border__;
-  background: #f8fafc;
-}
-
-.drawer-logo {
-  font-size: 1.1rem;
-  font-weight: 700;
-  color: __text__;
-}
-
-.drawer-logo a {
-  color: inherit;
-  text-decoration: none;
-}
-
-.drawer-close {
-  width: 32px;
-  height: 32px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border: none;
-  background: transparent;
-  font-size: 1.5rem;
-  cursor: pointer;
-  color: __text_neu__;
-  border-radius: var(--radius-sm);
-  transition: all var(--transition);
-}
-
-.drawer-close:hover {
-  background: __background_neu__;
-  color: __text__;
-}
-
-/* Drawer Content */
-.drawer-content {
-  flex: 1;
-  padding: 0.75rem 0;
-}
-
-.drawer-section {
-  padding: 0.75rem 1.25rem;
-  border-bottom: 1px solid __border__;
-}
-
-.drawer-section:last-child {
-  border-bottom: none;
-}
-
-.drawer-title {
-  font-size: 0.7rem;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  color: __text_neu__;
-  margin-bottom: 0.75rem;
-  font-weight: 600;
-}
-
-/* Drawer Buttons */
-.drawer-buttons {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.4rem;
-}
-
-.drawer-buttons form,
-.drawer-buttons .plugin_block {
-  display: inline-flex;
-}
-
-.drawer-buttons input.button,
-.drawer-buttons button {
-  font-size: 0.85rem;
-  padding: 0.45em 0.75em;
-  border: 1px solid __border__;
-  border-radius: var(--radius-sm);
-  background: __background__;
-  color: __text__;
-  cursor: pointer;
-  transition: all var(--transition);
-  display: inline-flex;
-  align-items: center;
-  gap: 0.3em;
-  white-space: nowrap;
-}
-
-.drawer-buttons input.button:hover,
-.drawer-buttons button:hover {
-  background: __background_alt__;
-  border-color: #6366f1;
-}
-
-/* Drawer Search */
-.drawer-section form#dw__search {
-  display: flex;
-  gap: 0;
-}
-
-.drawer-section #dw__search input {
-  flex: 1;
-  font-size: 0.9rem;
-  padding: 0.5em 0.75em;
-  border: 1px solid __border__;
-  border-right: none;
-  border-radius: var(--radius-sm) 0 0 var(--radius-sm);
-  outline: none;
-  background: __background_neu__;
-  transition: all var(--transition);
-}
-
-.drawer-section #dw__search input:focus {
-  border-color: #6366f1;
-  background: #fff;
-}
-
-.drawer-section #dw__search button {
-  padding: 0.5em 1em;
-  background: #4f46e5;
-  color: #fff;
-  border: 1px solid #4f46e5;
-  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
-  cursor: pointer;
-  font-size: 0.9rem;
-}
-
-.drawer-userinfo {
-  font-size: 0.85rem;
-  color: __text_neu__;
-  margin-bottom: 0.5rem;
-}
-
-/* ========== Body State ========== */
-body.menu-open {
-  overflow: hidden;
-}
-
-/* ========== Responsive Breakpoints ========== */
-
-/* Tablet & Mobile (<900px) */
-@media screen and (max-width: 899px) {
-  .hamburger {
-    display: flex;
-  }
-
-  .desktop-nav {
-    display: none;
-  }
-
-  .user-area {
-    display: none;
-  }
-
-  .page-name {
-    display: none;
-  }
-
-  .site-title {
-    font-size: 1.1rem;
-  }
-
-  .header-inner {
-    padding: 0 0.75rem;
-  }
-
-  div.dokuwiki div.page {
-    padding: 1.25rem 1rem;
-  }
-
-  /* Full-width TOC on mobile */
-  div.dokuwiki #dw__toc {
-    float: none;
-    width: 100%;
-    margin: 0 0 1.5em 0;
-  }
-
-  /* Images */
-  div.dokuwiki img.medialeft,
-  div.dokuwiki img.mediaright {
-    float: none;
-    display: block;
-    margin: 0 auto 1em auto;
-    max-width: 100%;
-  }
-
-  /* Tables - horizontal scroll */
-  div.dokuwiki div.page {
-    overflow-x: hidden;
-  }
-
-  div.dokuwiki table.inline {
-    display: block;
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-  }
-
-  /* Headings */
-  div.dokuwiki h1 { font-size: 1.6em; }
-  div.dokuwiki h2 { font-size: 1.3em; }
-  div.dokuwiki h3 { font-size: 1.15em; }
-  div.dokuwiki h4 { font-size: 1.05em; }
-  div.dokuwiki h5 { font-size: 0.95em; }
-
-  div.dokuwiki div.level2 { margin-left: 0.5rem; }
-  div.dokuwiki div.level3 { margin-left: 1rem; }
-  div.dokuwiki div.level4 { margin-left: 1.5rem; }
-  div.dokuwiki div.level5 { margin-left: 2rem; }
-
-  /* Lists */
-  div.dokuwiki ul,
-  div.dokuwiki ol {
-    margin-left: 1.5em;
-  }
-
-  /* Footer */
-  .page-footer .meta {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  /* Fieldset / Forms */
-  div.dokuwiki fieldset {
-    width: 100%;
-  }
-}
-
-/* Small Mobile (<480px) */
-@media screen and (max-width: 480px) {
-  .header-inner {
-    height: 50px;
-    padding: 0 0.6rem;
-  }
-
-  .hamburger {
-    width: 32px;
-    height: 32px;
-    padding: 4px;
-  }
-
-  .hamburger-line {
-    width: 18px;
-  }
-
-  .site-title {
-    font-size: 1rem;
-  }
-
-  div.dokuwiki div.page {
-    padding: 1rem 0.75rem;
-    font-size: 0.95em;
-  }
-
-  div.dokuwiki h1 { font-size: 1.4em; }
-  div.dokuwiki h2 { font-size: 1.2em; }
-  div.dokuwiki h3 { font-size: 1.1em; }
-
-  /* Wider touch targets */
-  .drawer-buttons input.button,
-  .drawer-buttons button {
-    padding: 0.6em 0.9em;
-    font-size: 0.9rem;
-  }
-
-  .side-drawer {
-    width: 100%;
-    max-width: 100vw;
-    left: -100%;
-  }
-
-  /* Full-width buttons in footer */
-  .meta-right input.button,
-  .meta-right button {
-    padding: 0.5em 0.75em;
-    font-size: 0.85rem;
-  }
-
-  /* Make pre/code scroll */
-  div.dokuwiki pre {
-    padding: 0.75em;
-    font-size: 0.8em;
-    border-radius: var(--radius-sm);
-  }
-
-  /* Breadcrumbs */
-  .breadcrumbs-wrapper .breadcrumbs {
-    padding: 0.4rem 0.75rem;
-    font-size: 0.8rem;
-  }
-
-  /* Page footer */
-  .page-footer {
-    padding: 0.75rem;
-  }
-
-  /* Media manager compatibility */
-  fieldset,
-  #mediamanager__page,
-  #mediamanager__page .filelist {
-    max-width: 100%;
-    min-width: unset;
-  }
-
-  #mediamanager__page .file,
-  #mediamanager__page .namespaces,
-  #mediamanager__page .panel {
-    width: 100%;
-    clear: both;
-    float: none;
-  }
-
-  #config__manager td {
-    display: block;
-    padding: 0.8em 0;
-    max-width: 75%;
-  }
-
-  #config__manager fieldset {
-    margin: 1em 0;
-    width: 100%;
-    box-sizing: border-box;
-  }
-
-  div.input,
-  label.nowrap {
-    display: flex;
-  }
-
-  select {
-    width: 100%;
-    flex-shrink: 1;
-  }
-
-  fieldset {
-    width: unset;
-  }
-
-  #config__manager fieldset td.value {
-    width: unset;
-  }
-
-  td.label {
-    word-wrap: anywhere;
-  }
-
-  #config__manager td .input,
-  #config__manager fieldset td.value,
-  input,
-  textarea,
-  #config__manager td input.edit,
-  #config__manager td textarea.edit {
-    max-width: 100%;
-    width: auto;
-  }
-}
-
-/* Desktop (>=900px) */
-@media screen and (min-width: 900px) {
-  .side-drawer,
-  .mobile-overlay {
-    display: none !important;
-  }
-}
+/* ===== Desktop ≥900px ===== */
+@media screen and (min-width:900px){.side-drawer,.mobile-overlay{display:none!important}}

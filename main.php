@@ -1,239 +1,87 @@
 <?php
 /**
- * DokuWiki Modern Template
+ * DokuWiki Modern Green Silk Template
  *
- * A clean, modern redesign of the classic DokuWiki default template.
- * Features: hamburger menu, mobile-first responsive design, modern CSS.
- *
- * @link   http://dokuwiki.org/templates
- * @author Andreas Gohr <andi@splitbrain.org>
- * @author desbest <afaninthehouse@gmail.com>
- * @author Modernized by Ali Hadi Saedi
+ * Features: hamburger menu, RTL support, language selector,
+ * auto dark/light theme, modern animations, logo display
  */
-
 if (!defined('DOKU_INC')) die();
-
-?>
-<!DOCTYPE html>
-<html lang="<?php echo $conf['lang']?>" dir="<?php echo $lang['direction']?>">
+$dir_attr = $lang['direction'];
+$has_logo = @file_exists(__DIR__.'/images/logo.png');
+$logo_path = DOKU_TPL.'images/logo.png';
+$langs = array('fa'=>'فارسی','en'=>'English','ar'=>'العربية');
+?><!DOCTYPE html>
+<html lang="<?php echo $conf['lang']?>" dir="<?php echo $dir_attr?>" data-theme="light">
 <head>
-  <meta charset="utf-8" />
-  <title>
-    <?php tpl_pagetitle()?>
-    [<?php echo strip_tags($conf['title'])?>]
-  </title>
-
-  <?php tpl_metaheaders()?>
-  <?php echo tpl_favicon(array('favicon', 'mobile')) ?>
-
-  <?php @include(dirname(__FILE__).'/meta.html')?>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8">
+<title><?php tpl_pagetitle()?> [<?php echo strip_tags($conf['title'])?>]</title>
+<?php tpl_metaheaders()?><?php echo tpl_favicon(array('favicon','mobile'))?>
+<?php @include(dirname(__FILE__).'/meta.html')?>
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#059669"><meta name="color-scheme" content="light dark">
 </head>
-
 <body>
 <?php @include(dirname(__FILE__).'/topheader.html')?>
+<div class="mobile-overlay" id="mobile-overlay" aria-hidden="true"></div>
 
-<!-- Mobile Menu Overlay -->
-<div class="mobile-overlay" id="mobile-overlay"></div>
-
-<!-- Side Drawer Navigation -->
-<nav class="side-drawer" id="side-drawer">
-  <div class="drawer-header">
-    <div class="drawer-logo">
-      <?php tpl_link(wl(),$conf['title'])?>
-    </div>
-    <button class="drawer-close" id="drawer-close" aria-label="Close menu">&times;</button>
-  </div>
-  <div class="drawer-content">
-    <div class="drawer-section">
-      <h4 class="drawer-title"><?php echo $lang['btn_search']?></h4>
-      <?php tpl_searchform()?>
-    </div>
-    <div class="drawer-section">
-      <h4 class="drawer-title"><?php echo tpl_getLang('tools')?></h4>
-      <div class="drawer-buttons">
-        <?php tpl_button('edit')?>
-        <?php tpl_button('history')?>
-        <?php tpl_button('recent')?>
-        <?php tpl_button('media')?>
-        <?php tpl_button('index')?>
-        <?php tpl_button('admin')?>
-      </div>
-    </div>
-    <div class="drawer-section">
-      <h4 class="drawer-title"><?php echo tpl_getLang('user')?></h4>
-      <div class="drawer-userinfo">
-        <?php tpl_userinfo()?>
-      </div>
-      <div class="drawer-buttons">
-        <?php tpl_button('profile')?>
-        <?php tpl_button('login')?>
-        <?php tpl_button('subscribe')?>
-      </div>
-    </div>
-  </div>
+<nav class="side-drawer" id="side-drawer" aria-label="Menu">
+<div class="drawer-header">
+<div class="drawer-logo">
+<?php if($has_logo):?><img src="<?php echo $logo_path?>" alt="" class="drawer-logo-img" width="32" height="32"><?php endif?>
+<?php tpl_link(wl(),$conf['title'])?>
+</div>
+<button class="drawer-close" id="drawer-close" aria-label="Close"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M15 5L5 15M5 5l10 10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+</div>
+<div class="drawer-content">
+<div class="drawer-section"><span class="drawer-title"><?php echo $lang['btn_search']?></span><?php tpl_searchform()?></div>
+<div class="drawer-section"><span class="drawer-title">Tools</span><div class="drawer-buttons"><?php tpl_button('edit')?><?php tpl_button('history')?><?php tpl_button('recent')?><?php tpl_button('media')?><?php tpl_button('index')?><?php tpl_button('admin')?></div></div>
+<div class="drawer-section"><span class="drawer-title">User</span><div class="drawer-userinfo"><?php tpl_userinfo()?></div><div class="drawer-buttons"><?php tpl_button('profile')?><?php tpl_button('login')?><?php tpl_button('subscribe')?></div></div>
+<div class="drawer-section"><span class="drawer-title">Language</span><div class="lang-buttons"><?php foreach($langs as $code=>$name):$active=($conf['lang']==$code)?' active':'';echo '<a href="'.wl($ID).'?lang='.$code.'" class="lang-btn'.$active.'" hreflang="'.$code.'">'.$name.'</a>';endforeach?></div></div>
+</div>
 </nav>
 
 <div class="dokuwiki">
-  <?php html_msgarea()?>
+<?php html_msgarea()?>
 
-  <!-- Modern Header -->
-  <header class="site-header" id="site-header">
-    <div class="header-inner">
-      <!-- Hamburger Button (Mobile) -->
-      <button class="hamburger" id="hamburger-btn" aria-label="Toggle menu">
-        <span class="hamburger-line"></span>
-        <span class="hamburger-line"></span>
-        <span class="hamburger-line"></span>
-      </button>
-
-      <!-- Logo / Site Name -->
-      <div class="site-branding">
-        <?php tpl_link(wl(),$conf['title'],'class="site-title" name="dokuwiki__top" id="dokuwiki__top" accesskey="h" title="[H]"')?>
-      </div>
-
-      <!-- Page Name -->
-      <div class="page-name">
-        <?php tpl_link(wl($ID,'do=backlink'),tpl_pagetitle($ID,true),'title="'.$lang['btn_backlink'].'"')?>
-      </div>
-
-      <!-- Desktop Navigation -->
-      <nav class="desktop-nav">
-        <div class="nav-search">
-          <?php tpl_searchform()?>
-        </div>
-        <div class="nav-actions">
-          <?php tpl_button('edit')?>
-          <?php tpl_button('history')?>
-          <?php tpl_button('recent')?>
-          <?php tpl_button('media')?>
-          <?php tpl_button('index')?>
-          <?php tpl_button('admin')?>
-        </div>
-      </nav>
-
-      <!-- User Area (Desktop) -->
-      <div class="user-area">
-        <div class="user-info">
-          <?php tpl_userinfo()?>
-        </div>
-        <?php tpl_button('profile')?>
-        <?php tpl_button('login')?>
-      </div>
-    </div>
-  </header>
-
-  <?php @include(dirname(__FILE__).'/header.html')?>
-
-  <!-- Breadcrumbs -->
-  <?php if($conf['breadcrumbs']){?>
-  <div class="breadcrumbs-wrapper">
-    <div class="breadcrumbs">
-      <?php tpl_breadcrumbs()?>
-    </div>
-  </div>
-  <?php }?>
-
-  <?php if($conf['youarehere']){?>
-  <div class="breadcrumbs-wrapper">
-    <div class="breadcrumbs">
-      <?php tpl_youarehere() ?>
-    </div>
-  </div>
-  <?php }?>
-
-  <?php tpl_flush()?>
-  <?php @include(dirname(__FILE__).'/pageheader.html')?>
-
-  <!-- Page Content -->
-  <main class="page-content">
-    <div class="page">
-      <!-- wikipage start -->
-      <?php tpl_content()?>
-      <!-- wikipage stop -->
-    </div>
-  </main>
-
-  <div class="clearer"></div>
-
-  <?php tpl_flush()?>
-
-  <!-- Page Footer -->
-  <footer class="page-footer">
-    <div class="meta">
-      <div class="meta-left">
-        <span class="meta-user"><?php tpl_userinfo()?></span>
-        <span class="meta-sep">&middot;</span>
-        <span class="meta-pageinfo"><?php tpl_pageinfo()?></span>
-      </div>
-      <div class="meta-right">
-        <?php tpl_button('edit')?>
-        <?php tpl_button('history')?>
-        <?php tpl_button('revert')?>
-        <?php tpl_button('subscribe')?>
-        <?php tpl_button('top')?>
-      </div>
-    </div>
-
-    <?php @include(dirname(__FILE__).'/pagefooter.html')?>
-
-    <?php tpl_license(false);?>
-  </footer>
-
+<header class="site-header" id="site-header">
+<div class="header-inner">
+<button class="hamburger" id="hamburger-btn" aria-label="Menu" aria-expanded="false"><span class="hamburger-line"></span><span class="hamburger-line"></span><span class="hamburger-line"></span></button>
+<div class="site-branding"><?php if($has_logo):?><img src="<?php echo $logo_path?>" alt="" class="site-logo" width="28" height="28"><?php endif?><?php tpl_link(wl(),$conf['title'],'class="site-title" name="dokuwiki__top" id="dokuwiki__top" accesskey="h" title="[H]"')?></div>
+<div class="page-name"><?php if($ID):?><span class="page-name-sep">/</span><?php tpl_link(wl($ID,'do=backlink'),tpl_pagetitle($ID,true),'title="'.$lang['btn_backlink'].'"')?><?php endif?></div>
+<nav class="desktop-nav" aria-label="Main"><div class="nav-search"><?php tpl_searchform()?></div><div class="nav-actions"><?php tpl_button('edit')?><?php tpl_button('history')?><?php tpl_button('recent')?><?php tpl_button('media')?><?php tpl_button('index')?><?php tpl_button('admin')?></div></nav>
+<div class="lang-selector"><button class="lang-toggle" id="lang-toggle" aria-label="Language" aria-expanded="false"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg><span class="lang-current"><?php echo strtoupper($conf['lang'])?></span></button><div class="lang-dropdown" id="lang-dropdown"><?php foreach($langs as $code=>$name):$active=($conf['lang']==$code)?' active':'';echo '<a href="'.wl($ID).'?lang='.$code.'" class="lang-option'.$active.'" hreflang="'.$code.'">'.$name.'</a>';endforeach?></div></div>
+<div class="user-area"><div class="user-info"><?php tpl_userinfo()?></div><?php tpl_button('profile')?><?php tpl_button('login')?></div>
+<button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme" title="Dark/Light"><svg class="theme-icon-light" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg><svg class="theme-icon-dark" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg></button>
 </div>
+</header>
 
+<?php @include(dirname(__FILE__).'/header.html')?>
+<?php if($conf['breadcrumbs']):?><nav class="breadcrumbs-wrapper" aria-label="Breadcrumb"><div class="breadcrumbs"><?php tpl_breadcrumbs()?></div></nav><?php endif?>
+<?php if($conf['youarehere']):?><nav class="breadcrumbs-wrapper" aria-label="Breadcrumb"><div class="breadcrumbs"><?php tpl_youarehere()?></div></nav><?php endif?>
+<?php tpl_flush()?><?php @include(dirname(__FILE__).'/pageheader.html')?>
+
+<main class="page-content"><div class="page"><!-- wikipage start --><?php tpl_content()?><!-- wikipage stop --></div></main>
+
+<?php tpl_flush()?>
+<footer class="page-footer"><div class="meta"><div class="meta-left"><span class="meta-user"><?php tpl_userinfo()?></span><span class="meta-sep" aria-hidden="true">&middot;</span><span class="meta-pageinfo"><?php tpl_pageinfo()?></span></div><div class="meta-right"><?php tpl_button('edit')?><?php tpl_button('history')?><?php tpl_button('revert')?><?php tpl_button('subscribe')?><?php tpl_button('top')?></div></div>
+<?php @include(dirname(__FILE__).'/pagefooter.html')?><?php tpl_license(false)?></footer>
+</div>
 <?php @include(dirname(__FILE__).'/footer.html')?>
-
 <div class="no"><?php tpl_indexerWebBug()?></div>
-
-<!-- Mobile Menu JavaScript -->
 <script>
-(function() {
-  var hamburger = document.getElementById('hamburger-btn');
-  var drawer = document.getElementById('side-drawer');
-  var overlay = document.getElementById('mobile-overlay');
-  var closeBtn = document.getElementById('drawer-close');
-
-  function openMenu() {
-    drawer.classList.add('is-open');
-    overlay.classList.add('is-visible');
-    document.body.classList.add('menu-open');
-    hamburger.classList.add('is-active');
-  }
-
-  function closeMenu() {
-    drawer.classList.remove('is-open');
-    overlay.classList.remove('is-visible');
-    document.body.classList.remove('menu-open');
-    hamburger.classList.remove('is-active');
-  }
-
-  if (hamburger) {
-    hamburger.addEventListener('click', function(e) {
-      e.stopPropagation();
-      if (drawer.classList.contains('is-open')) {
-        closeMenu();
-      } else {
-        openMenu();
-      }
-    });
-  }
-
-  if (closeBtn) {
-    closeBtn.addEventListener('click', closeMenu);
-  }
-
-  if (overlay) {
-    overlay.addEventListener('click', closeMenu);
-  }
-
-  // Close on Escape key
-  document.addEventListener('keydown', function(e) {
-    if (e.key === 'Escape' && drawer.classList.contains('is-open')) {
-      closeMenu();
-    }
-  });
-})();
+(function(){var h=document.getElementById('hamburger-btn'),d=document.getElementById('side-drawer'),o=document.getElementById('mobile-overlay'),c=document.getElementById('drawer-close');
+function open(){d.classList.add('is-open');o.classList.add('is-visible');o.setAttribute('aria-hidden','false');document.body.classList.add('menu-open');h.classList.add('is-active');h.setAttribute('aria-expanded','true')}
+function close(){d.classList.remove('is-open');o.classList.remove('is-visible');o.setAttribute('aria-hidden','true');document.body.classList.remove('menu-open');h.classList.remove('is-active');h.setAttribute('aria-expanded','false')}
+if(h)h.addEventListener('click',function(e){e.stopPropagation();d.classList.contains('is-open')?close():open()});if(c)c.addEventListener('click',close);if(o)o.addEventListener('click',close);
+document.addEventListener('keydown',function(e){if(e.key==='Escape'&&d&&d.classList.contains('is-open'))close()});
+var lt=document.getElementById('lang-toggle'),ld=document.getElementById('lang-dropdown');if(lt&&ld){lt.addEventListener('click',function(e){e.stopPropagation();var is=ld.classList.toggle('is-open');lt.setAttribute('aria-expanded',is)});document.addEventListener('click',function(){ld.classList.remove('is-open');lt.setAttribute('aria-expanded','false')})}
+var tt=document.getElementById('theme-toggle'),html=document.documentElement;
+function gT(){try{return localStorage.getItem('dokuwiki-theme')}catch(e){return null}}
+function sT(t){try{localStorage.setItem('dokuwiki-theme',t)}catch(e){}}
+function aT(t){if(t==='dark')html.setAttribute('data-theme','dark');else if(t==='light')html.setAttribute('data-theme','light');else{html.setAttribute('data-theme',window.matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light')}}
+var sv=gT();if(sv)aT(sv);else aT('auto');
+if(tt)tt.addEventListener('click',function(){var c=html.getAttribute('data-theme'),n=c==='dark'?'light':'dark';aT(n);sT(n)});
+window.matchMedia('(prefers-color-scheme:dark)').addEventListener('change',function(){if(!gT())aT('auto')})})();
 </script>
 </body>
 </html>
