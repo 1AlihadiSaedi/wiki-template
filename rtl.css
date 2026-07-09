@@ -1,7 +1,16 @@
-/**
- * RTL Overrides - Main RTL handled in layout.css
- */
-.dokuwiki div.dokuwiki div.pagenav-prev{direction:rtl}
-.dokuwiki div.dokuwiki div.pagenav-next{direction:ltr}
-[dir="rtl"] .dokuwiki div.dokuwiki div.pagenav-prev{direction:ltr}
-[dir="rtl"] .dokuwiki div.dokuwiki div.pagenav-next{direction:rtl}
+/** RTL Overrides - Full Coverage */
+[dir="rtl"] div.dokuwiki ul,[dir="rtl"] div.dokuwiki ol{margin-right:2em;margin-left:0}
+[dir="rtl"] div.dokuwiki li ul,[dir="rtl"] div.dokuwiki li ol{margin-right:1.5em;margin-left:0}
+[dir="rtl"] div.dokuwiki blockquote{border-left:none;border-right:4px solid var(--c-pr);border-radius:var(--r2) 0 0 var(--r2)}
+[dir="rtl"] div.dokuwiki div.footnotes{padding:1em 1em 0 0}
+[dir="rtl"] div.dokuwiki a.urlextern{background-position:100% 2px;padding:1px 16px 1px 0}
+[dir="rtl"] div.dokuwiki a.mail{background-position:100% 2px;padding:1px 16px 1px 0}
+[dir="rtl"] div.dokuwiki #dw__toc{float:left;margin:0 1.5em 1.5em 0}
+[dir="rtl"] div.dokuwiki h1,[dir="rtl"] div.dokuwiki h2,[dir="rtl"] div.dokuwiki h3,[dir="rtl"] div.dokuwiki h4,[dir="rtl"] div.dokuwiki h5{clear:right}
+[dir="rtl"] div.dokuwiki img.medialeft{float:right;margin:0 0 1em 1.5em}
+[dir="rtl"] div.dokuwiki img.mediaright{float:left;margin:0 1.5em 1em 0}
+[dir="rtl"] div.dokuwiki table.inline th{text-align:right}
+[dir="rtl"] div.dokuwiki table.inline td{text-align:right}
+[dir="rtl"] div.dokuwiki div.secedit input.button{float:left}
+[dir="rtl"] .dokuwiki div.pagenav-prev{direction:ltr}
+[dir="rtl"] .dokuwiki div.pagenav-next{direction:rtl}
