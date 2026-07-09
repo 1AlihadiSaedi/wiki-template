@@ -33,7 +33,7 @@ div.dokuwiki #dw__toc{float:none;width:100%;margin:0 0 1.5em}
 div.dokuwiki img.medialeft,div.dokuwiki img.mediaright{float:none;display:block;margin:0 auto 1em;max-width:100%}
 div.dokuwiki table.inline{display:block;overflow-x:auto;-webkit-overflow-scrolling:touch}
 div.dokuwiki h1{font-size:1.6em}div.dokuwiki h2{font-size:1.3em}div.dokuwiki h3{font-size:1.15em}
-div.dokuwiki pre{font-size:.92em;line-height:1.35}div.dokuwiki code{font-size:.92em}
+div.dokuwiki pre{font-size:.88em;line-height:1.35;display:block;width:100%;max-width:100%;overflow-x:auto!important;-webkit-overflow-scrolling:touch;white-space:pre!important;word-wrap:normal!important;overflow-wrap:normal!important}div.dokuwiki code{font-size:.88em}
 div.dokuwiki div.level2{margin-left:.5rem}div.dokuwiki div.level3{margin-left:1rem}div.dokuwiki div.level4{margin-left:1.5rem}div.dokuwiki div.level5{margin-left:2rem}
 .page-footer .meta{flex-direction:column;align-items:flex-start}
 div.dokuwiki fieldset{width:100%}
@@ -43,13 +43,13 @@ div.dokuwiki fieldset{width:100%}
 .header-inner{height:50px;padding:0 .5rem}
 .hamburger{width:32px;height:32px;padding:4px}.hamburger-line{width:18px}
 .site-title{font-size:.95rem}.site-logo{width:24px;height:24px}
-div.dokuwiki div.page{padding:1rem .85rem;font-size:1em}
+div.dokuwiki div.page{padding:1rem .75rem;font-size:1em}
 div.dokuwiki h1{font-size:1.4em}div.dokuwiki h2{font-size:1.2em}div.dokuwiki h3{font-size:1.1em}
 .drawer-buttons input.button,.drawer-buttons button{padding:.55em .8em;font-size:.88rem}
 .side-drawer{width:100%;max-width:100vw;left:-100%}
 .meta-right input.button,.meta-right button{padding:.45em .7em;font-size:.82rem}
-div.dokuwiki pre{font-size:.9em;line-height:1.35;border-radius:var(--r2);padding:0!important}
-div.dokuwiki code{font-size:.92em}
+div.dokuwiki pre{padding:0!important;font-size:.85em;line-height:1.35;border-radius:var(--r2);display:block;width:100%;max-width:100%;overflow-x:auto!important;-webkit-overflow-scrolling:touch;white-space:pre!important;word-wrap:normal!important;overflow-wrap:normal!important}
+div.dokuwiki code{font-size:.88em}
 .breadcrumbs-wrapper .breadcrumbs{padding:.3rem .7rem;font-size:.78rem}
 .page-footer{padding:.7rem}
 fieldset{width:100%!important;min-width:0!important}select{width:100%}
