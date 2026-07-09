@@ -1,28 +1,23 @@
 <?php
 /**
- * DokuWiki Origin Resurrected Template
+ * DokuWiki Modern Template
  *
- * This was originally the default template for dokuwiki called "default"
- * but later in 2012 that changed to a different template called "dokuwiki"
- * I (desbest) have volunteered to maintain this to make it compatible with
- * newer dokuwiki versions, as I have a use for this template for me to add
- * modifications to it for my website.
+ * A clean, modern redesign of the classic DokuWiki default template.
+ * Features: hamburger menu, mobile-first responsive design, modern CSS.
  *
  * @link   http://dokuwiki.org/templates
  * @author Andreas Gohr <andi@splitbrain.org>
  * @author desbest <afaninthehouse@gmail.com>
+ * @author Modernized by Ali Hadi Saedi
  */
 
-// must be run from within DokuWiki
 if (!defined('DOKU_INC')) die();
 
 ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
- "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="<?php echo $conf['lang']?>"
- lang="<?php echo $conf['lang']?>" dir="<?php echo $lang['direction']?>">
+<!DOCTYPE html>
+<html lang="<?php echo $conf['lang']?>" dir="<?php echo $lang['direction']?>">
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta charset="utf-8" />
   <title>
     <?php tpl_pagetitle()?>
     [<?php echo strip_tags($conf['title'])?>]
@@ -31,113 +26,214 @@ if (!defined('DOKU_INC')) die();
   <?php tpl_metaheaders()?>
   <?php echo tpl_favicon(array('favicon', 'mobile')) ?>
 
-  <?php /*old includehook*/ @include(dirname(__FILE__).'/meta.html')?>
+  <?php @include(dirname(__FILE__).'/meta.html')?>
   <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 
 <body>
-<?php /*old includehook*/ @include(dirname(__FILE__).'/topheader.html')?>
+<?php @include(dirname(__FILE__).'/topheader.html')?>
+
+<!-- Mobile Menu Overlay -->
+<div class="mobile-overlay" id="mobile-overlay"></div>
+
+<!-- Side Drawer Navigation -->
+<nav class="side-drawer" id="side-drawer">
+  <div class="drawer-header">
+    <div class="drawer-logo">
+      <?php tpl_link(wl(),$conf['title'])?>
+    </div>
+    <button class="drawer-close" id="drawer-close" aria-label="Close menu">&times;</button>
+  </div>
+  <div class="drawer-content">
+    <div class="drawer-section">
+      <h4 class="drawer-title"><?php echo $lang['btn_search']?></h4>
+      <?php tpl_searchform()?>
+    </div>
+    <div class="drawer-section">
+      <h4 class="drawer-title"><?php echo tpl_getLang('tools')?></h4>
+      <div class="drawer-buttons">
+        <?php tpl_button('edit')?>
+        <?php tpl_button('history')?>
+        <?php tpl_button('recent')?>
+        <?php tpl_button('media')?>
+        <?php tpl_button('index')?>
+        <?php tpl_button('admin')?>
+      </div>
+    </div>
+    <div class="drawer-section">
+      <h4 class="drawer-title"><?php echo tpl_getLang('user')?></h4>
+      <div class="drawer-userinfo">
+        <?php tpl_userinfo()?>
+      </div>
+      <div class="drawer-buttons">
+        <?php tpl_button('profile')?>
+        <?php tpl_button('login')?>
+        <?php tpl_button('subscribe')?>
+      </div>
+    </div>
+  </div>
+</nav>
+
 <div class="dokuwiki">
   <?php html_msgarea()?>
 
-  <div class="stylehead">
+  <!-- Modern Header -->
+  <header class="site-header" id="site-header">
+    <div class="header-inner">
+      <!-- Hamburger Button (Mobile) -->
+      <button class="hamburger" id="hamburger-btn" aria-label="Toggle menu">
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+      </button>
 
-    <div class="header">
-      <div class="pagename">
-        <!-- [[ -->
+      <!-- Logo / Site Name -->
+      <div class="site-branding">
+        <?php tpl_link(wl(),$conf['title'],'class="site-title" name="dokuwiki__top" id="dokuwiki__top" accesskey="h" title="[H]"')?>
+      </div>
+
+      <!-- Page Name -->
+      <div class="page-name">
         <?php tpl_link(wl($ID,'do=backlink'),tpl_pagetitle($ID,true),'title="'.$lang['btn_backlink'].'"')?>
-        <!-- ]] -->
-      </div>
-      <div class="logo">
-        <?php tpl_link(wl(),$conf['title'],'name="dokuwiki__top" id="dokuwiki__top" accesskey="h" title="[H]"')?>
       </div>
 
-      <div class="clearer"></div>
+      <!-- Desktop Navigation -->
+      <nav class="desktop-nav">
+        <div class="nav-search">
+          <?php tpl_searchform()?>
+        </div>
+        <div class="nav-actions">
+          <?php tpl_button('edit')?>
+          <?php tpl_button('history')?>
+          <?php tpl_button('recent')?>
+          <?php tpl_button('media')?>
+          <?php tpl_button('index')?>
+          <?php tpl_button('admin')?>
+        </div>
+      </nav>
+
+      <!-- User Area (Desktop) -->
+      <div class="user-area">
+        <div class="user-info">
+          <?php tpl_userinfo()?>
+        </div>
+        <?php tpl_button('profile')?>
+        <?php tpl_button('login')?>
+      </div>
     </div>
+  </header>
 
-    <?php /*old includehook*/ @include(dirname(__FILE__).'/header.html')?>
+  <?php @include(dirname(__FILE__).'/header.html')?>
 
-    <div class="bar" id="bar__top">
-      <div class="bar-left" id="bar__topleft">
-        <?php tpl_button('edit')?>
-        <?php tpl_button('history')?>
-      </div>
-
-      <div class="bar-right" id="bar__topright">
-        <?php tpl_button('recent')?>
-        <?php tpl_searchform()?>&#160;
-      </div>
-
-      <div class="clearer"></div>
-    </div>
-
-    <?php if($conf['breadcrumbs']){?>
+  <!-- Breadcrumbs -->
+  <?php if($conf['breadcrumbs']){?>
+  <div class="breadcrumbs-wrapper">
     <div class="breadcrumbs">
       <?php tpl_breadcrumbs()?>
-      <?php //tpl_youarehere() //(some people prefer this)?>
     </div>
-    <?php }?>
+  </div>
+  <?php }?>
 
-    <?php if($conf['youarehere']){?>
+  <?php if($conf['youarehere']){?>
+  <div class="breadcrumbs-wrapper">
     <div class="breadcrumbs">
       <?php tpl_youarehere() ?>
     </div>
-    <?php }?>
-
   </div>
+  <?php }?>
+
   <?php tpl_flush()?>
+  <?php @include(dirname(__FILE__).'/pageheader.html')?>
 
-  <?php /*old includehook*/ @include(dirname(__FILE__).'/pageheader.html')?>
-
-  <div class="page">
-    <!-- wikipage start -->
-    <?php tpl_content()?>
-    <!-- wikipage stop -->
-  </div>
+  <!-- Page Content -->
+  <main class="page-content">
+    <div class="page">
+      <!-- wikipage start -->
+      <?php tpl_content()?>
+      <!-- wikipage stop -->
+    </div>
+  </main>
 
   <div class="clearer"></div>
 
   <?php tpl_flush()?>
 
-  <div class="stylefoot">
-
+  <!-- Page Footer -->
+  <footer class="page-footer">
     <div class="meta">
-      <div class="user">
-        <?php tpl_userinfo()?>
+      <div class="meta-left">
+        <span class="meta-user"><?php tpl_userinfo()?></span>
+        <span class="meta-sep">&middot;</span>
+        <span class="meta-pageinfo"><?php tpl_pageinfo()?></span>
       </div>
-      <div class="doc">
-        <?php tpl_pageinfo()?>
-      </div>
-    </div>
-
-   <?php /*old includehook*/ @include(dirname(__FILE__).'/pagefooter.html')?>
-
-    <div class="bar" id="bar__bottom">
-      <div class="bar-left" id="bar__bottomleft">
+      <div class="meta-right">
         <?php tpl_button('edit')?>
         <?php tpl_button('history')?>
         <?php tpl_button('revert')?>
-      </div>
-      <div class="bar-right" id="bar__bottomright">
         <?php tpl_button('subscribe')?>
-        <?php tpl_button('media')?>
-        <?php tpl_button('admin')?>
-        <?php tpl_button('profile')?>
-        <?php tpl_button('login')?>
-        <?php tpl_button('index')?>
-        <?php tpl_button('top')?>&#160;
+        <?php tpl_button('top')?>
       </div>
     </div>
 
-  <div class="clearer"></div><?php tpl_flush()?> <!-- desbest edit -->
+    <?php @include(dirname(__FILE__).'/pagefooter.html')?>
 
-  </div>
-
-  <?php tpl_license(false);?>
+    <?php tpl_license(false);?>
+  </footer>
 
 </div>
-<?php /*old includehook*/ @include(dirname(__FILE__).'/footer.html')?>
 
-<div class="no"><?php /* provide DokuWiki housekeeping, required in all templates */ tpl_indexerWebBug()?></div>
+<?php @include(dirname(__FILE__).'/footer.html')?>
+
+<div class="no"><?php tpl_indexerWebBug()?></div>
+
+<!-- Mobile Menu JavaScript -->
+<script>
+(function() {
+  var hamburger = document.getElementById('hamburger-btn');
+  var drawer = document.getElementById('side-drawer');
+  var overlay = document.getElementById('mobile-overlay');
+  var closeBtn = document.getElementById('drawer-close');
+
+  function openMenu() {
+    drawer.classList.add('is-open');
+    overlay.classList.add('is-visible');
+    document.body.classList.add('menu-open');
+    hamburger.classList.add('is-active');
+  }
+
+  function closeMenu() {
+    drawer.classList.remove('is-open');
+    overlay.classList.remove('is-visible');
+    document.body.classList.remove('menu-open');
+    hamburger.classList.remove('is-active');
+  }
+
+  if (hamburger) {
+    hamburger.addEventListener('click', function(e) {
+      e.stopPropagation();
+      if (drawer.classList.contains('is-open')) {
+        closeMenu();
+      } else {
+        openMenu();
+      }
+    });
+  }
+
+  if (closeBtn) {
+    closeBtn.addEventListener('click', closeMenu);
+  }
+
+  if (overlay) {
+    overlay.addEventListener('click', closeMenu);
+  }
+
+  // Close on Escape key
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape' && drawer.classList.contains('is-open')) {
+      closeMenu();
+    }
+  });
+})();
+</script>
 </body>
 </html>

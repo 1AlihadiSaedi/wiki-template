@@ -1,67 +1,416 @@
-@media screen and (max-width: 480px) {
-	div.dokuwiki .bar-right { display: inline; float: none; }
-	#dw__search button { margin: 0px; margin-left: 1em; }
-	button { margin: 0px 8px 16px 8px; padding: 8px !important; }
-	button:first-of-type { margin-left: 0px; }
-	button.toolbutton { margin: 8px 8px !important; }
-	button:first-child, button.toolbutton:first-child { margin-left: 8px !important; }	
-	button img { padding: 8px; }
-	div.dokuwiki #dw__toc ul { line-height: 2em; }
-	div.dokuwiki #dw__toc { font-size: 1em; }
-	div.dokuwiki #dw__toc ul li { margin: 0.35em 0px; }
-	div.dokuwiki div.breadcrumbs { padding: 1em; }
-	.page li, .page dd { margin: 0.85em 0px; }
-  
-  /* rearrange elements * /
-  /* 
-  https://webdesign.tutsplus.com/tutorials/a-few-different-css-methods-for-column-ordering--cms-27079
-  https://developer.mozilla.org/en-US/docs/Web/CSS/grid-template-columns
-  https://www.digitalocean.com/community/tutorials/css-css-grid-layout-fr-unit
-  */
-  .maincontentrow { 
-    display: grid !important; 
-    grid-template-columns: repeat(1);
-  }
-  .right { order: 2; float: none !important; }
-  .left { order: 3; float: none !important; }
-  /* /////_______//// */
+/**
+ * Modern Responsive Design for DokuWiki Template
+ * Mobile-first with hamburger menu and side drawer
+ */
+
+/* ========== Mobile Overlay ========== */
+.mobile-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.4);
+  z-index: 200;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+  pointer-events: none;
 }
 
-/* media manager and config manager for mobile */
-/* See more: https://gitlab.com/-/snippets/2071984 */
-@media screen and (max-width: 480px){
-  fieldset, 
-  #mediamanager__page, 
-  #mediamanager__page .filelist{ 
-    max-width: 100%; min-width: unset; 
+.mobile-overlay.is-visible {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+/* ========== Side Drawer ========== */
+.side-drawer {
+  position: fixed;
+  top: 0;
+  left: -300px;
+  width: 280px;
+  max-width: 85vw;
+  height: 100%;
+  z-index: 250;
+  background: #fff;
+  box-shadow: 2px 0 20px rgba(0,0,0,0.15);
+  transition: left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  display: flex;
+  flex-direction: column;
+}
+
+.side-drawer.is-open {
+  left: 0;
+}
+
+/* Drawer Header */
+.drawer-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 1.25rem;
+  border-bottom: 1px solid __border__;
+  background: #f8fafc;
+}
+
+.drawer-logo {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: __text__;
+}
+
+.drawer-logo a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.drawer-close {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  background: transparent;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: __text_neu__;
+  border-radius: var(--radius-sm);
+  transition: all var(--transition);
+}
+
+.drawer-close:hover {
+  background: __background_neu__;
+  color: __text__;
+}
+
+/* Drawer Content */
+.drawer-content {
+  flex: 1;
+  padding: 0.75rem 0;
+}
+
+.drawer-section {
+  padding: 0.75rem 1.25rem;
+  border-bottom: 1px solid __border__;
+}
+
+.drawer-section:last-child {
+  border-bottom: none;
+}
+
+.drawer-title {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: __text_neu__;
+  margin-bottom: 0.75rem;
+  font-weight: 600;
+}
+
+/* Drawer Buttons */
+.drawer-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.drawer-buttons form,
+.drawer-buttons .plugin_block {
+  display: inline-flex;
+}
+
+.drawer-buttons input.button,
+.drawer-buttons button {
+  font-size: 0.85rem;
+  padding: 0.45em 0.75em;
+  border: 1px solid __border__;
+  border-radius: var(--radius-sm);
+  background: __background__;
+  color: __text__;
+  cursor: pointer;
+  transition: all var(--transition);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3em;
+  white-space: nowrap;
+}
+
+.drawer-buttons input.button:hover,
+.drawer-buttons button:hover {
+  background: __background_alt__;
+  border-color: #6366f1;
+}
+
+/* Drawer Search */
+.drawer-section form#dw__search {
+  display: flex;
+  gap: 0;
+}
+
+.drawer-section #dw__search input {
+  flex: 1;
+  font-size: 0.9rem;
+  padding: 0.5em 0.75em;
+  border: 1px solid __border__;
+  border-right: none;
+  border-radius: var(--radius-sm) 0 0 var(--radius-sm);
+  outline: none;
+  background: __background_neu__;
+  transition: all var(--transition);
+}
+
+.drawer-section #dw__search input:focus {
+  border-color: #6366f1;
+  background: #fff;
+}
+
+.drawer-section #dw__search button {
+  padding: 0.5em 1em;
+  background: #4f46e5;
+  color: #fff;
+  border: 1px solid #4f46e5;
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+.drawer-userinfo {
+  font-size: 0.85rem;
+  color: __text_neu__;
+  margin-bottom: 0.5rem;
+}
+
+/* ========== Body State ========== */
+body.menu-open {
+  overflow: hidden;
+}
+
+/* ========== Responsive Breakpoints ========== */
+
+/* Tablet & Mobile (<900px) */
+@media screen and (max-width: 899px) {
+  .hamburger {
+    display: flex;
   }
-  #mediamanager__page .file, 
-  #mediamanager__page .namespaces, 
-  #mediamanager__page .panel { 
-    width: 100%; clear: both; float: none;
+
+  .desktop-nav {
+    display: none;
   }
 
-/* #mediamanager__page .namespaces { min-width: unset; } */
+  .user-area {
+    display: none;
+  }
 
-  /*.page li, .page dd { margin: 1.35em 0px !important; display: block; }*/
-  #config__manager tr { }
-  #config__manager td { display: block;  padding: 1.15em 0px; max-width: 75%;  }
-  #config__manager fieldset {  margin: 1em 0px; width: 100%; box-sizing: border-box; }
+  .page-name {
+    display: none;
+  }
 
-     /* make <select> not exceed it's parent div's width */
-    /* https://stackoverflow.com/q/44810056/337306 */
-    div.input, label.nowrap { display: flex; } select { width: 100%; flex-shrink: 1; }
+  .site-title {
+    font-size: 1.1rem;
+  }
 
-  fieldset { width: unset; }
-  #config__manager fieldset td.value { width: unset; }
-  td.label { word-wrap: anywhere; }
+  .header-inner {
+    padding: 0 0.75rem;
+  }
 
-  #config__manager td .input, 
-  #config__manager fieldset td.value, 
-  input, textarea,
+  div.dokuwiki div.page {
+    padding: 1.25rem 1rem;
+  }
+
+  /* Full-width TOC on mobile */
+  div.dokuwiki #dw__toc {
+    float: none;
+    width: 100%;
+    margin: 0 0 1.5em 0;
+  }
+
+  /* Images */
+  div.dokuwiki img.medialeft,
+  div.dokuwiki img.mediaright {
+    float: none;
+    display: block;
+    margin: 0 auto 1em auto;
+    max-width: 100%;
+  }
+
+  /* Tables - horizontal scroll */
+  div.dokuwiki div.page {
+    overflow-x: hidden;
+  }
+
+  div.dokuwiki table.inline {
+    display: block;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* Headings */
+  div.dokuwiki h1 { font-size: 1.6em; }
+  div.dokuwiki h2 { font-size: 1.3em; }
+  div.dokuwiki h3 { font-size: 1.15em; }
+  div.dokuwiki h4 { font-size: 1.05em; }
+  div.dokuwiki h5 { font-size: 0.95em; }
+
+  div.dokuwiki div.level2 { margin-left: 0.5rem; }
+  div.dokuwiki div.level3 { margin-left: 1rem; }
+  div.dokuwiki div.level4 { margin-left: 1.5rem; }
+  div.dokuwiki div.level5 { margin-left: 2rem; }
+
+  /* Lists */
+  div.dokuwiki ul,
+  div.dokuwiki ol {
+    margin-left: 1.5em;
+  }
+
+  /* Footer */
+  .page-footer .meta {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  /* Fieldset / Forms */
+  div.dokuwiki fieldset {
+    width: 100%;
+  }
+}
+
+/* Small Mobile (<480px) */
+@media screen and (max-width: 480px) {
+  .header-inner {
+    height: 50px;
+    padding: 0 0.6rem;
+  }
+
+  .hamburger {
+    width: 32px;
+    height: 32px;
+    padding: 4px;
+  }
+
+  .hamburger-line {
+    width: 18px;
+  }
+
+  .site-title {
+    font-size: 1rem;
+  }
+
+  div.dokuwiki div.page {
+    padding: 1rem 0.75rem;
+    font-size: 0.95em;
+  }
+
+  div.dokuwiki h1 { font-size: 1.4em; }
+  div.dokuwiki h2 { font-size: 1.2em; }
+  div.dokuwiki h3 { font-size: 1.1em; }
+
+  /* Wider touch targets */
+  .drawer-buttons input.button,
+  .drawer-buttons button {
+    padding: 0.6em 0.9em;
+    font-size: 0.9rem;
+  }
+
+  .side-drawer {
+    width: 100%;
+    max-width: 100vw;
+    left: -100%;
+  }
+
+  /* Full-width buttons in footer */
+  .meta-right input.button,
+  .meta-right button {
+    padding: 0.5em 0.75em;
+    font-size: 0.85rem;
+  }
+
+  /* Make pre/code scroll */
+  div.dokuwiki pre {
+    padding: 0.75em;
+    font-size: 0.8em;
+    border-radius: var(--radius-sm);
+  }
+
+  /* Breadcrumbs */
+  .breadcrumbs-wrapper .breadcrumbs {
+    padding: 0.4rem 0.75rem;
+    font-size: 0.8rem;
+  }
+
+  /* Page footer */
+  .page-footer {
+    padding: 0.75rem;
+  }
+
+  /* Media manager compatibility */
+  fieldset,
+  #mediamanager__page,
+  #mediamanager__page .filelist {
+    max-width: 100%;
+    min-width: unset;
+  }
+
+  #mediamanager__page .file,
+  #mediamanager__page .namespaces,
+  #mediamanager__page .panel {
+    width: 100%;
+    clear: both;
+    float: none;
+  }
+
+  #config__manager td {
+    display: block;
+    padding: 0.8em 0;
+    max-width: 75%;
+  }
+
+  #config__manager fieldset {
+    margin: 1em 0;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  div.input,
+  label.nowrap {
+    display: flex;
+  }
+
+  select {
+    width: 100%;
+    flex-shrink: 1;
+  }
+
+  fieldset {
+    width: unset;
+  }
+
+  #config__manager fieldset td.value {
+    width: unset;
+  }
+
+  td.label {
+    word-wrap: anywhere;
+  }
+
+  #config__manager td .input,
+  #config__manager fieldset td.value,
+  input,
+  textarea,
   #config__manager td input.edit,
-  #config__manager td textarea.edit { 
-    max-width: 100%; 
+  #config__manager td textarea.edit {
+    max-width: 100%;
     width: auto;
+  }
+}
+
+/* Desktop (>=900px) */
+@media screen and (min-width: 900px) {
+  .side-drawer,
+  .mobile-overlay {
+    display: none !important;
   }
 }

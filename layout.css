@@ -1,82 +1,311 @@
 /**
- * Tableless Layout for default template
- *
- * @author Andreas Gohr <andi@splitbrain.org>
- * @author moraes <moraes@tipos.com.br>
+ * Modern Layout for DokuWiki Template
+ * Sticky header, flexbox, clean spacing
  */
 
-/* -------------- top row --------------- */
-div.dokuwiki .header {
-  padding: 3px 0 0 2px;
-}
-
-div.dokuwiki .pagename {
-  float: left;
-  font-size: 200%;
-  font-weight: bolder;
-  color: __background_alt__;
-  text-align: left;
-  vertical-align: middle;
-}
-
-div.dokuwiki .pagename a {
-  color: __extern__ !important;
-  text-decoration: none !important;
-}
-
-div.dokuwiki .logo {
-  float: right;
-  font-size: 220%;
-  font-weight: bolder;
-  text-align: right;
-  vertical-align: middle;
-}
-
-div.dokuwiki .logo a {
-  color: __background_alt__ !important;
-  text-decoration: none !important;
-  font-variant: small-caps;
-  letter-spacing: 2pt;
-}
-
-/* ---------------  top and bottom bar ---------------- */
-div.dokuwiki .bar {
-  border-top: 1px solid __border__;
+/* ========== Site Header ========== */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: #ffffff;
   border-bottom: 1px solid __border__;
-  background: __background_alt__;
-  padding: 0.1em 0.15em;
-  clear: both;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+  backdrop-filter: blur(8px);
 }
 
-div.dokuwiki .bar-left {
-  float: left;
+.header-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1.25rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  height: 56px;
 }
 
-div.dokuwiki .bar-right {
-  float: right;
-  text-align: right;
+/* ========== Hamburger ========== */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  width: 36px;
+  height: 36px;
+  padding: 6px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  border-radius: var(--radius-sm);
+  transition: background var(--transition);
+  flex-shrink: 0;
 }
 
-div.dokuwiki #bar__bottom {
-  margin-bottom: 3px;
+.hamburger:hover {
+  background: __background_neu__;
 }
 
-/* ------------- File Metadata ----------------------- */
-
-div.dokuwiki div.meta {
-  clear: both;
-  margin-top: 1em;
-  color: __text_alt__;
-  /*font-size: 70%;*/
-  font-size: 1em;
-  margin-left: 0.85em;
-  /*desbest edit */
+.hamburger-line {
+  display: block;
+  width: 20px;
+  height: 2px;
+  background: __text__;
+  border-radius: 2px;
+  transition: all 0.3s ease;
 }
 
-div.dokuwiki div.meta div.user {
-  float: left;
+/* Hamburger Animation */
+.hamburger.is-active .hamburger-line:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
 }
 
-div.dokuwiki div.meta div.doc {
-  text-align: right;
+.hamburger.is-active .hamburger-line:nth-child(2) {
+  opacity: 0;
 }
+
+.hamburger.is-active .hamburger-line:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+/* ========== Site Branding ========== */
+.site-branding {
+  flex-shrink: 0;
+}
+
+.site-title {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #1a1a2e;
+  text-decoration: none !important;
+  letter-spacing: -0.02em;
+  white-space: nowrap;
+}
+
+.site-title:hover {
+  color: #4f46e5;
+}
+
+/* ========== Page Name (in header) ========== */
+.page-name {
+  flex: 1;
+  min-width: 0;
+  font-size: 0.9rem;
+  color: __text_neu__;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  padding: 0 0.5rem;
+}
+
+.page-name a {
+  color: __text_neu__;
+  text-decoration: none;
+}
+
+.page-name a:hover {
+  color: #4f46e5;
+}
+
+/* ========== Desktop Navigation ========== */
+.desktop-nav {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-shrink: 0;
+}
+
+.nav-search form {
+  display: flex;
+  align-items: center;
+}
+
+.nav-search input {
+  font-size: 0.85rem;
+  padding: 0.35em 0.65em;
+  border: 1px solid __border__;
+  border-radius: var(--radius) 0 0 var(--radius);
+  outline: none;
+  width: 150px;
+  transition: all var(--transition);
+  background: __background_neu__;
+}
+
+.nav-search input:focus {
+  border-color: #6366f1;
+  background: #fff;
+  width: 200px;
+  box-shadow: 0 0 0 3px rgba(99,102,241,0.1);
+}
+
+.nav-search button {
+  font-size: 0.85rem;
+  padding: 0.35em 0.75em;
+  border: 1px solid __border__;
+  border-left: none;
+  border-radius: 0 var(--radius) var(--radius) 0;
+  background: #4f46e5;
+  color: #fff;
+  cursor: pointer;
+  transition: background var(--transition);
+  white-space: nowrap;
+}
+
+.nav-search button:hover {
+  background: #4338ca;
+}
+
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+
+.nav-actions form,
+.nav-actions .plugin_block {
+  display: inline-flex;
+}
+
+.nav-actions input.button,
+.nav-actions button {
+  font-size: 0.8rem;
+  padding: 0.3em 0.6em;
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: all var(--transition);
+  color: __text_neu__;
+}
+
+.nav-actions input.button:hover,
+.nav-actions button:hover {
+  background: __background_neu__;
+  color: __text__;
+  border-color: __border__;
+}
+
+/* ========== User Area ========== */
+.user-area {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  flex-shrink: 0;
+  padding-left: 0.5rem;
+  border-left: 1px solid __border__;
+}
+
+.user-info {
+  font-size: 0.8rem;
+  color: __text_neu__;
+  white-space: nowrap;
+}
+
+.user-area input.button,
+.user-area button {
+  font-size: 0.8rem;
+  padding: 0.3em 0.6em;
+  background: transparent;
+  border: 1px solid __border__;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: all var(--transition);
+  color: __text_neu__;
+}
+
+.user-area input.button:hover,
+.user-area button:hover {
+  background: __background_neu__;
+  color: __text__;
+}
+
+/* ========== Breadcrumbs ========== */
+.breadcrumbs-wrapper {
+  background: #fff;
+  border-bottom: 1px solid __border__;
+}
+
+.breadcrumbs-wrapper .breadcrumbs {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0.5rem 1.5rem;
+  font-size: 0.85rem;
+  color: __text_neu__;
+}
+
+.breadcrumbs-wrapper .breadcrumbs a {
+  color: #6366f1;
+  text-decoration: none;
+}
+
+.breadcrumbs-wrapper .breadcrumbs a:hover {
+  text-decoration: underline;
+}
+
+/* ========== Page Content ========== */
+.page-content {
+  min-height: 60vh;
+}
+
+/* ========== Page Footer ========== */
+.page-footer {
+  border-top: 2px solid __border__;
+  background: #fff;
+  padding: 1rem 1.5rem;
+  margin-top: 3rem;
+}
+
+.page-footer .meta {
+  max-width: 900px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  font-size: 0.85rem;
+  color: __text_neu__;
+}
+
+.meta-left {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  flex-wrap: wrap;
+}
+
+.meta-sep {
+  color: __border__;
+}
+
+.meta-right {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+
+.meta-right input.button,
+.meta-right button {
+  font-size: 0.8rem;
+  padding: 0.3em 0.6em;
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  color: __text_neu__;
+  transition: all var(--transition);
+}
+
+.meta-right input.button:hover,
+.meta-right button:hover {
+  background: __background_neu__;
+  color: __text__;
+  border-color: __border__;
+}
+
+/* ========== Old Layout Compatibility ========== */
+div.dokuwiki .header { display: none; }
+div.dokuwiki .bar { display: none; }
+div.dokuwiki .stylehead { display: none; } /* old stylehead removed in modern layout */
+div.dokuwiki .pagename { display: none; }
+div.dokuwiki .logo { display: none; }

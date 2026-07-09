@@ -1,14 +1,33 @@
-# Default Template
+# Modern Wiki Template for DokuWiki
 
-This used to be the [default template for DokuWiki](http://dokuwiki.org/template:default) until 2012.
-It was designed by [Andreas Gohr](http://splitbrain.org) and also contributed to by the open source community.
-It was extracted from the core late 2013 and since then not actively maintained by the core developers anymore.
-Now the default template for dokuwiki [is called dokuwiki](http://dokuwiki.org).
+A clean, modern and responsive template for [DokuWiki](http://dokuwiki.org), redesigned from the classic default template.
 
-However me [desbest](http://desbest.com) have managed to add some minor changes to make it compatible with dokuwiki version 2018 Greebo.
+## Features
 
-* Metadata is in template.info.txt
-* Under the GPL license (see copying file)
-* [More information](http://dokuwiki.org/template:default)
+- **Modern Design** — Clean aesthetics with indigo accents, rounded corners, and subtle shadows
+- **Hamburger Menu** — Touch-friendly side drawer navigation for mobile devices (Android & iOS)
+- **Fully Responsive** — Adapts beautifully from desktop to tablet to smartphone
+- **Sticky Header** — Navigation bar stays visible while scrolling
+- **Dark Code Blocks** — Modern dark-themed code display
+- **Simple & Clean** — Minimalist design focused on readability
+- **RTL Support** — Full right-to-left language support
 
-![no longer default template screenshot](https://i.imgur.com/loAkjsa.png)
+## Preview
+
+Desktop and mobile screenshots coming soon.
+
+## Installation
+
+1. Download or clone this repository
+2. Extract to `lib/tpl/wiki-template/` in your DokuWiki installation
+3. Go to Admin → Configuration Settings → Template and select `wiki-template`
+
+## Credits
+
+- Original template by [Andreas Gohr](http://splitbrain.org)
+- Maintained by [desbest](http://desbest.com) for DokuWiki Greebo compatibility
+- Modern redesign by Ali Hadi Saedi
+
+## License
+
+GPL 2 — see the COPYING file.
