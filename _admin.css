@@ -1,53 +1,157 @@
-/** Admin - Grid + Dark + Mobile + Full Fixes */
-#admin__version{clear:left;float:right;color:var(--c-fg3);font-size:.85rem}[dir=rtl] #admin__version{float:left}
+/** =============================================
+ *  Admin Panel - Complete Redesign
+ *  Desktop + Mobile + Dark Mode + RTL
+ *  ============================================= */
 
-/* Admin tasks grid */
-.dokuwiki ul.admin_tasks{font-size:1rem;display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:.75em;list-style:none;padding:0;margin:1em 0;float:none;width:auto}
-.dokuwiki ul.admin_tasks li{line-height:1.5;padding:1em 1em 1em 3em;margin:0;background:var(--c-bg2);border:1px solid var(--c-bd);border-radius:var(--r);text-align:left;transition:all var(--trans);box-shadow:var(--c-sh);position:relative;cursor:default;color:var(--c-fg)}
-.dokuwiki ul.admin_tasks li:hover{box-shadow:var(--c-sh2);border-color:var(--c-pr);transform:translateY(-2px)}
-.dokuwiki ul.admin_tasks li div.li{font-weight:600;margin-bottom:.2em;font-size:1rem;color:var(--c-fg)}
+/* ---- Version tag ---- */
+#admin__version{float:right;font-size:.82rem;color:var(--c-fg3);padding:.3em .6em;background:var(--c-bg3);border-radius:var(--r2)}
+[dir=rtl] #admin__version{float:left}
+
+/* ---- Admin Tasks (Home Grid) ---- */
+.dokuwiki ul.admin_tasks{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:.75em;list-style:none;padding:0;margin:.5em 0 1.5em;float:none;width:auto;font-size:.95rem}
+.dokuwiki ul.admin_tasks li{padding:1em 1em 1em 3em;margin:0;background:var(--c-bg2);border:1px solid var(--c-bd);border-radius:var(--r);text-align:left;cursor:pointer;transition:all .2s ease;box-shadow:var(--c-sh);position:relative;color:var(--c-fg)}
+.dokuwiki ul.admin_tasks li:hover{border-color:var(--c-pr);box-shadow:var(--c-sh2);transform:translateY(-2px)}
+.dokuwiki ul.admin_tasks li div.li{font-weight:600;font-size:.95rem;color:var(--c-fg);margin-bottom:.15em}
 [dir=rtl] .dokuwiki ul.admin_tasks li{text-align:right;padding:1em 3em 1em 1em}
-@media screen and (max-width:600px){.dokuwiki ul.admin_tasks{grid-template-columns:1fr}.dokuwiki ul.admin_tasks li{padding:.85em .85em .85em 2.5em}[dir=rtl] .dokuwiki ul.admin_tasks li{padding:.85em 2.5em .85em .85em}}
+@media(max-width:600px){.dokuwiki ul.admin_tasks{grid-template-columns:1fr}}
 
-/* Plugin/Extension manager */
-.dokuwiki div.pluginlist{width:100%}
-.dokuwiki table.inline.pluginlist td,.dokuwiki table.inline.pluginlist th{padding:.6em .8em;font-size:.9em}
-.dokuwiki .pluginlist .version,.dokuwiki .pluginlist .date,.dokuwiki .pluginlist .author,.dokuwiki .pluginlist .email{color:var(--c-fg3)!important}
-.dokuwiki .plugin_manager .tabs li a,.dokuwiki .plugin_manager .tabs li strong{color:var(--c-fg)}
-.dokuwiki .plugin_manager .tabs li a:hover{color:var(--c-pr)}
 
-/* Config manager - complete fix */
-#config__manager{color:var(--c-fg)}
-#config__manager fieldset{border:1px solid var(--c-bd);border-radius:var(--r);padding:1.2em;margin:1em 0;background:var(--c-bg2);width:auto;box-shadow:var(--c-sh);transition:all var(--trans)}
-#config__manager fieldset legend{font-weight:700;color:var(--c-pr);padding:0 .5em;font-size:.95em}
-#config__manager td{color:var(--c-fg);padding:.4em .5em;vertical-align:top;transition:color var(--trans)}
-#config__manager td.label{font-weight:600;color:var(--c-fg2);min-width:180px}
-#config__manager td.label span.outkey{font-family:monospace;background:var(--c-bg3);padding:.1em .3em;border-radius:var(--r2);font-size:.85em;color:var(--c-pr)}
-#config__manager td.value{color:var(--c-fg)}
-#config__manager input.edit,#config__manager select.edit,#config__manager textarea.edit{color:var(--c-fg)!important;background:var(--c-bg2)!important;border:1px solid var(--c-bd)!important;border-radius:var(--r2);padding:.4em .6em;transition:all var(--trans);font-size:.9em;font-family:system-ui,sans-serif}
-#config__manager input.edit:focus,#config__manager select.edit:focus,#config__manager textarea.edit:focus{outline:none;border-color:var(--c-pr)!important;box-shadow:0 0 0 3px var(--c-prl)}
-#config__manager textarea.edit,#config__manager input.edit[type="text"]{text-align:left!important;direction:ltr!important}
-#config__manager td .other,#config__manager td .outkey{color:var(--c-fg3);font-size:.85em}
-#config__manager a{color:var(--c-pr)}
-#config__manager tr.default{color:var(--c-fg3)}
-#config__manager tr.default td{opacity:.7}
-#config__manager tr:hover td{background:var(--c-bg3)}
-@media screen and (max-width:600px){
-#config__manager td,#config__manager tr{display:block;width:100%}
-#config__manager td.label{min-width:0;padding:.5em 0 0;font-weight:700}
-#config__manager td.value{padding:0 0 .8em}
-#config__manager fieldset{padding:.8em;margin:.6em 0}
-#config__manager input.edit,#config__manager select.edit,#config__manager textarea.edit{width:100%!important;max-width:100%!important;box-sizing:border-box}
+/* ================================================
+   CONFIGURATION MANAGER - Full Redesign
+   ================================================ */
+
+#config__manager{font-size:.92rem;color:var(--c-fg);max-width:100%}
+
+/* Fieldset = card */
+#config__manager fieldset{border:1px solid var(--c-bd);border-radius:var(--r);padding:0;margin:1.2em 0;background:var(--c-bg2);box-shadow:var(--c-sh);overflow:hidden;width:auto;min-width:0;transition:all var(--trans)}
+
+#config__manager fieldset legend{display:block;width:100%;padding:.7em 1em;margin:0;font-weight:700;font-size:.95rem;color:var(--c-pr);background:var(--c-bg4);border-bottom:1px solid var(--c-bd);transition:all var(--trans)}
+
+#config__manager fieldset table{width:100%;border-collapse:collapse;table-layout:auto}
+
+#config__manager fieldset td{padding:.65em 1em;color:var(--c-fg);vertical-align:middle;border-bottom:1px solid var(--c-bd);transition:all var(--trans)}
+
+#config__manager fieldset tr:last-child td{border-bottom:none}
+
+#config__manager fieldset tr:hover td{background:var(--c-bg3)}
+
+/* Label column */
+#config__manager td.label{width:35%;min-width:180px;font-weight:600;color:var(--c-fg2);white-space:normal;word-break:break-word}
+
+#config__manager td.label span.outkey{display:inline-block;font-family:'SF Mono','Fira Code',Menlo,monospace;font-size:.82em;background:var(--c-bg3);color:var(--c-pr);padding:.15em .45em;border-radius:var(--r2);margin-right:.3em}
+
+#config__manager td.label img{margin-left:.3em;vertical-align:middle}
+
+/* Value column */
+#config__manager td.value{width:65%;color:var(--c-fg)}
+
+/* Description text */
+#config__manager td .other{display:block;font-size:.8em;color:var(--c-fg3);margin-top:.3em;line-height:1.5}
+
+/* Inline other */
+#config__manager td.label .other{font-size:.78em;color:var(--c-fg4);display:block;margin-top:.2em;font-weight:400}
+
+/* ---- INPUTS inside config ---- */
+#config__manager input.edit,
+#config__manager select.edit,
+#config__manager textarea.edit{font-size:.88em;color:var(--c-fg)!important;background:var(--c-bg)!important;border:1px solid var(--c-bd)!important;border-radius:var(--r2);padding:.45em .65em;transition:all .15s ease;font-family:system-ui,sans-serif;max-width:100%;width:auto;min-width:180px}
+
+#config__manager textarea.edit{width:100%!important;min-width:100%!important;max-width:100%!important;font-family:'SF Mono',Menlo,monospace;font-size:.85em;height:5em;resize:vertical;direction:ltr!important;text-align:left!important}
+
+#config__manager input.edit[type="text"]{direction:ltr!important;text-align:left!important}
+
+#config__manager input.edit:focus,
+#config__manager select.edit:focus,
+#config__manager textarea.edit:focus{outline:none;border-color:var(--c-pr)!important;box-shadow:0 0 0 3px var(--c-prl)}
+
+#config__manager input.edit[type="checkbox"]{min-width:auto;width:auto;accent-color:var(--c-pr)}
+
+/* ---- Default/Inherited rows ---- */
+#config__manager tr.default td.label{color:var(--c-fg3);font-style:italic}
+#config__manager tr.default td .outkey{opacity:.7}
+
+/* ---- Links ---- */
+#config__manager a{color:var(--c-pr);text-decoration:none}
+#config__manager a:hover{text-decoration:underline}
+
+
+/* ================================================
+   CONFIG - MOBILE (≤700px)
+   ================================================ */
+@media screen and (max-width:700px){
+  #config__manager fieldset{margin:.8em 0;border-radius:var(--r)}
+  #config__manager fieldset legend{padding:.6em .8em;font-size:.88rem}
+
+  /* Stack vertically */
+  #config__manager fieldset td,
+  #config__manager fieldset tr{display:block!important;width:100%!important}
+  #config__manager td.label{min-width:0;width:100%!important;padding:.6em .8em .15em!important;font-size:.85rem;border-bottom:none!important}
+  #config__manager td.value{width:100%!important;padding:.15em .8em .7em!important;border-bottom:1px solid var(--c-bd)!important}
+  #config__manager fieldset tr:last-child td.value{border-bottom:none!important}
+
+  /* Full width inputs */
+  #config__manager input.edit,
+  #config__manager select.edit,
+  #config__manager textarea.edit{width:100%!important;min-width:0!important;max-width:100%!important;box-sizing:border-box;font-size:.9rem;padding:.55em .7em}
+
+  #config__manager td.label span.outkey{font-size:.78em}
 }
 
-/* User manager */
-#user__manager{overflow-x:auto;-webkit-overflow-scrolling:touch}
-#user__manager table{min-width:600px;width:100%}
-#user__manager td,#user__manager th{color:var(--c-fg);padding:.5em .7em}
-#user__manager th{background:var(--c-bg3);font-weight:600;color:var(--c-fg3)}
-#user__manager input.edit,#user__manager select.edit{color:var(--c-fg)!important;background:var(--c-bg2)!important;border:1px solid var(--c-bd)!important;border-radius:var(--r2);padding:.4em .6em}
-#user__manager tr:hover td{background:var(--c-bg3)}
 
-/* General admin panel */
+/* ================================================
+   USER MANAGER
+   ================================================ */
+#user__manager{overflow-x:auto;-webkit-overflow-scrolling:touch;margin:1em 0}
+#user__manager table{min-width:650px;width:100%;border-collapse:collapse;border:1px solid var(--c-bd);border-radius:var(--r);overflow:hidden;box-shadow:var(--c-sh)}
+#user__manager th{background:var(--c-bg3);font-weight:600;color:var(--c-fg2);padding:.6em .8em;text-align:left;font-size:.85em;text-transform:uppercase;letter-spacing:.03em;border-bottom:2px solid var(--c-bd)}
+[dir=rtl] #user__manager th{text-align:right}
+#user__manager td{padding:.55em .8em;color:var(--c-fg);border-bottom:1px solid var(--c-bd);font-size:.9em}
+#user__manager tr:hover td{background:var(--c-bg3)}
+#user__manager tr:last-child td{border-bottom:none}
+#user__manager input.edit,#user__manager select.edit{font-size:.85em;color:var(--c-fg)!important;background:var(--c-bg)!important;border:1px solid var(--c-bd)!important;border-radius:var(--r2);padding:.4em .55em}
+#user__manager input.button,form#usrmgr__del input.button{font-size:.82em;padding:.35em .7em}
+
+/* Add user form */
+#user__manager fieldset{border:1px solid var(--c-bd);border-radius:var(--r);padding:1em;margin:1em 0;background:var(--c-bg2)}
+#user__manager fieldset legend{font-weight:700;color:var(--c-pr)}
+#user__manager fieldset label{display:block;margin:.3em 0;color:var(--c-fg2);font-weight:500}
+#user__manager fieldset label input.edit,#user__manager fieldset label select.edit{display:block;margin-top:.3em;width:260px;max-width:100%}
+
+
+/* ================================================
+   EXTENSION / PLUGIN MANAGER
+   ================================================ */
+.dokuwiki .pluginlist,.dokuwiki table.pluginlist{width:100%}
+.dokuwiki table.pluginlist td,.dokuwiki table.pluginlist th{padding:.55em .7em;font-size:.88em;color:var(--c-fg)}
+.dokuwiki table.pluginlist th{background:var(--c-bg3);font-weight:600;text-transform:uppercase;font-size:.78em;letter-spacing:.03em;color:var(--c-fg2);border-bottom:2px solid var(--c-bd)}
+.dokuwiki .pluginlist .version,.dokuwiki .pluginlist .date,.dokuwiki .pluginlist .author,.dokuwiki .pluginlist .email{color:var(--c-fg3)!important}
+
+/* Extension tabs */
+.dokuwiki .plugin_manager .tabs{margin:1em 0 .5em}
+.dokuwiki .plugin_manager .tabs li a,.dokuwiki .plugin_manager .tabs li strong{font-size:.9rem;padding:.45em .9em;color:var(--c-fg);background:var(--c-bg3);border-radius:.5em .5em 0 0;border:1px solid var(--c-bd);border-bottom:none;transition:all var(--trans)}
+.dokuwiki .plugin_manager .tabs li strong{background:var(--c-bg2);color:var(--c-pr);font-weight:600}
+.dokuwiki .plugin_manager .tabs li a:hover{background:var(--c-bg4);color:var(--c-pr)}
+
+/* Extension search */
+.dokuwiki .plugin_manager form input.edit{margin-right:.4em}
+
+/* Extension info text */
+.dokuwiki .plugin_manager p,.dokuwiki .plugin_manager .msg{color:var(--c-fg);font-size:.9em}
+
+
+/* ================================================
+   GENERAL ADMIN
+   ================================================ */
 .dokuwiki div.ui-admin{color:var(--c-fg)}
-.dokuwiki dl.file dt,.dokuwiki dl.code dt{background:var(--c-bg3);border-color:var(--c-bd);color:var(--c-fg)}
+.dokuwiki dl.file dt,.dokuwiki dl.code dt{background:var(--c-bg3);border-color:var(--c-bd);color:var(--c-fg);border-radius:var(--r2)}
+
+/* Admin page heading */
+.dokuwiki .ui-admin h1{font-size:1.4em;margin-bottom:.8em}
+
+/* Messages / alerts */
+.dokuwiki div.success,.dokuwiki div.info,.dokuwiki div.error,.dokuwiki div.notify{padding:.7em 1em;margin:1em 0;border-radius:var(--r);font-size:.9em;border:1px solid}
+.dokuwiki div.success{background:#ecfdf5;border-color:#059669;color:#047857}
+.dokuwiki div.info{background:var(--c-bg4);border-color:var(--c-bd);color:var(--c-fg)}
+.dokuwiki div.error{background:#fef2f2;border-color:#ef4444;color:#b91c1c}
+[data-theme="dark"] .dokuwiki div.success{background:#064e3b;border-color:#34d399;color:#d1fae5}
+[data-theme="dark"] .dokuwiki div.error{background:#451a1a;border-color:#fca5a5;color:#fecaca}
