@@ -17,7 +17,7 @@ $logo_path=DOKU_TPL.'images/logo.png';
 <body>
 <?php @include(dirname(__FILE__).'/topheader.html')?>
 <div class="mobile-overlay" id="mobile-overlay" aria-hidden="true"></div>
-<nav class="side-drawer" id="side-drawer" aria-label="Menu">
+<nav class="side-drawer" id="side-drawer" aria-label="Menu" dir="<?php echo $dir_attr?>">
 <div class="drawer-header">
 <div class="drawer-logo"><?php if($has_logo):?><img src="<?php echo $logo_path?>" alt="" class="drawer-logo-img" width="32" height="32"><?php endif?><?php tpl_link(wl(),$conf['title'])?></div>
 <button class="drawer-close" id="drawer-close" aria-label="Close"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M15 5L5 15M5 5l10 10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
@@ -29,7 +29,9 @@ $logo_path=DOKU_TPL.'images/logo.png';
 </div>
 </nav>
 <div class="dokuwiki"><?php html_msgarea()?>
-<header class="site-header" id="site-header">
+
+<!-- HEADER - always LTR, always sticky -->
+<header class="site-header" id="site-header" dir="ltr">
 <div class="header-inner">
 <button class="hamburger" id="hamburger-btn" aria-label="Menu" aria-expanded="false"><span class="hamburger-line"></span><span class="hamburger-line"></span><span class="hamburger-line"></span></button>
 <div class="site-branding"><?php if($has_logo):?><img src="<?php echo $logo_path?>" alt="" class="site-logo" width="28" height="28"><?php endif?><?php tpl_link(wl(),$conf['title'],'class="site-title" name="dokuwiki__top" id="dokuwiki__top" accesskey="h" title="[H]"')?></div>
@@ -56,6 +58,7 @@ $logo_path=DOKU_TPL.'images/logo.png';
 <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme" title="Dark/Light"><svg class="theme-icon-light" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg><svg class="theme-icon-dark" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg></button>
 </div>
 </header>
+
 <?php @include(dirname(__FILE__).'/header.html')?>
 <?php if($conf['breadcrumbs']):?><nav class="breadcrumbs-wrapper" aria-label="Breadcrumb"><div class="breadcrumbs"><?php tpl_breadcrumbs()?></div></nav><?php endif?>
 <?php if($conf['youarehere']):?><nav class="breadcrumbs-wrapper" aria-label="Breadcrumb"><div class="breadcrumbs"><?php tpl_youarehere()?></div></nav><?php endif?>
