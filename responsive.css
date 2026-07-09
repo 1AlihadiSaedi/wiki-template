@@ -1,14 +1,11 @@
-/**
- * Modern Responsive - Mobile, Dark Mode, Admin Fixes
- */
-
-/* ===== Overlay ===== */
-.mobile-overlay{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.45);z-index:200;opacity:0;visibility:hidden;transition:opacity .3s ease,visibility .3s ease;pointer-events:none;-webkit-tap-highlight-color:transparent}
+/** Modern Responsive */
+.mobile-overlay{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.45);z-index:200;opacity:0;visibility:hidden;transition:opacity .3s ease,visibility .3s ease;pointer-events:none}
 .mobile-overlay.is-visible{opacity:1;visibility:visible;pointer-events:auto}
 
-/* ===== Side Drawer ===== */
 .side-drawer{position:fixed;top:0;left:-300px;width:280px;max-width:85vw;height:100%;height:100dvh;z-index:250;background:var(--c-bg2);box-shadow:2px 0 30px rgba(0,0,0,.15);transition:left .3s cubic-bezier(.4,0,.2,1);overflow-y:auto;-webkit-overflow-scrolling:touch;display:flex;flex-direction:column}
 .side-drawer.is-open{left:0}
+[dir="rtl"] .side-drawer{left:auto;right:-300px;transition:right .3s cubic-bezier(.4,0,.2,1)}
+[dir="rtl"] .side-drawer.is-open{right:0}
 .drawer-header{display:flex;align-items:center;justify-content:space-between;padding:.9rem 1rem;border-bottom:1px solid var(--c-bd);background:var(--c-bg3)}
 .drawer-logo{font-size:1.05rem;font-weight:700;display:flex;align-items:center;gap:.4rem}
 .drawer-logo a{color:var(--c-fg);text-decoration:none}
@@ -23,22 +20,20 @@
 .drawer-buttons form,.drawer-buttons .plugin_block{display:inline-flex}
 .drawer-buttons input.button,.drawer-buttons button{font-size:.85rem;padding:.45em .7em;border:1px solid var(--c-bd);border-radius:var(--r2);background:var(--c-bg2);color:var(--c-fg);cursor:pointer;transition:all var(--trans);display:inline-flex;align-items:center;gap:.3em;white-space:nowrap}
 .drawer-buttons input.button:hover,.drawer-buttons button:hover{background:var(--c-bg4);border-color:var(--c-pr)}
-.drawer-section form#dw__search{display:flex;gap:0}.drawer-section #dw__search input{flex:1;font-size:.88rem;padding:.5em .7em;border:1px solid var(--c-bd);border-right:none;border-radius:var(--r2) 0 0 var(--r2);outline:none;background:var(--c-bg3);color:var(--c-fg);transition:all var(--trans)}
-.drawer-section #dw__search input:focus{border-color:var(--c-pr);background:var(--c-bg2)}
-.drawer-section #dw__search button{padding:.5em .9em;background:var(--c-pr);color:#fff;border:1px solid var(--c-pr);border-radius:0 var(--r2) var(--r2) 0;cursor:pointer;font-size:.88rem}
+
+/* Drawer Search - always LTR, darker button */
+.drawer-section form#dw__search{display:flex!important;direction:ltr!important}
+.drawer-section #dw__search input{flex:1;font-size:.88rem;padding:.5em .7em;border:1px solid var(--c-bd);border-right:none;border-radius:var(--r2) 0 0 var(--r2);outline:none;background:var(--c-bg);color:var(--c-fg);transition:all var(--trans);min-width:0;direction:ltr!important}
+.drawer-section #dw__search input:focus{border-color:var(--c-pr);box-shadow:0 0 0 3px var(--c-prl)}
+.drawer-section #dw__search button{padding:.5em .9em;background:var(--c-pr);color:#fff;border:1px solid var(--c-pr);border-radius:0 var(--r2) var(--r2) 0;cursor:pointer;font-size:.88rem;white-space:nowrap;transition:all var(--trans)}
+.drawer-section #dw__search button:hover{background:var(--c-pr2)}
+[data-theme="dark"] .drawer-section #dw__search button{color:#000}
 .drawer-userinfo{font-size:.82rem;color:var(--c-fg3);margin-bottom:.5rem}
 
-/* ===== Body ===== */
 body.menu-open{overflow:hidden}
 
-/* ===== RTL Drawer ===== */
-[dir="rtl"] .side-drawer{left:auto;right:-300px}[dir="rtl"] .side-drawer.is-open{right:0}
-[dir="rtl"] .drawer-section #dw__search input{border-right:1px solid var(--c-bd);border-left:none;border-radius:0 var(--r2) var(--r2) 0}
-[dir="rtl"] .drawer-section #dw__search button{border-radius:var(--r2) 0 0 var(--r2)}
-
-/* ===== Responsive ≤899px ===== */
 @media screen and (max-width:899px){
-.hamburger{display:flex}.desktop-nav,.user-area,.page-name{display:none}.site-title{font-size:1.05rem}.header-inner{padding:0 .6rem;gap:.3rem}.lang-selector{margin-left:auto}[dir="rtl"] .lang-selector{margin-left:0;margin-right:auto}
+.hamburger{display:flex}.desktop-nav,.user-area,.page-name{display:none}.site-title{font-size:1.05rem}.header-inner{padding:0 .6rem;gap:.3rem}.lang-selector{margin-left:auto}
 div.dokuwiki div.page{padding:1.25rem 1rem}
 div.dokuwiki #dw__toc{float:none;width:100%;margin:0 0 1.5em}
 div.dokuwiki img.medialeft,div.dokuwiki img.mediaright{float:none;display:block;margin:0 auto 1em;max-width:100%}
@@ -46,12 +41,10 @@ div.dokuwiki table.inline{display:block;overflow-x:auto;-webkit-overflow-scrolli
 div.dokuwiki h1{font-size:1.6em}div.dokuwiki h2{font-size:1.3em}div.dokuwiki h3{font-size:1.15em}
 div.dokuwiki div.level2{margin-left:.5rem}div.dokuwiki div.level3{margin-left:1rem}div.dokuwiki div.level4{margin-left:1.5rem}div.dokuwiki div.level5{margin-left:2rem}
 [dir="rtl"] div.dokuwiki div.level2{margin-left:0;margin-right:.5rem}[dir="rtl"] div.dokuwiki div.level3{margin-left:0;margin-right:1rem}[dir="rtl"] div.dokuwiki div.level4{margin-left:0;margin-right:1.5rem}[dir="rtl"] div.dokuwiki div.level5{margin-left:0;margin-right:2rem}
-div.dokuwiki ul,div.dokuwiki ol{margin-left:1.5em}[dir="rtl"] div.dokuwiki ul,[dir="rtl"] div.dokuwiki ol{margin-right:1.5em}
 .page-footer .meta{flex-direction:column;align-items:flex-start}
 div.dokuwiki fieldset{width:100%}
 }
 
-/* ===== Responsive ≤480px ===== */
 @media screen and (max-width:480px){
 .header-inner{height:50px;padding:0 .5rem}
 .hamburger{width:32px;height:32px;padding:4px}.hamburger-line{width:18px}
@@ -64,14 +57,11 @@ div.dokuwiki h1{font-size:1.4em}div.dokuwiki h2{font-size:1.2em}div.dokuwiki h3{
 div.dokuwiki pre{padding:.7em;font-size:.78em;border-radius:var(--r2)}
 .breadcrumbs-wrapper .breadcrumbs{padding:.3rem .7rem;font-size:.78rem}
 .page-footer{padding:.7rem}
-/* Admin config fixes */
 #config__manager td,.config td{display:block;padding:.6em 0;max-width:100%;width:100%}
 #config__manager fieldset,.config fieldset{margin:.75em 0;width:100%;box-sizing:border-box;min-width:0}
 #config__manager td .input,.config td .input,#config__manager fieldset td.value,.config fieldset td.value{width:100%;max-width:100%}
-#config__manager td input.edit,.config td input.edit,#config__manager td textarea.edit,.config td textarea.edit{max-width:100%;width:100%}
 #config__manager input.edit,.config input.edit,#config__manager select.edit,.config select.edit{width:100%;box-sizing:border-box}
 fieldset{width:100%!important;min-width:0!important}select{width:100%}
 }
 
-/* ===== Desktop ≥900px ===== */
 @media screen and (min-width:900px){.side-drawer,.mobile-overlay{display:none!important}}
