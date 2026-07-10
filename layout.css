@@ -7,10 +7,7 @@
 .hamburger.is-active .hamburger-line:nth-child(1){transform:translateY(7px) rotate(45deg)}
 .hamburger.is-active .hamburger-line:nth-child(2){opacity:0;transform:scaleX(0)}
 .hamburger.is-active .hamburger-line:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
-
-/* RTL: hamburger jumps to right side */
 html[dir="rtl"] .hamburger{order:999}
-
 .site-branding{flex-shrink:0;display:flex;align-items:center;gap:.5rem}
 .site-logo{width:28px;height:28px;border-radius:var(--r2);object-fit:contain;flex-shrink:0}
 .site-title{font-size:1.15rem;font-weight:700;color:var(--c-fg);text-decoration:none!important;letter-spacing:-.02em;white-space:nowrap;transition:color var(--trans)}
@@ -20,7 +17,7 @@ html[dir="rtl"] .hamburger{order:999}
 .page-name a:hover{color:var(--c-pr)}
 .page-name-sep{margin:0 .3rem;color:var(--c-bd)}
 .desktop-nav{display:flex;align-items:center;gap:.4rem;flex-shrink:0}
-.nav-search form,.nav-search form#dw__search{display:flex;flex-direction:row!important;direction:ltr!important}
+.nav-search form,.nav-search form#dw__search{display:flex;align-items:stretch;flex-direction:row!important;direction:ltr!important}
 .nav-search input{font-size:.82rem;padding:.35em .6em;border:1px solid var(--c-bd);border-right:none;border-radius:var(--r) 0 0 var(--r);outline:none;width:140px;background:var(--c-bg);color:var(--c-fg);transition:all var(--trans)}
 .nav-search input:focus{border-color:var(--c-pr);background:var(--c-bg2);width:180px;box-shadow:0 0 0 3px var(--c-prl)}
 .nav-search button,.nav-search input[type="submit"]{font-size:.82rem;padding:.35em .75em;border:1px solid var(--c-pr);border-radius:0 var(--r) var(--r) 0;background:var(--c-pr);color:#fff;cursor:pointer;transition:all var(--trans);white-space:nowrap}

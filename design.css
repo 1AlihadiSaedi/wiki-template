@@ -1,6 +1,6 @@
 /* ===== Modern Green Silk v2 ===== */
-:root,[data-theme="light"]{--c-bg:#f7faf7;--c-bg2:#fff;--c-bg3:#f0f7f0;--c-bg4:#ecfdf5;--c-fg:#1a2e1a;--c-fg2:#334155;--c-fg3:#64756b;--c-fg4:#8fa896;--c-bd:#dce8dc;--c-pr:#059669;--c-pr2:#047857;--c-prl:#d1fae5;--c-err:#ef4444;--c-ok:#059669;--c-sh:0 1px 3px rgba(0,0,0,.08);--r:6px;--r2:3px;--trans:.2s ease}
-[data-theme="dark"]{--c-bg:#0a1a0f;--c-bg2:#0f1f14;--c-bg3:#132418;--c-bg4:#162a1e;--c-fg:#dce8e0;--c-fg2:#bccdc2;--c-fg3:#8fa896;--c-fg4:#64756b;--c-bd:#1e3a28;--c-pr:#34d399;--c-pr2:#6ee7b7;--c-prl:#064e3b;--c-err:#fca5a5;--c-ok:#34d399;--c-sh:0 1px 3px rgba(0,0,0,.3)}
+:root,[data-theme="light"]{--c-bg:#f7faf7;--c-bg2:#fff;--c-bg3:#f0f7f0;--c-bg4:#ecfdf5;--c-fg:#1a2e1a;--c-fg2:#334155;--c-fg3:#64756b;--c-fg4:#8fa896;--c-bd:#dce8dc;--c-pr:#059669;--c-pr2:#047857;--c-prl:#d1fae5;--c-err:#ef4444;--c-ok:#059669;--c-sh:0 1px 3px rgba(0,0,0,.08);--c-sh3:0 4px 20px rgba(0,0,0,.12);--r:6px;--r2:3px;--trans:.2s ease}
+[data-theme="dark"]{--c-bg:#0a1a0f;--c-bg2:#0f1f14;--c-bg3:#132418;--c-bg4:#162a1e;--c-fg:#dce8e0;--c-fg2:#bccdc2;--c-fg3:#8fa896;--c-fg4:#64756b;--c-bd:#1e3a28;--c-pr:#34d399;--c-pr2:#6ee7b7;--c-prl:#064e3b;--c-err:#fca5a5;--c-ok:#34d399;--c-sh:0 1px 3px rgba(0,0,0,.3);--c-sh3:0 4px 20px rgba(0,0,0,.4)}
 *,*::before,*::after{box-sizing:border-box}
 body{font:100%/1.7 system-ui,Arial,sans-serif;background:var(--c-bg);color:var(--c-fg);margin:0;padding:0;transition:background var(--trans),color var(--trans)}
 div.dokuwiki div.page{max-width:900px;margin:0 auto;padding:2rem 1.5rem;line-height:1.85;color:var(--c-fg);unicode-bidi:plaintext}
@@ -64,6 +64,15 @@ div.dokuwiki pre>*,div.dokuwiki pre.code>*,div.dokuwiki pre.file>*,.dokuwiki pre
 [data-theme="dark"] .dokuwiki .code .me0,[data-theme="dark"] .dokuwiki .code .me1{color:#d2a8ff!important}
 [data-theme="dark"] .dokuwiki .code .re0,[data-theme="dark"] .dokuwiki .code .re1{color:#79c0ff!important}
 [data-theme="dark"] .dokuwiki .code span,[data-theme="dark"] .dokuwiki pre span{color:#e6edf3!important}
+
+div.dokuwiki #qsearch__out,div.dokuwiki .ajax_qsearch{background:var(--c-bg2)!important;border:1px solid var(--c-bd)!important;border-radius:var(--r)!important;box-shadow:var(--c-sh3);color:var(--c-fg)!important}
+div.dokuwiki #qsearch__out li,div.dokuwiki .ajax_qsearch li{padding:.35em .8em;color:var(--c-fg)!important;font-size:.85em}
+div.dokuwiki #qsearch__out li:hover,div.dokuwiki .ajax_qsearch li:hover{background:var(--c-bg3);color:var(--c-fg)!important}
+div.dokuwiki #qsearch__out strong,div.dokuwiki .ajax_qsearch strong{color:var(--c-pr)!important}
+[data-theme="dark"] div.dokuwiki #qsearch__out,[data-theme="dark"] div.dokuwiki .ajax_qsearch{background:#161b22!important;border-color:#30363d!important;color:#c9d1d9!important}
+[data-theme="dark"] div.dokuwiki #qsearch__out li:hover,[data-theme="dark"] div.dokuwiki .ajax_qsearch li:hover{background:#1c2128;color:#e6edf3!important}
+[data-theme="dark"] div.dokuwiki #qsearch__out strong,[data-theme="dark"] div.dokuwiki .ajax_qsearch strong{color:var(--c-pr)!important}
+
 div.dokuwiki table.inline{border-collapse:separate;border-radius:var(--r);overflow:hidden;border:1px solid var(--c-bd);box-shadow:var(--c-sh);width:100%}
 div.dokuwiki table.inline th{padding:.7em 1em;background:var(--c-bg3);font-weight:600;text-align:left;font-size:.85em;text-transform:uppercase;letter-spacing:.05em;color:var(--c-fg3);border-bottom:2px solid var(--c-bd)}
 div.dokuwiki table.inline td{padding:.6em 1em;border-bottom:1px solid var(--c-bd);font-size:.95em;color:var(--c-fg)}
