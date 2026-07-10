@@ -18,11 +18,12 @@ html[dir="rtl"] .hamburger{order:999}
 .page-name-sep{margin:0 .3rem;color:var(--c-bd)}
 .desktop-nav{display:flex;align-items:center;gap:.4rem;flex-shrink:0}
 
-.nav-search form,.nav-search form#dw__search{display:flex;align-items:stretch;flex-direction:row!important;direction:ltr!important}
-.nav-search input{font-size:.82rem;padding:.35em .7em;border:1px solid var(--c-bd);border-right:none;border-radius:var(--r) 0 0 var(--r);outline:none;width:150px;background:var(--c-bg);color:var(--c-fg);transition:all var(--trans);line-height:1.5}
-.nav-search input:focus{border-color:var(--c-pr);background:var(--c-bg2);width:190px;box-shadow:-1px 0 0 var(--c-pr)}
-.nav-search button,.nav-search input[type="submit"]{font-size:.82rem;padding:.35em .85em;border:1px solid var(--c-pr);border-radius:0 var(--r) var(--r) 0;background:var(--c-pr);color:#fff;cursor:pointer;transition:all var(--trans);white-space:nowrap;line-height:1.5;font-weight:500}
-.nav-search button:hover,.nav-search input[type="submit"]:hover{background:var(--c-pr2);border-color:var(--c-pr2)}
+.nav-search form,.nav-search form#dw__search{display:flex;align-items:stretch;flex-direction:row!important;direction:ltr!important;border:1px solid var(--c-bd);border-radius:var(--r);overflow:hidden;background:var(--c-bg);transition:border-color var(--trans),box-shadow var(--trans)}
+.nav-search form:focus-within{border-color:var(--c-pr);box-shadow:0 0 0 3px var(--c-prl)}
+.nav-search input{font-size:.82rem;padding:.35em .6em;border:none;outline:none;width:150px;background:transparent;color:var(--c-fg);transition:width var(--trans)}
+.nav-search input:focus{width:190px}
+.nav-search button,.nav-search input[type="submit"]{font-size:.82rem;padding:.35em .85em;border:none;background:var(--c-pr);color:#fff;cursor:pointer;transition:background var(--trans);white-space:nowrap;font-weight:500;flex-shrink:0}
+.nav-search button:hover,.nav-search input[type="submit"]:hover{background:var(--c-pr2)}
 [data-theme="dark"] .nav-search button,[data-theme="dark"] .nav-search input[type="submit"]{background:var(--c-pr);color:#000}
 [data-theme="dark"] .nav-search button:hover{background:var(--c-pr2)}
 
