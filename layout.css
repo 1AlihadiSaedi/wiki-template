@@ -17,13 +17,15 @@ html[dir="rtl"] .hamburger{order:999}
 .page-name a:hover{color:var(--c-pr)}
 .page-name-sep{margin:0 .3rem;color:var(--c-bd)}
 .desktop-nav{display:flex;align-items:center;gap:.4rem;flex-shrink:0}
+
 .nav-search form,.nav-search form#dw__search{display:flex;align-items:stretch;flex-direction:row!important;direction:ltr!important}
-.nav-search input{font-size:.82rem;padding:.35em .6em;border:1px solid var(--c-bd);border-right:none;border-radius:var(--r) 0 0 var(--r);outline:none;width:140px;background:var(--c-bg);color:var(--c-fg);transition:all var(--trans)}
-.nav-search input:focus{border-color:var(--c-pr);background:var(--c-bg2);width:180px;box-shadow:0 0 0 3px var(--c-prl)}
-.nav-search button,.nav-search input[type="submit"]{font-size:.82rem;padding:.35em .75em;border:1px solid var(--c-pr);border-radius:0 var(--r) var(--r) 0;background:var(--c-pr);color:#fff;cursor:pointer;transition:all var(--trans);white-space:nowrap}
+.nav-search input{font-size:.82rem;padding:.35em .7em;border:1px solid var(--c-bd);border-right:none;border-radius:var(--r) 0 0 var(--r);outline:none;width:150px;background:var(--c-bg);color:var(--c-fg);transition:all var(--trans);line-height:1.5}
+.nav-search input:focus{border-color:var(--c-pr);background:var(--c-bg2);width:190px;box-shadow:-1px 0 0 var(--c-pr)}
+.nav-search button,.nav-search input[type="submit"]{font-size:.82rem;padding:.35em .85em;border:1px solid var(--c-pr);border-radius:0 var(--r) var(--r) 0;background:var(--c-pr);color:#fff;cursor:pointer;transition:all var(--trans);white-space:nowrap;line-height:1.5;font-weight:500}
 .nav-search button:hover,.nav-search input[type="submit"]:hover{background:var(--c-pr2);border-color:var(--c-pr2)}
 [data-theme="dark"] .nav-search button,[data-theme="dark"] .nav-search input[type="submit"]{background:var(--c-pr);color:#000}
 [data-theme="dark"] .nav-search button:hover{background:var(--c-pr2)}
+
 .nav-actions{display:flex;align-items:center;gap:2px}.nav-actions form,.nav-actions .plugin_block{display:inline-flex}
 .nav-actions input.button,.nav-actions button{font-size:.78rem;padding:.3em .55em;background:transparent;border:1px solid transparent;border-radius:var(--r2);cursor:pointer;color:var(--c-fg3);transition:all var(--trans)}
 .nav-actions input.button:hover,.nav-actions button:hover{background:var(--c-bg3);color:var(--c-fg);border-color:var(--c-bd)}
