@@ -313,7 +313,7 @@
   border-radius: 999px !important;
   cursor: pointer;
   white-space: nowrap;
-  box-shadow: var(--sh-2) !important;
+  box-shadow: none !important;
   transition: all var(--t) !important;
   transform: none !important;
 }
@@ -322,7 +322,7 @@
   background: var(--bg-raised) !important;
   border-color: var(--pr) !important;
   color: var(--pr) !important;
-  box-shadow: var(--sh-3) !important;
+  box-shadow: var(--sh-1) !important;
   transform: translateY(-1px) !important;
 }
 
