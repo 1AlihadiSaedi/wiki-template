@@ -78,7 +78,6 @@ $tools = ['edit','history','recent','media','index','admin'];
     <div class="drawer-section">
       <span class="drawer-label">Navigation</span>
       <div class="drawer-buttons">
-        <?php tpl_button('edit') ?>
         <?php tpl_button('history') ?>
         <?php tpl_button('recent') ?>
         <?php tpl_button('media') ?>
@@ -132,9 +131,13 @@ $tools = ['edit','history','recent','media','index','admin'];
         <?php endif ?>
       </div>
 
-      <!-- Desktop Nav (search only — actions live in sidebar & drawer) -->
+      <!-- Desktop Nav: search + quick actions -->
       <nav class="desktop-nav" aria-label="Main navigation">
         <div class="nav-search"><?php tpl_searchform() ?></div>
+        <div class="header-actions">
+          <?php tpl_button('media') ?>
+          <?php tpl_button('admin') ?>
+        </div>
       </nav>
 
       <!-- Language Selector -->
@@ -230,69 +233,8 @@ $tools = ['edit','history','recent','media','index','admin'];
     <div class="mobile-toc-content" id="mobile-toc-content" aria-hidden="true"></div>
   </div>
 
-  <!-- ===== Main Layout: Sidebar + Content ===== -->
+  <!-- ===== Main Layout: Content only (sidebar removed) ===== -->
   <div class="site-body">
-
-    <!-- Sidebar (desktop) -->
-    <aside class="site-sidebar" id="site-sidebar" aria-label="Sidebar">
-      <!-- TOC placeholder — populated by JS -->
-      <div id="sidebar-toc" class="sidebar-section" style="display:none">
-        <span class="sidebar-label">On this page</span>
-      </div>
-
-      <!-- Page tools -->
-      <div class="sidebar-section">
-        <span class="sidebar-label">Page tools</span>
-        <div class="sidebar-tools">
-          <?php tpl_button('edit') ?>
-          <?php tpl_button('revisions') ?>
-          <?php tpl_button('history') ?>
-          <?php tpl_button('recent') ?>
-          <?php tpl_button('subscribe') ?>
-          <?php tpl_button('revert') ?>
-          <?php tpl_button('top') ?>
-        </div>
-      </div>
-
-      <div class="sidebar-divider"></div>
-
-      <!-- Site tools -->
-      <div class="sidebar-section">
-        <span class="sidebar-label">Site</span>
-        <div class="sidebar-tools">
-          <?php tpl_button('media') ?>
-          <?php tpl_button('index') ?>
-          <?php tpl_button('admin') ?>
-          <?php tpl_button('profile') ?>
-          <?php tpl_button('login') ?>
-        </div>
-      </div>
-
-      <!-- Language -->
-      <?php
-        $langs = ['fa' => 'فارسی', 'en' => 'English', 'ar' => 'العربية'];
-        $lpfx  = ['fa', 'en', 'ar'];
-        $cur   = $conf['lang'];
-        if (count($langs) > 1):
-      ?>
-      <div class="sidebar-divider"></div>
-      <div class="sidebar-section">
-        <span class="sidebar-label">Language</span>
-        <div class="lang-buttons">
-          <?php foreach ($langs as $c => $n):
-            $ac  = ($cur == $c) ? ' active' : '';
-            $p   = explode(':', $ID, 2);
-            $nid = (count($p) == 2 && in_array($p[0], $lpfx))
-                   ? $c . ':' . $p[1]
-                   : $c . ':' . $ID;
-          ?>
-          <a href="<?php echo wl($nid) ?>" class="lang-btn<?php echo $ac ?>"
-             hreflang="<?php echo $c ?>"><?php echo $n ?></a>
-          <?php endforeach ?>
-        </div>
-      </div>
-      <?php endif ?>
-    </aside>
 
     <!-- Content -->
     <div class="site-content" id="wiki__content">
@@ -331,6 +273,16 @@ $tools = ['edit','history','recent','media','index','admin'];
 
 <?php @include(dirname(__FILE__) . '/footer.html') ?>
 <div class="no"><?php tpl_indexerWebBug() ?></div>
+
+<!-- ===== Floating Action Buttons ===== -->
+<div class="fab-group" id="fab-group" dir="<?php echo $dir_attr ?>">
+  <?php tpl_button('edit') ?>
+  <button class="fab-top" id="fab-top" aria-label="Back to top" title="Back to top">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M18 15l-6-6-6 6"/>
+    </svg>
+  </button>
+</div>
 
 <!-- ===== JavaScript ===== -->
 <script>
@@ -556,6 +508,17 @@ $tools = ['edit','history','recent','media','index','admin'];
     window.addEventListener('scroll', function () {
       siteHeader.classList.toggle('scrolled', window.scrollY > 4);
     }, { passive: true });
+  }
+
+  /* ── FAB: back-to-top visibility + click ─────────── */
+  var fabTop = document.getElementById('fab-top');
+  if (fabTop) {
+    window.addEventListener('scroll', function () {
+      fabTop.classList.toggle('is-visible', window.scrollY > 300);
+    }, { passive: true });
+    fabTop.addEventListener('click', function () {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
   }
 
 })();

@@ -116,50 +116,55 @@
 .page-name a   { color: var(--fg-3); text-decoration: none; }
 .page-name a:hover { color: var(--pr); }
 
-/* Desktop nav — wraps the search bar only */
+/* ── Desktop nav: search + quick action buttons ─────── */
 .desktop-nav {
   display: flex;
   align-items: center;
+  gap: .4rem;
   flex-shrink: 0;
-  width: 260px;
 }
 
-.nav-search { width: 100%; }
+.nav-search {
+  width: 220px;
+  flex-shrink: 0;
+}
 
-/* ── Search bar — complete rewrite ──────────────────────
-   DokuWiki outputs: form#dw__search > div.no + input.edit + input.button[type=submit]
-   We target #dw__search to avoid colliding with global .button/.edit rules.
-   ────────────────────────────────────────────────────── */
-form#dw__search {
+/* ── Search bar ─────────────────────────────────────────
+   Scoped to .nav-search so it doesn't hit the drawer form.
+   DokuWiki outputs: form > div.no (hidden fields) + input.edit + input.button[submit]
+   ─────────────────────────────────────────────────────── */
+.nav-search form {
   display: flex !important;
   flex-direction: row !important;
   align-items: stretch !important;
   direction: ltr !important;
   width: 100%;
-  height: 36px;
+  height: 34px;
   background: var(--bg-raised);
   border: 1.5px solid var(--bd);
-  border-radius: 999px;          /* pill shape */
+  border-radius: 999px;
   overflow: hidden;
-  transition: border-color var(--t), box-shadow var(--t);
   box-shadow: none;
+  transition: border-color var(--t), box-shadow var(--t);
 }
-form#dw__search:focus-within {
+.nav-search form:focus-within {
   border-color: var(--pr);
   box-shadow: 0 0 0 3px var(--pr-ring);
 }
 
-/* Hidden inputs (do=search, id=...) */
-form#dw__search div.no { display: none !important; }
+/* DokuWiki wraps hidden fields in div.no — collapse it */
+.nav-search form div.no {
+  display: contents; /* keeps hidden inputs in the form flow without adding a box */
+}
+.nav-search form div.no input[type="hidden"] { display: none; }
 
 /* Text input */
-form#dw__search input[type="text"],
-form#dw__search input.edit {
-  flex: 1 1 0 !important;
+.nav-search form input[type="text"],
+.nav-search form input[type="search"] {
+  flex: 1 1 auto !important;
   min-width: 0 !important;
-  width: 0 !important;          /* let flex grow it */
   height: 100% !important;
-  padding: 0 .85em !important;
+  padding: 0 .8em !important;
   font-size: .82rem !important;
   font-family: inherit !important;
   color: var(--fg) !important;
@@ -168,43 +173,154 @@ form#dw__search input.edit {
   outline: none !important;
   box-shadow: none !important;
   border-radius: 0 !important;
-  transition: none !important;
   transform: none !important;
+  transition: none !important;
 }
-form#dw__search input[type="text"]::placeholder,
-form#dw__search input.edit::placeholder { color: var(--fg-4); font-size: .82rem; }
+.nav-search form input[type="text"]::placeholder,
+.nav-search form input[type="search"]::placeholder {
+  color: var(--fg-4);
+}
 
-/* Submit button */
-form#dw__search input[type="submit"],
-form#dw__search button[type="submit"] {
+/* Submit button — reset all global .button overrides, then style */
+.nav-search form input[type="submit"],
+.nav-search form button[type="submit"] {
   flex: 0 0 auto !important;
   height: 100% !important;
-  padding: 0 1em !important;
+  min-width: 0 !important;
+  padding: 0 .9em !important;
   font-size: .78rem !important;
   font-weight: 600 !important;
   font-family: inherit !important;
-  letter-spacing: .01em;
   color: #fff !important;
   background: var(--pr) !important;
   border: none !important;
-  border-radius: 0 999px 999px 0 !important;  /* pill right side */
+  border-radius: 0 999px 999px 0 !important;
   cursor: pointer;
   white-space: nowrap;
-  transition: background var(--t) !important;
   box-shadow: none !important;
   transform: none !important;
+  transition: background var(--t) !important;
   display: inline-flex !important;
   align-items: center !important;
   justify-content: center !important;
 }
-form#dw__search input[type="submit"]:hover,
-form#dw__search button[type="submit"]:hover {
+.nav-search form input[type="submit"]:hover,
+.nav-search form button[type="submit"]:hover {
   background: var(--pr-hover) !important;
   transform: none !important;
   box-shadow: none !important;
 }
-[data-theme="dark"] form#dw__search input[type="submit"],
-[data-theme="dark"] form#dw__search button[type="submit"] { color: #0c1a12 !important; }
+[data-theme="dark"] .nav-search form input[type="submit"],
+[data-theme="dark"] .nav-search form button[type="submit"] {
+  color: #0c1a12 !important;
+}
+
+/* ── Header quick-action buttons (Admin, Media) ─────── */
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  flex-shrink: 0;
+}
+.header-actions form,
+.header-actions .plugin_block { display: inline-flex; }
+.header-actions input.button,
+.header-actions button {
+  font-size: .76rem;
+  padding: .32em .65em;
+  background: transparent !important;
+  border: 1px solid transparent !important;
+  border-radius: var(--r2);
+  cursor: pointer;
+  color: var(--fg-3) !important;
+  white-space: nowrap;
+  transition: all var(--t);
+  box-shadow: none !important;
+  transform: none !important;
+  font-family: inherit;
+  font-weight: 500;
+}
+.header-actions input.button:hover,
+.header-actions button:hover {
+  background: var(--bg-raised) !important;
+  color: var(--fg) !important;
+  border-color: var(--bd) !important;
+  transform: none !important;
+  box-shadow: none !important;
+}
+
+/* ── Floating Action Buttons (fixed, not sticky) ────── */
+.fab-group {
+  position: fixed;
+  bottom: 1.5rem;
+  right: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: .5rem;
+  z-index: 90;
+}
+/* RTL: move to left side */
+.fab-group[dir="rtl"] {
+  right: auto;
+  left: 1.5rem;
+  align-items: flex-start;
+}
+
+/* Shared FAB button style */
+.fab-group form,
+.fab-group .plugin_block { display: flex; }
+
+.fab-group input.button,
+.fab-group button,
+.fab-group .button {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: .35em;
+  height: 42px !important;
+  padding: 0 1.1em !important;
+  font-size: .8rem !important;
+  font-weight: 600 !important;
+  font-family: inherit !important;
+  color: var(--fg-2) !important;
+  background: var(--bg-card) !important;
+  border: 1px solid var(--bd) !important;
+  border-radius: 999px !important;
+  cursor: pointer;
+  white-space: nowrap;
+  box-shadow: var(--sh-2) !important;
+  transition: all var(--t) !important;
+  transform: none !important;
+}
+.fab-group input.button:hover,
+.fab-group button:hover {
+  background: var(--bg-raised) !important;
+  border-color: var(--pr) !important;
+  color: var(--pr) !important;
+  box-shadow: var(--sh-3) !important;
+  transform: translateY(-1px) !important;
+}
+
+/* Back-to-top: icon only, circular */
+.fab-top {
+  width: 42px !important;
+  padding: 0 !important;
+  border-radius: 50% !important;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .2s ease, transform .2s ease, background var(--t), border-color var(--t) !important;
+}
+.fab-top.is-visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+[data-theme="dark"] .fab-group input.button,
+[data-theme="dark"] .fab-group button {
+  background: var(--bg-raised) !important;
+  border-color: var(--bd) !important;
+  color: var(--fg-2) !important;
+}
 
 /* Language Selector */
 .lang-selector { position: relative; flex-shrink: 0; }
@@ -325,143 +441,11 @@ form#dw__search button[type="submit"]:hover {
 .breadcrumbs-bar a            { color: var(--pr); text-decoration: none; }
 .breadcrumbs-bar a:hover      { text-decoration: underline; }
 
-/* ── Main Layout ──────────────────────────────────────── */
+/* ── Main Layout — single column (sidebar removed) ───── */
 .site-body {
   max-width: 1440px;
   margin: 0 auto;
-  display: grid;
-  grid-template-columns: 260px 1fr;
-  gap: 0;
-  min-height: calc(100vh - 60px);
-  align-items: start;
-}
-
-/* ── Sidebar ──────────────────────────────────────────── */
-.site-sidebar {
-  width: 260px;
-  padding: 1.25rem .875rem 2rem;
-  border-right: 1px solid var(--bd);
-  position: sticky;
-  top: 60px;
-  max-height: calc(100vh - 60px);
-  overflow-y: auto;
-  overflow-x: hidden;
-  scrollbar-width: thin;
-  scrollbar-color: var(--bd) transparent;
-  background: var(--bg-card);
-  transition: background var(--t), border-color var(--t);
-}
-.site-sidebar::-webkit-scrollbar       { width: 4px; }
-.site-sidebar::-webkit-scrollbar-track { background: transparent; }
-.site-sidebar::-webkit-scrollbar-thumb { background: var(--bd); border-radius: 2px; }
-
-.sidebar-section { margin-bottom: 1.25rem; }
-
-.sidebar-label {
-  display: flex;
-  align-items: center;
-  gap: .35rem;
-  font-size: .63rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: .1em;
-  color: var(--fg-4);
-  margin: 0 0 .5rem .05rem;
-}
-
-/* ── Sidebar TOC — "On this page" ─────────────────────── */
-#sidebar-toc {
-  background: var(--bg-raised);
-  border: 1px solid var(--bd);
-  border-radius: var(--r);
-  overflow: hidden;
-  margin-bottom: 1.25rem;
-}
-
-#sidebar-toc > .sidebar-label {
-  padding: .55em .85em;
-  margin: 0;
-  background: var(--bg-subtle);
-  border-bottom: 1px solid var(--bd);
-  font-size: .62rem;
-  letter-spacing: .1em;
-  color: var(--fg-3);
-  gap: .4rem;
-}
-
-#sidebar-toc .toc-title { display: none; } /* hidden – we use sidebar-label */
-
-#sidebar-toc ul {
-  list-style: none;
-  padding: .35rem 0;
-  margin: 0;
-}
-#sidebar-toc ul li { margin: 0; }
-#sidebar-toc ul li a {
-  display: block;
-  padding: .3em .85em .3em .85em;
-  font-size: .81rem;
-  color: var(--fg-2);
-  text-decoration: none;
-  border-left: 2px solid transparent;
-  transition: background var(--t), color var(--t), border-left-color var(--t);
-  line-height: 1.45;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-#sidebar-toc ul li a:hover {
-  background: var(--bg-card);
-  color: var(--pr);
-  border-left-color: var(--pr);
-}
-/* Level 2 */
-#sidebar-toc ul li ul li a {
-  padding-left: 1.55em;
-  font-size: .78rem;
-  color: var(--fg-3);
-}
-/* Level 3+ */
-#sidebar-toc ul li ul li ul li a {
-  padding-left: 2.25em;
-  font-size: .76rem;
-  color: var(--fg-4);
-}
-
-/* Sidebar tools */
-.sidebar-tools { display: flex; flex-direction: column; gap: .2rem; }
-.sidebar-tools form,
-.sidebar-tools .plugin_block { display: flex; }
-.sidebar-tools input.button,
-.sidebar-tools button {
   width: 100%;
-  justify-content: flex-start;
-  font-size: .82rem;
-  padding: .4em .75em;
-  background: transparent;
-  border: 1px solid transparent;
-  border-radius: var(--r2);
-  color: var(--fg-3);
-  cursor: pointer;
-  transition: all var(--t);
-  text-align: left;
-  box-shadow: none;
-  transform: none;
-}
-.sidebar-tools input.button:hover,
-.sidebar-tools button:hover {
-  background: var(--bg-raised);
-  color: var(--fg);
-  border-color: var(--bd);
-  transform: none;
-  box-shadow: none;
-}
-
-/* Sidebar divider */
-.sidebar-divider {
-  height: 1px;
-  background: var(--bd);
-  margin: 1rem -.25rem;
 }
 
 /* ── Content Area ─────────────────────────────────────── */

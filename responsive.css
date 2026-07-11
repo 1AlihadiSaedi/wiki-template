@@ -167,22 +167,11 @@ html[dir="rtl"] .side-drawer.is-open { right: 0; }
 
 body.menu-open { overflow: hidden; }
 
-/* ── Tablet / Small Desktop (≤1100px): sidebar collapse ─ */
-@media (max-width: 1100px) {
-  .site-body {
-    grid-template-columns: 220px 1fr;
-  }
-  .site-sidebar { width: 220px; }
-}
-
 /* ── Mobile TOC Bar: visible on mobile only ──────────── */
 .mobile-toc-bar { display: none; }
 
-/* ── Breakpoint: hide sidebar, show hamburger (≤900px) ── */
+/* ── Breakpoint: show hamburger, hide desktop nav (≤900px) ── */
 @media (max-width: 900px) {
-  /* Layout resets */
-  .site-body { grid-template-columns: 1fr; }
-  .site-sidebar { display: none !important; }
 
   /* Show mobile TOC bar when it has content */
   .mobile-toc-bar { display: block; }
