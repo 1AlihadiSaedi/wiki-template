@@ -15,6 +15,9 @@ $body_cls  = $is_rtl ? ' class="rtl-page"' : '';
 global $ACT;
 $is_editing = (isset($ACT) && ($ACT === 'edit' || $ACT === 'preview'));
 
+// Show edit FAB only on normal wiki page views
+$show_edit_fab = (isset($ACT) && $ACT === 'show');
+
 // Page tools available?
 $tools = ['edit','history','recent','media','index','admin'];
 ?><!DOCTYPE html>
@@ -237,8 +240,13 @@ $tools = ['edit','history','recent','media','index','admin'];
     <div class="mobile-toc-content" id="mobile-toc-content" aria-hidden="true"></div>
   </div>
 
-  <!-- ===== Main Layout: Content only (sidebar removed) ===== -->
+  <!-- ===== Main Layout: Content + Sidebar TOC ===== -->
   <div class="site-body">
+
+    <!-- Sidebar TOC (desktop only, filled by JS) -->
+    <aside class="site-sidebar" id="sidebar-toc" style="display:none">
+      <div class="sidebar-toc-label"><?php echo $lang['toc'] ?: 'On this page' ?></div>
+    </aside>
 
     <!-- Content -->
     <div class="site-content" id="wiki__content">
@@ -259,9 +267,11 @@ $tools = ['edit','history','recent','media','index','admin'];
 
 <!-- ===== Floating Action Buttons ===== -->
 <div class="fab-group" id="fab-group" dir="<?php echo $dir_attr ?>">
+  <?php if ($show_edit_fab): ?>
   <div class="fab-edit-wrap" id="fab-edit-wrap" data-mode="<?php echo $is_editing ? 'edit' : 'view' ?>">
     <?php tpl_button('edit') ?>
   </div>
+  <?php endif; ?>
   <button class="fab-top" id="fab-top" aria-label="Back to top" title="Back to top">
     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
       <path d="M18 15l-6-6-6 6"/>

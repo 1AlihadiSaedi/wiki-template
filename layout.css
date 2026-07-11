@@ -473,16 +473,67 @@
 .breadcrumbs-bar a            { color: var(--pr); text-decoration: none; }
 .breadcrumbs-bar a:hover      { text-decoration: underline; }
 
-/* ── Main Layout — single column (sidebar removed) ───── */
+/* ── Main Layout — content + sidebar TOC ─────────────── */
 .site-body {
   max-width: 1440px;
   margin: 0 auto;
   width: 100%;
+  display: flex;
+  gap: 0;
+  align-items: flex-start;
+}
+
+/* ── Sidebar TOC (desktop) ───────────────────────────── */
+.site-sidebar {
+  position: sticky;
+  top: 76px;
+  width: 240px;
+  flex-shrink: 0;
+  max-height: calc(100vh - 100px);
+  overflow-y: auto;
+  padding: 1rem 1rem 1.5rem 0;
+  scrollbar-width: thin;
+  scrollbar-color: var(--bd) transparent;
+}
+
+.sidebar-toc-label {
+  font-size: .63rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .1em;
+  color: var(--fg-4);
+  margin-bottom: .6rem;
+  padding-left: .4em;
+}
+
+.site-sidebar ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  line-height: 1.6;
+}
+.site-sidebar ul li a {
+  display: block;
+  padding: .2em .4em;
+  font-size: .82rem;
+  color: var(--fg-3);
+  text-decoration: none;
+  border-left: 2px solid transparent;
+  transition: all var(--t);
+}
+.site-sidebar ul li a:hover { color: var(--pr); border-left-color: var(--pr); }
+.site-sidebar ul li ul li a { padding-left: 1.2em; font-size: .78rem; }
+.site-sidebar ul li ul li ul li a { padding-left: 2em; font-size: .76rem; }
+.site-sidebar ul li a.toc-active {
+  color: var(--pr);
+  border-left-color: var(--pr);
+  font-weight: 600;
 }
 
 /* ── Content Area ─────────────────────────────────────── */
 .site-content {
   min-width: 0;
+  flex: 1;
   display: flex;
   flex-direction: column;
 }
@@ -558,14 +609,6 @@
 .site-header.scrolled {
   background: color-mix(in srgb, var(--bg-card) 96%, transparent);
   box-shadow: var(--sh-2);
-}
-
-/* ── TOC active link ─────────────────────────────────── */
-#sidebar-toc ul li a.toc-active {
-  background: var(--bg-card);
-  color: var(--pr);
-  border-left-color: var(--pr);
-  font-weight: 600;
 }
 
 /* ── Mobile TOC Bar ──────────────────────────────────── */
