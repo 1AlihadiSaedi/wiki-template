@@ -494,13 +494,14 @@ $tools = ['edit','history','recent','media','index','admin'];
   /* ── FAB: inject edit icon ────────────────────────── */
   var fabEditWrap = document.getElementById('fab-edit-wrap');
   if (fabEditWrap) {
+    var fabForm = fabEditWrap.querySelector('form');
     var fabEditInput = fabEditWrap.querySelector('input.button, .button, button');
-    if (fabEditInput) {
+    if (fabForm && fabEditInput) {
       var icon = document.createElement('span');
       icon.className = 'fab-edit-icon';
       icon.setAttribute('aria-hidden', 'true');
       icon.innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9M16.5 3.5a2.121 2.121 0 113 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>';
-      fabEditWrap.insertBefore(icon, fabEditInput);
+      fabForm.insertBefore(icon, fabEditInput);
     }
   }
 
