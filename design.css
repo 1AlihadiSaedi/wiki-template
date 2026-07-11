@@ -285,6 +285,7 @@ div.dokuwiki .code * {
   box-shadow: none !important;
   text-decoration: none !important;
   background: transparent !important;
+  background-image: none !important;
   padding: 0 !important;
   margin: 0 !important;
 }
@@ -488,8 +489,8 @@ div.dokuwiki div.secedit input.button {
 }
 
 /* ── Quick Search ──────────────────────────────────────── */
-div.dokuwiki #qsearch__out,
-div.dokuwiki .ajax_qsearch {
+#qsearch__out,
+.ajax_qsearch {
   background: var(--bg-card) !important;
   border: 1px solid var(--bd) !important;
   border-radius: var(--r) !important;
@@ -497,9 +498,17 @@ div.dokuwiki .ajax_qsearch {
   color: var(--fg) !important;
 }
 
-div.dokuwiki #qsearch__out li       { padding: .4em .9em; font-size: .85em; color: var(--fg) !important; }
-div.dokuwiki #qsearch__out li:hover { background: var(--bg-raised); }
-div.dokuwiki #qsearch__out strong   { color: var(--pr) !important; }
+#qsearch__out li       { padding: .4em .9em; font-size: .85em; color: var(--fg) !important; }
+#qsearch__out li:hover { background: var(--bg-raised); }
+#qsearch__out strong   { color: var(--pr) !important; }
+
+[data-theme="dark"] #qsearch__out,
+[data-theme="dark"] .ajax_qsearch {
+  background: var(--bg-card) !important;
+  color: var(--fg) !important;
+}
+[data-theme="dark"] #qsearch__out li { color: var(--fg) !important; }
+[data-theme="dark"] #qsearch__out li:hover { background: var(--bg-raised); }
 
 /* ── Diff ────────────────────────────────────────────── */
 div.dokuwiki table.diff { background: var(--bg-card); width: 100%; border-collapse: separate; border-radius: var(--r); border: 1px solid var(--bd); overflow: hidden; }

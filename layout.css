@@ -252,7 +252,7 @@
 /* ── Floating Action Buttons (fixed, not sticky) ────── */
 .fab-group {
   position: fixed !important;
-  bottom: 40vh !important;
+  bottom: 25vh !important;
   right: 1rem !important;
   display: flex;
   flex-direction: column;

@@ -151,19 +151,26 @@ html[dir="rtl"] .side-drawer.is-open { right: 0; }
   color: var(--fg);
   min-width: 0;
   direction: ltr !important;
+  box-shadow: none !important;
+  border-radius: 0 !important;
 }
 .drawer-section #dw__search input:focus { box-shadow: inset 0 0 0 2px var(--pr); }
 .drawer-section #dw__search button {
-  padding: .5em .9em;
-  background: var(--pr);
-  color: #fff;
-  border: none;
+  padding: .5em .9em !important;
+  background: var(--pr) !important;
+  color: #fff !important;
+  border: none !important;
   cursor: pointer;
   font-size: .88rem;
   transition: background var(--t);
+  box-shadow: none !important;
+  transform: none !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
 }
-.drawer-section #dw__search button:hover { background: var(--pr-hover); }
-[data-theme="dark"] .drawer-section #dw__search button { color: #0c1a12; }
+.drawer-section #dw__search button:hover { background: var(--pr-hover) !important; }
+[data-theme="dark"] .drawer-section #dw__search button { color: #0c1a12 !important; }
 
 body.menu-open { overflow: hidden; }
 
