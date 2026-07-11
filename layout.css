@@ -260,6 +260,30 @@
   gap: .5rem;
   z-index: 90;
 }
+
+/* Edit FAB: icon + label pill */
+.fab-edit-wrap form {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+}
+.fab-edit-icon {
+  position: absolute;
+  left: .9em;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+  color: var(--fg-2);
+  display: inline-flex;
+  transition: color var(--t);
+}
+.fab-group[dir="rtl"] .fab-edit-icon {
+  left: auto;
+  right: .9em;
+}
+.fab-edit-wrap input.button { padding-left: 2.5em !important; }
+.fab-group[dir="rtl"] .fab-edit-wrap input.button { padding-left: 1.1em !important; padding-right: 2.5em !important; }
+.fab-edit-wrap:hover .fab-edit-icon { color: var(--pr); }
 /* RTL: move to left side */
 .fab-group[dir="rtl"] {
   right: auto;
@@ -457,13 +481,7 @@
 
 .page-content { flex: 1; }
 
-/* ── Page Footer ──────────────────────────────────────── */
-.page-footer {
-  border-top: 1px solid var(--bd);
-  background: var(--bg-card);
-  padding: .9rem 2rem;
-  transition: background var(--t), border-color var(--t);
-}
+/* ── Page Footer (merged into site-footer) ──────────── */
 
 .footer-meta {
   display: flex;
@@ -473,6 +491,9 @@
   gap: .5rem;
   font-size: .78rem;
   color: var(--fg-4);
+  padding-bottom: .75rem;
+  border-bottom: 1px solid var(--bd);
+  margin-bottom: .75rem;
 }
 
 .meta-left  { display: flex; align-items: center; gap: .4rem; flex-wrap: wrap; }
@@ -495,11 +516,12 @@
 .meta-right input.button:hover,
 .meta-right button:hover { background: var(--bg-raised); color: var(--fg-2); border-color: var(--bd); transform: none; box-shadow: none; }
 
-/* ── Site Footer (powered by) ────────────────────────── */
+/* ── Site Footer (merged: page meta + powered by) ───── */
 .site-footer {
   background: var(--bg-card);
   border-top: 1px solid var(--bd);
   padding: 1.25rem 2rem;
+  margin-top: auto;
   transition: background var(--t), border-color var(--t);
 }
 
@@ -509,12 +531,15 @@
   max-width: 1440px;
   margin: 0 auto;
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: center;
-  gap: 1rem;
+  gap: .75rem;
   font-size: .78rem;
   color: var(--fg-4);
 }
+
+.footerinc-inner .license { font-size: .75rem; opacity: .85; }
+.footerinc-inner .footer-powered { margin-top: .25rem; }
 
 .footer-link { color: var(--fg-4); text-decoration: none; transition: color var(--t); }
 .footer-link:hover { color: var(--pr); }
