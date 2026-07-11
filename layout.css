@@ -252,8 +252,8 @@
 /* ── Floating Action Buttons (fixed, not sticky) ────── */
 .fab-group {
   position: fixed !important;
-  bottom: 1.5rem !important;
-  right: 1.5rem !important;
+  bottom: 3rem !important;
+  right: 3rem !important;
   display: flex;
   flex-direction: column;
   align-items: flex-end;
@@ -288,7 +288,7 @@
 /* RTL: move to left side */
 .fab-group[dir="rtl"] {
   right: auto !important;
-  left: 1.5rem !important;
+  left: 3rem !important;
   align-items: flex-start;
 }
 
@@ -318,7 +318,12 @@
   box-shadow: none !important;
   transition: all var(--t) !important;
   transform: none !important;
-  overflow: hidden;
+  overflow: visible;
+}
+.fab-group button svg,
+.fab-group input.button svg {
+  font-size: 16px !important;
+  line-height: 1 !important;
 }
 .fab-group input.button:hover,
 .fab-group button:hover {

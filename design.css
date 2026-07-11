@@ -104,8 +104,8 @@ body {
 
 /* ── Page Content Typography ────────────────────────── */
 div.dokuwiki .page {
-  max-width: 760px;
-  padding: 2rem 2rem 3rem;
+  max-width: 100%;
+  padding: 2rem 3rem 3rem;
   line-height: 1.8;
   color: var(--fg);
   unicode-bidi: plaintext;
@@ -509,7 +509,7 @@ div.dokuwiki td.diff-context     { background: var(--bg-raised); }
 [data-theme="dark"] div.dokuwiki td.diff-addedline   { background: #064e3b; }
 [data-theme="dark"] div.dokuwiki td.diff-deletedline { background: #451a1a; }
 
-/* ── Misc ────────────────────────────────────────────── */
+/* ── Misc ─────────────────────────────────────────────── */
 div.dokuwiki div.preview {
   background: var(--bg-subtle);
   padding: 1em 1.25em;
@@ -569,7 +569,7 @@ div.dokuwiki div.breadcrumbs span { color: var(--fg-4); }
 [data-theme="dark"] .dokuwiki input.button:hover,
 [data-theme="dark"] .dokuwiki button:hover          { background: var(--bg-raised) !important; border-color: var(--pr) !important; color: var(--pr) !important; }
 
-/* ── RTL overrides ─────────────────────────────────────── */
+/* ── RTL overrides ────────────────────────────────────── */
 html[dir="rtl"] div.dokuwiki ul,
 html[dir="rtl"] div.dokuwiki ol      { margin-left: 0; margin-right: 1.8em; }
 html[dir="rtl"] div.dokuwiki li ul,
