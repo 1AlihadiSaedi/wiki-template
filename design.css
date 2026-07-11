@@ -242,13 +242,21 @@ div.dokuwiki div.file {
   border-radius: var(--r) !important;
   overflow-x: auto !important;
   line-height: 1.6 !important;
-  background: var(--bg-card) !important;
-  color: var(--fg) !important;
+  background: #f6f8fa !important;
+  color: #24292f !important;
   font-family: 'SF Mono', 'Fira Code', Menlo, Consolas, monospace !important;
   font-size: .83em !important;
-  box-shadow: var(--sh-1) !important;
+  box-shadow: none !important;
   word-break: normal !important;
   overflow-wrap: normal !important;
+}
+[data-theme="light"] div.dokuwiki pre,
+[data-theme="light"] div.dokuwiki pre.code,
+[data-theme="light"] div.dokuwiki pre.file,
+[data-theme="light"] div.dokuwiki div.code,
+[data-theme="light"] div.dokuwiki div.file {
+  background: #f6f8fa !important;
+  color: #24292f !important;
 }
 
 div.dokuwiki pre > *,
@@ -262,18 +270,23 @@ div.dokuwiki div.code > * {
 }
 
 /* ── Kill GeSHi green oval highlights on spans ──────── */
-/* GeSHi syntax highlighter adds outline/border-radius to spans,
-   creating unwanted green pill shapes around tokens */
 div.dokuwiki pre span,
 div.dokuwiki .code span,
 div.dokuwiki .file span,
 div.dokuwiki pre a,
-div.dokuwiki .code a {
+div.dokuwiki .code a,
+div.dokuwiki pre code,
+div.dokuwiki .code code,
+div.dokuwiki pre *,
+div.dokuwiki .code * {
   outline: none !important;
   border-radius: 0 !important;
   border: none !important;
   box-shadow: none !important;
   text-decoration: none !important;
+  background: transparent !important;
+  padding: 0 !important;
+  margin: 0 !important;
 }
 /* Preserve only text colour for syntax tokens */
 div.dokuwiki pre span[class],
@@ -284,6 +297,14 @@ div.dokuwiki .code span[class] {
 }
 
 [data-theme="dark"] div.dokuwiki pre { background: #0d1117 !important; color: #e6edf3 !important; border-color: var(--bd) !important; }
+[data-theme="dark"] div.dokuwiki pre *,
+[data-theme="dark"] div.dokuwiki .code * { color: #e6edf3 !important; }
+[data-theme="dark"] div.dokuwiki pre .kw1, [data-theme="dark"] .dokuwiki .code .kw1 { color: #ff7b72 !important; }
+[data-theme="dark"] div.dokuwiki pre .co1, [data-theme="dark"] .dokuwiki .code .co1 { color: #8b949e !important; }
+[data-theme="dark"] div.dokuwiki pre .st0, [data-theme="dark"] .dokuwiki .code .st0 { color: #a5d6ff !important; }
+[data-theme="dark"] div.dokuwiki pre .nu0, [data-theme="dark"] .dokuwiki .code .nu0 { color: #79c0ff !important; }
+[data-theme="dark"] div.dokuwiki pre .me0, [data-theme="dark"] .dokuwiki .code .me0 { color: #d2a8ff !important; }
+[data-theme="dark"] div.dokuwiki pre .es0, [data-theme="dark"] .dokuwiki .code .es0 { color: #79c0ff !important; }
 [data-theme="dark"] .code-block-wrap { background: #0d1117 !important; border-color: #21262d !important; }
 [data-theme="dark"] .code-block-header { background: #161b22; border-color: #21262d; }
 [data-theme="dark"] .code-copy-btn { background: #21262d; border-color: #30363d; color: #c9d1d9; }
@@ -297,13 +318,7 @@ div.dokuwiki .code span[class] {
   margin: 0 !important;
 }
 
-/* Syntax highlighting dark */
-[data-theme="dark"] .dokuwiki .code .kw1 { color: #ff7b72 !important; }
-[data-theme="dark"] .dokuwiki .code .co1 { color: #8b949e !important; font-style: italic; }
-[data-theme="dark"] .dokuwiki .code .es0 { color: #79c0ff !important; }
-[data-theme="dark"] .dokuwiki .code .st0 { color: #a5d6ff !important; }
-[data-theme="dark"] .dokuwiki .code .nu0 { color: #79c0ff !important; }
-[data-theme="dark"] .dokuwiki .code .me0 { color: #d2a8ff !important; }
+
 
 /* ── Tables ──────────────────────────────────────────── */
 .table-wrap {
@@ -472,7 +487,7 @@ div.dokuwiki div.secedit input.button {
   transform: none;
 }
 
-/* ── Quick Search ────────────────────────────────────── */
+/* ── Quick Search ──────────────────────────────────────── */
 div.dokuwiki #qsearch__out,
 div.dokuwiki .ajax_qsearch {
   background: var(--bg-card) !important;
@@ -554,7 +569,7 @@ div.dokuwiki div.breadcrumbs span { color: var(--fg-4); }
 [data-theme="dark"] .dokuwiki input.button:hover,
 [data-theme="dark"] .dokuwiki button:hover          { background: var(--bg-raised) !important; border-color: var(--pr) !important; color: var(--pr) !important; }
 
-/* ── RTL overrides ───────────────────────────────────── */
+/* ── RTL overrides ─────────────────────────────────────── */
 html[dir="rtl"] div.dokuwiki ul,
 html[dir="rtl"] div.dokuwiki ol      { margin-left: 0; margin-right: 1.8em; }
 html[dir="rtl"] div.dokuwiki li ul,

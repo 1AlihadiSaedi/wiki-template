@@ -492,15 +492,16 @@ $tools = ['edit','history','recent','media','index','admin'];
   }
 
   /* ── FAB: inject edit icon ────────────────────────── */
-  var fabEditInput = document.querySelector('.fab-group form input.button, .fab-group .button');
-  if (fabEditInput && fabEditInput.id !== 'fab-top') {
-    var fabForm = fabEditInput.parentNode;
-    fabForm.style.position = 'relative';
-    var icon = document.createElement('span');
-    icon.className = 'fab-edit-icon';
-    icon.setAttribute('aria-hidden', 'true');
-    icon.innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9M16.5 3.5a2.121 2.121 0 113 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>';
-    fabForm.insertBefore(icon, fabEditInput);
+  var fabEditWrap = document.getElementById('fab-edit-wrap');
+  if (fabEditWrap) {
+    var fabEditInput = fabEditWrap.querySelector('input.button, .button, button');
+    if (fabEditInput) {
+      var icon = document.createElement('span');
+      icon.className = 'fab-edit-icon';
+      icon.setAttribute('aria-hidden', 'true');
+      icon.innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9M16.5 3.5a2.121 2.121 0 113 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>';
+      fabEditWrap.insertBefore(icon, fabEditInput);
+    }
   }
 
   /* ── FAB: back-to-top visibility + click ─────────── */
