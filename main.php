@@ -226,27 +226,22 @@ $tools = ['edit','history','recent','media','index','admin'];
   <?php tpl_flush() ?>
   <?php @include(dirname(__FILE__) . '/pageheader.html') ?>
 
-  <!-- ===== Mobile TOC Bar (injected by JS when TOC exists) ===== -->
-  <div class="mobile-toc-bar" id="mobile-toc-bar" style="display:none">
-    <button class="mobile-toc-toggle" id="mobile-toc-toggle" aria-expanded="false">
+  <!-- ===== TOC Bar (collapsible, shown on all sizes when TOC exists) ===== -->
+  <div class="toc-bar" id="toc-bar" style="display:none">
+    <button class="toc-bar-toggle" id="toc-bar-toggle" aria-expanded="false">
       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
         <line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="15" y2="12"/><line x1="3" y1="18" x2="12" y2="18"/>
       </svg>
       <span><?php echo $lang['toc'] ?: 'On this page' ?></span>
-      <svg class="mobile-toc-chevron" width="12" height="12" viewBox="0 0 12 12" fill="currentColor">
+      <svg class="toc-bar-chevron" width="12" height="12" viewBox="0 0 12 12" fill="currentColor">
         <path d="M2 4l4 4 4-4"/>
       </svg>
     </button>
-    <div class="mobile-toc-content" id="mobile-toc-content" aria-hidden="true"></div>
+    <div class="toc-bar-content" id="toc-bar-content" aria-hidden="true"></div>
   </div>
 
-  <!-- ===== Main Layout: Content + Sidebar TOC ===== -->
+  <!-- ===== Main Layout: Content only ===== -->
   <div class="site-body">
-
-    <!-- Sidebar TOC (desktop only, filled by JS) -->
-    <aside class="site-sidebar" id="sidebar-toc" style="display:none">
-      <div class="sidebar-toc-label"><?php echo $lang['toc'] ?: 'On this page' ?></div>
-    </aside>
 
     <!-- Content -->
     <div class="site-content" id="wiki__content">
@@ -429,47 +424,38 @@ $tools = ['edit','history','recent','media','index','admin'];
     document.body.removeChild(ta);
   }
 
-  /* ── Move TOC into sidebar + mobile bar ─────────── */
-  var toc          = document.getElementById('dw__toc'),
-      tocSlot      = document.getElementById('sidebar-toc'),
-      mobileTocBar = document.getElementById('mobile-toc-bar'),
-      mobileTocCnt = document.getElementById('mobile-toc-content'),
-      mobileTocBtn = document.getElementById('mobile-toc-toggle');
+  /* ── Move TOC into collapsible bar ──────────────── */
+  var toc       = document.getElementById('dw__toc'),
+      tocBar    = document.getElementById('toc-bar'),
+      tocCnt    = document.getElementById('toc-bar-content'),
+      tocBtn    = document.getElementById('toc-bar-toggle');
 
   if (toc) {
     toc.style.cssText = 'float:none;width:auto;margin:0';
     var inner = toc.querySelector('div');
 
-    // ── Sidebar TOC (desktop) ──
-    if (tocSlot && inner) {
-      // Clone children into sidebar slot
+    // ── Clone TOC into collapsible bar ──
+    if (tocBar && tocCnt && inner) {
       var cloneInner = inner.cloneNode(true);
-      while (cloneInner.firstChild) tocSlot.appendChild(cloneInner.firstChild);
-      tocSlot.style.display = '';
-    }
-
-    // ── Mobile TOC bar ──
-    if (mobileTocBar && mobileTocCnt && inner) {
-      var mobileInner = inner.cloneNode(true);
-      mobileTocCnt.appendChild(mobileInner);
-      mobileTocBar.style.display = '';
+      while (cloneInner.firstChild) tocCnt.appendChild(cloneInner.firstChild);
+      tocBar.style.display = '';
     }
 
     // Hide original TOC
     toc.style.display = 'none';
 
-    // Mobile toggle
-    if (mobileTocBtn && mobileTocCnt) {
-      mobileTocBtn.addEventListener('click', function () {
-        var open = mobileTocCnt.classList.toggle('is-open');
-        mobileTocBtn.setAttribute('aria-expanded', open);
-        mobileTocCnt.setAttribute('aria-hidden', !open);
+    // Toggle
+    if (tocBtn && tocCnt) {
+      tocBtn.addEventListener('click', function () {
+        var open = tocCnt.classList.toggle('is-open');
+        tocBtn.setAttribute('aria-expanded', open);
+        tocCnt.setAttribute('aria-hidden', !open);
       });
     }
 
-    // ── Active link tracking on scroll (sidebar) ──
-    if (tocSlot) {
-      var anchors = tocSlot.querySelectorAll('a[href]');
+    // ── Active link tracking on scroll ──
+    if (tocCnt) {
+      var anchors = tocCnt.querySelectorAll('a[href]');
       if (anchors.length > 0 && 'IntersectionObserver' in window) {
         var headings = [];
         anchors.forEach(function (a) {
