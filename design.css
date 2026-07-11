@@ -177,16 +177,16 @@ div.dokuwiki code {
   font-size: .875em;
   padding: .15em .4em;
   background: var(--bg-raised);
-  border: 1px solid var(--bd);
+  border: none;
   border-radius: var(--r2);
   color: #c7254e;
 }
-[data-theme="dark"] div.dokuwiki code { color: #f87171; background: #0d1117; border-color: var(--bd); }
+[data-theme="dark"] div.dokuwiki code { color: #f87171; background: #0d1117; }
 
 /* ── Code Blocks ────────────────────────────────────── */
 .code-block-wrap {
   margin: 1.25em 0;
-  border: 1px solid var(--bd);
+  border: 1px solid #d1d5db;
   border-radius: var(--r);
   overflow: hidden;
   box-shadow: var(--sh-1);
@@ -238,7 +238,7 @@ div.dokuwiki div.file {
   margin: 1em 0 !important;
   white-space: pre !important;
   tab-size: 2 !important;
-  border: 1px solid var(--bd) !important;
+  border: 1px solid #d1d5db !important;
   border-radius: var(--r) !important;
   overflow-x: auto !important;
   line-height: 1.6 !important;
@@ -297,7 +297,7 @@ div.dokuwiki .code span[class] {
   margin: 0 !important;
 }
 
-[data-theme="dark"] div.dokuwiki pre { background: #0d1117 !important; color: #e6edf3 !important; border-color: var(--bd) !important; }
+[data-theme="dark"] div.dokuwiki pre { background: #0d1117 !important; color: #e6edf3 !important; border-color: #21262d !important; }
 [data-theme="dark"] div.dokuwiki pre *,
 [data-theme="dark"] div.dokuwiki .code * { color: #e6edf3 !important; }
 [data-theme="dark"] div.dokuwiki pre .kw1, [data-theme="dark"] .dokuwiki .code .kw1 { color: #ff7b72 !important; }
