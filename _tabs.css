@@ -1,8 +1,27 @@
-/* Tabs - Modern + Dark */
-.dokuwiki ul.tabs{padding:0;margin:0;overflow:hidden}
-.dokuwiki ul.tabs li{float:left;padding:0;margin:0;list-style:none}
-[dir=rtl] .dokuwiki ul.tabs li{float:right}
-.dokuwiki ul.tabs li strong,.dokuwiki ul.tabs li a{float:left;padding:.3em .8em;margin:0 .3em 0 0;background-color:var(--c-bg3);color:var(--c-fg);border-radius:.5em .5em 0 0;transition:all var(--trans)}
-[dir=rtl] .dokuwiki ul.tabs li strong,[dir=rtl] .dokuwiki ul.tabs li a{float:right;margin:0 0 0 .3em}
-.dokuwiki ul.tabs li strong{font-weight:400}
-.dokuwiki ul.tabs li a:hover,.dokuwiki ul.tabs li a:active,.dokuwiki ul.tabs li a:focus,.dokuwiki ul.tabs li strong{background-color:var(--c-bg4);color:var(--c-pr);text-decoration:none}
+/* =====================================================
+   Green Silk – Tabs v3
+   ===================================================== */
+.dokuwiki ul.tabs { padding: 0; margin: 0; overflow: hidden; }
+.dokuwiki ul.tabs li { float: left; padding: 0; margin: 0; list-style: none; }
+[dir=rtl] .dokuwiki ul.tabs li { float: right; }
+.dokuwiki ul.tabs li strong,
+.dokuwiki ul.tabs li a {
+  float: left;
+  padding: .35em .85em;
+  margin: 0 .25em 0 0;
+  background-color: var(--bg-raised);
+  color: var(--fg-2);
+  border-radius: var(--r2) var(--r2) 0 0;
+  border: 1px solid var(--bd);
+  border-bottom: none;
+  font-size: .875rem;
+  transition: all var(--t);
+  text-decoration: none;
+}
+[dir=rtl] .dokuwiki ul.tabs li strong,
+[dir=rtl] .dokuwiki ul.tabs li a { float: right; margin: 0 0 0 .25em; }
+.dokuwiki ul.tabs li strong { font-weight: 400; }
+.dokuwiki ul.tabs li a:hover,
+.dokuwiki ul.tabs li a:active,
+.dokuwiki ul.tabs li a:focus,
+.dokuwiki ul.tabs li strong { background-color: var(--bg-card); color: var(--pr); font-weight: 600; }

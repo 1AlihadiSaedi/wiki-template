@@ -1,23 +1,28 @@
-/* Media Manager - Modern + Dark */
-#media__manager{height:100%;overflow:hidden}
-#media__left{width:30%;border-right:solid 1px var(--c-bd);height:100%;overflow:auto;position:absolute;left:0;transition:border var(--trans)}
-#media__right{width:69.7%;height:100%;overflow:auto;position:absolute;right:0}
-#media__manager h1{margin:0;padding:0;margin-bottom:.5em}
-#media__tree img{float:left;padding:.5em .3em 0 0}[dir=rtl] #media__tree img{float:right;padding:.5em 0 0 .3em}
-#media__tree ul{list-style:none;margin-left:1.5em}[dir=rtl] #media__tree ul{margin-left:0;margin-right:1.5em}
-#media__tree li{clear:left}[dir=rtl] #media__tree li{clear:right}
-#media__opts{padding-left:1em;margin-bottom:.5em}
-#media__content #scroll__here{border:1px dashed var(--c-bd);transition:border var(--trans)}
-#media__content .odd{background-color:var(--c-bg3);padding:.4em;color:var(--c-fg);transition:all var(--trans)}
-#media__content .even{padding:.4em;color:var(--c-fg);transition:all var(--trans)}
-#media__content a.mediafile{margin-right:1.5em;font-weight:700;color:var(--c-pr)}
-#media__content div.detail{padding:.3em 0 .3em 2em;color:var(--c-fg)}
-#media__content div.thumb{float:left;width:130px;text-align:center;margin-right:.4em}
-#media__content div.example{color:var(--c-fg3);margin-left:1em;transition:color var(--trans)}
-#media__content div.upload{font-size:90%;padding:0 .5em .5em}
-#media__content #mediamanager__uploader{display:block;border-bottom:solid 1px var(--c-bd);padding:0 .5em 1em;transition:border var(--trans)}
-#media__content form#dw__upload fieldset{padding:0;margin:0;border:none;width:auto}
-#media__content form.meta label{display:block;width:25%;float:left;font-weight:700;margin-left:1em;clear:left}
-#media__content form.meta .edit{font:100% system-ui,sans-serif;float:left;width:70%;padding-right:0;padding-left:.2em;margin:2px}
-#media__content form.meta textarea.edit{height:8em}
-#media__content form.meta div.buttons{clear:left;margin-left:20%;padding-left:1em}
+/* =====================================================
+   Green Silk – Media v3
+   ===================================================== */
+#media__manager { height: 100%; overflow: hidden; }
+#media__left  { width: 30%; border-right: 1px solid var(--bd); height: 100%; overflow: auto; position: absolute; left: 0; transition: border var(--t); }
+#media__right { width: 69.7%; height: 100%; overflow: auto; position: absolute; right: 0; }
+#media__manager h1 { margin: 0 0 .5em; padding: 0; }
+#media__tree img { float: left; padding: .5em .3em 0 0; }
+[dir=rtl] #media__tree img { float: right; padding: .5em 0 0 .3em; }
+#media__tree ul { list-style: none; margin-left: 1.5em; }
+[dir=rtl] #media__tree ul { margin-left: 0; margin-right: 1.5em; }
+#media__tree li { clear: left; }
+[dir=rtl] #media__tree li { clear: right; }
+#media__opts { padding-left: 1em; margin-bottom: .5em; }
+#media__content #scroll__here { border: 1px dashed var(--bd); transition: border var(--t); }
+#media__content .odd  { background-color: var(--bg-raised); padding: .4em; color: var(--fg); }
+#media__content .even { padding: .4em; color: var(--fg); }
+#media__content a.mediafile { margin-right: 1.5em; font-weight: 700; color: var(--pr); }
+#media__content div.detail  { padding: .3em 0 .3em 2em; color: var(--fg); }
+#media__content div.thumb   { float: left; width: 130px; text-align: center; margin-right: .4em; }
+#media__content div.example { color: var(--fg-3); margin-left: 1em; }
+#media__content div.upload  { font-size: 90%; padding: 0 .5em .5em; }
+#media__content #mediamanager__uploader { display: block; border-bottom: 1px solid var(--bd); padding: 0 .5em 1em; }
+#media__content form#dw__upload fieldset { padding: 0; margin: 0; border: none; width: auto; }
+#media__content form.meta label   { display: block; width: 25%; float: left; font-weight: 700; margin-left: 1em; clear: left; }
+#media__content form.meta .edit   { font: 100% system-ui, sans-serif; float: left; width: 70%; padding-right: 0; padding-left: .2em; margin: 2px; }
+#media__content form.meta textarea.edit { height: 8em; }
+#media__content form.meta div.buttons  { clear: left; margin-left: 20%; padding-left: 1em; }

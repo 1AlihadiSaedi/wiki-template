@@ -1,12 +1,16 @@
 <?php
-$tgt=($conf['target']['extern'])?'target="'.$conf['target']['extern'].'"':'';
+$tgt = ($conf['target']['extern']) ? 'target="' . $conf['target']['extern'] . '"' : '';
 ?>
-<div class="footerinc"><div class="footerinc-inner">
-<span class="footer-powered">
-<a <?php echo $tgt?> href="https://www.dokuwiki.org/" class="footer-link">Driven by DokuWiki</a>
-<?php if($conf['allowdebug']):?>
-<span class="footer-sep">&middot;</span>
-<span class="footer-debug">page made in <?php echo round(delta_time(DOKU_START_TIME),3)?>s</span>
-<?php endif?>
-</span>
-</div></div>
+<div class="site-footer">
+  <div class="footerinc">
+    <div class="footerinc-inner">
+      <span class="footer-powered">
+        <a <?php echo $tgt ?> href="https://www.dokuwiki.org/" class="footer-link">Driven by DokuWiki</a>
+        <?php if ($conf['allowdebug']): ?>
+          <span class="footer-sep">&middot;</span>
+          <span class="footer-debug">rendered in <?php echo round(delta_time(DOKU_START_TIME), 3) ?>s</span>
+        <?php endif ?>
+      </span>
+    </div>
+  </div>
+</div>
