@@ -132,17 +132,9 @@ $tools = ['edit','history','recent','media','index','admin'];
         <?php endif ?>
       </div>
 
-      <!-- Desktop Nav -->
+      <!-- Desktop Nav (search only — actions live in sidebar & drawer) -->
       <nav class="desktop-nav" aria-label="Main navigation">
         <div class="nav-search"><?php tpl_searchform() ?></div>
-        <div class="nav-actions">
-          <?php tpl_button('edit') ?>
-          <?php tpl_button('history') ?>
-          <?php tpl_button('recent') ?>
-          <?php tpl_button('media') ?>
-          <?php tpl_button('index') ?>
-          <?php tpl_button('admin') ?>
-        </div>
       </nav>
 
       <!-- Language Selector -->
@@ -223,6 +215,20 @@ $tools = ['edit','history','recent','media','index','admin'];
 
   <?php tpl_flush() ?>
   <?php @include(dirname(__FILE__) . '/pageheader.html') ?>
+
+  <!-- ===== Mobile TOC Bar (injected by JS when TOC exists) ===== -->
+  <div class="mobile-toc-bar" id="mobile-toc-bar" style="display:none">
+    <button class="mobile-toc-toggle" id="mobile-toc-toggle" aria-expanded="false">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="15" y2="12"/><line x1="3" y1="18" x2="12" y2="18"/>
+      </svg>
+      <span><?php echo $lang['toc'] ?: 'On this page' ?></span>
+      <svg class="mobile-toc-chevron" width="12" height="12" viewBox="0 0 12 12" fill="currentColor">
+        <path d="M2 4l4 4 4-4"/>
+      </svg>
+    </button>
+    <div class="mobile-toc-content" id="mobile-toc-content" aria-hidden="true"></div>
+  </div>
 
   <!-- ===== Main Layout: Sidebar + Content ===== -->
   <div class="site-body">
@@ -476,51 +482,71 @@ $tools = ['edit','history','recent','media','index','admin'];
     document.body.removeChild(ta);
   }
 
-  /* ── Move TOC into sidebar ───────────────────────── */
-  var toc        = document.getElementById('dw__toc'),
-      tocSlot    = document.getElementById('sidebar-toc'),
-      sidebar    = document.getElementById('site-sidebar');
+  /* ── Move TOC into sidebar + mobile bar ─────────── */
+  var toc          = document.getElementById('dw__toc'),
+      tocSlot      = document.getElementById('sidebar-toc'),
+      mobileTocBar = document.getElementById('mobile-toc-bar'),
+      mobileTocCnt = document.getElementById('mobile-toc-content'),
+      mobileTocBtn = document.getElementById('mobile-toc-toggle');
 
-  if (toc && tocSlot && sidebar) {
-    // Remove float styles so it renders clean in sidebar
+  if (toc) {
     toc.style.cssText = 'float:none;width:auto;margin:0';
-
-    // Copy TOC links into sidebar container
     var inner = toc.querySelector('div');
-    if (inner) {
-      while (inner.firstChild) {
-        tocSlot.appendChild(inner.firstChild);
-      }
+
+    // ── Sidebar TOC (desktop) ──
+    if (tocSlot && inner) {
+      // Clone children into sidebar slot
+      var cloneInner = inner.cloneNode(true);
+      while (cloneInner.firstChild) tocSlot.appendChild(cloneInner.firstChild);
+      tocSlot.style.display = '';
     }
+
+    // ── Mobile TOC bar ──
+    if (mobileTocBar && mobileTocCnt && inner) {
+      var mobileInner = inner.cloneNode(true);
+      mobileTocCnt.appendChild(mobileInner);
+      mobileTocBar.style.display = '';
+    }
+
     // Hide original TOC
     toc.style.display = 'none';
-    tocSlot.style.display = '';
 
-    // Active link tracking on scroll
-    var anchors = tocSlot.querySelectorAll('a[href]');
-    if (anchors.length > 0 && 'IntersectionObserver' in window) {
-      var headings = [];
-      anchors.forEach(function (a) {
-        var id = a.getAttribute('href').replace(/^.*#/, '');
-        var el = document.getElementById(id);
-        if (el) headings.push({ link: a, el: el });
+    // Mobile toggle
+    if (mobileTocBtn && mobileTocCnt) {
+      mobileTocBtn.addEventListener('click', function () {
+        var open = mobileTocCnt.classList.toggle('is-open');
+        mobileTocBtn.setAttribute('aria-expanded', open);
+        mobileTocCnt.setAttribute('aria-hidden', !open);
       });
+    }
 
-      function setActive(link) {
-        anchors.forEach(function (a) { a.classList.remove('toc-active'); });
-        if (link) link.classList.add('toc-active');
-      }
-
-      var io = new IntersectionObserver(function (entries) {
-        entries.forEach(function (entry) {
-          if (entry.isIntersecting) {
-            var h = headings.find(function (x) { return x.el === entry.target; });
-            if (h) setActive(h.link);
-          }
+    // ── Active link tracking on scroll (sidebar) ──
+    if (tocSlot) {
+      var anchors = tocSlot.querySelectorAll('a[href]');
+      if (anchors.length > 0 && 'IntersectionObserver' in window) {
+        var headings = [];
+        anchors.forEach(function (a) {
+          var id = a.getAttribute('href').replace(/^.*#/, '');
+          var el = document.getElementById(id);
+          if (el) headings.push({ link: a, el: el });
         });
-      }, { rootMargin: '-60px 0px -70% 0px', threshold: 0 });
 
-      headings.forEach(function (h) { io.observe(h.el); });
+        function setActive(link) {
+          anchors.forEach(function (a) { a.classList.remove('toc-active'); });
+          if (link) link.classList.add('toc-active');
+        }
+
+        var io = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting) {
+              var h = headings.find(function (x) { return x.el === entry.target; });
+              if (h) setActive(h.link);
+            }
+          });
+        }, { rootMargin: '-60px 0px -70% 0px', threshold: 0 });
+
+        headings.forEach(function (h) { io.observe(h.el); });
+      }
     }
   }
 

@@ -247,6 +247,28 @@ div.dokuwiki div.code > * {
   background: none !important;
 }
 
+/* ── Kill GeSHi green oval highlights on spans ──────── */
+/* GeSHi syntax highlighter adds outline/border-radius to spans,
+   creating unwanted green pill shapes around tokens */
+div.dokuwiki pre span,
+div.dokuwiki .code span,
+div.dokuwiki .file span,
+div.dokuwiki pre a,
+div.dokuwiki .code a {
+  outline: none !important;
+  border-radius: 0 !important;
+  border: none !important;
+  box-shadow: none !important;
+  text-decoration: none !important;
+}
+/* Preserve only text colour for syntax tokens */
+div.dokuwiki pre span[class],
+div.dokuwiki .code span[class] {
+  background: transparent !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
 [data-theme="dark"] div.dokuwiki pre { background: #0d1117 !important; color: #e6edf3 !important; border-color: var(--bd) !important; }
 [data-theme="dark"] .code-block-wrap { background: #0d1117 !important; border-color: #21262d !important; }
 [data-theme="dark"] .code-block-header { background: #161b22; border-color: #21262d; }

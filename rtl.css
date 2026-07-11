@@ -87,8 +87,18 @@ html[dir="rtl"] .lang-option      { border-left: none; border-right: 2px solid t
 html[dir="rtl"] .lang-option:hover,
 html[dir="rtl"] .lang-option.active { border-right-color: var(--pr); border-left-color: transparent; }
 
-/* User area */
-html[dir="rtl"] .user-area { padding-left: 0; padding-right: .6rem; border-left: none; border-right: 1px solid var(--bd); }
+/* User area — header has dir="ltr" so keep LTR layout even in RTL pages */
+/* Only apply RTL flip if user-area is OUTSIDE the header */
+html[dir="rtl"] .user-area:not(.site-header .user-area) {
+  padding-left: 0; padding-right: .6rem;
+  border-left: none; border-right: 1px solid var(--bd);
+}
+/* Explicitly lock header internals to LTR regardless of html dir */
+.site-header .user-area         { padding-left: .6rem !important; padding-right: 0 !important; border-left: 1px solid var(--bd) !important; border-right: none !important; margin-left: .1rem !important; margin-right: 0 !important; }
+.site-header .lang-dropdown     { right: 0 !important; left: auto !important; }
+.site-header .lang-option       { border-left: 2px solid transparent !important; border-right: none !important; }
+.site-header .lang-option:hover,
+.site-header .lang-option.active { border-left-color: var(--pr) !important; border-right-color: transparent !important; }
 
 /* Admin */
 [dir=rtl] #admin__version         { float: left; }

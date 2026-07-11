@@ -121,16 +121,22 @@
   display: flex;
   align-items: center;
   gap: .35rem;
-  flex-shrink: 0;
+  flex: 1;
+  min-width: 0;
+  max-width: 320px;
 }
 
-/* Search */
-.nav-search form,
-.nav-search form#dw__search {
-  display: flex;
-  align-items: stretch;
+/* Search — bulletproof: works with both <button> and <input type="submit"> */
+.nav-search {
+  flex: 1;
+  min-width: 0;
+}
+.nav-search form {
+  display: flex !important;
   flex-direction: row !important;
+  align-items: stretch !important;
   direction: ltr !important;
+  height: 34px;
   background: var(--bg-raised);
   border: 1px solid var(--bd);
   border-radius: var(--r);
@@ -141,60 +147,56 @@
   border-color: var(--pr);
   box-shadow: 0 0 0 3px var(--pr-ring);
 }
-.nav-search input {
+.nav-search form input[type="text"],
+.nav-search form input[type="search"] {
+  flex: 1 !important;
+  min-width: 0 !important;
   font-size: .82rem;
-  padding: .35em .65em;
-  border: none;
-  outline: none;
-  width: 160px;
-  background: transparent;
+  padding: 0 .65em;
+  border: none !important;
+  outline: none !important;
+  background: transparent !important;
   color: var(--fg);
-  transition: width var(--t);
+  font-family: inherit;
+  box-shadow: none !important;
+  height: 100%;
 }
-.nav-search input:focus { width: 200px; }
-.nav-search input::placeholder { color: var(--fg-4); }
-.nav-search button,
-.nav-search input[type="submit"] {
-  font-size: .82rem;
-  font-weight: 500;
-  padding: .35em .9em;
-  border: none;
-  background: var(--pr);
-  color: #fff;
+.nav-search form input[type="text"]::placeholder,
+.nav-search form input[type="search"]::placeholder { color: var(--fg-4); }
+/* Search button — covers both <button> and <input type="submit"> */
+.nav-search form button[type="submit"],
+.nav-search form input[type="submit"],
+.nav-search form button:not([type]) {
+  flex-shrink: 0 !important;
+  width: 36px;
+  height: 100%;
+  padding: 0 !important;
+  border: none !important;
+  border-left: 1px solid var(--bd) !important;
+  border-radius: 0 !important;
+  background: var(--bg-raised) !important;
+  color: var(--fg-3) !important;
   cursor: pointer;
-  transition: background var(--t);
-  white-space: nowrap;
-  flex-shrink: 0;
+  transition: background var(--t), color var(--t);
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  font-size: 0; /* hide text, show only icon if any */
+  box-shadow: none !important;
+  transform: none !important;
 }
-.nav-search button:hover,
-.nav-search input[type="submit"]:hover { background: var(--pr-hover); }
-[data-theme="dark"] .nav-search button { color: #0c1a12; }
-
-/* Nav action buttons */
-.nav-actions { display: flex; align-items: center; gap: 1px; }
-.nav-actions form,
-.nav-actions .plugin_block { display: inline-flex; }
-.nav-actions input.button,
-.nav-actions button {
-  font-size: .78rem;
-  padding: .3em .6em;
-  background: transparent;
-  border: 1px solid transparent;
-  border-radius: var(--r2);
-  cursor: pointer;
-  color: var(--fg-3);
-  transition: all var(--t);
-  box-shadow: none;
-  transform: none;
-  white-space: nowrap;
+.nav-search form button[type="submit"]:hover,
+.nav-search form input[type="submit"]:hover,
+.nav-search form button:not([type]):hover {
+  background: var(--pr) !important;
+  color: #fff !important;
+  border-left-color: var(--pr) !important;
 }
-.nav-actions input.button:hover,
-.nav-actions button:hover {
-  background: var(--bg-raised);
-  color: var(--fg);
-  border-color: var(--bd);
-  transform: none;
-  box-shadow: none;
+/* If DokuWiki shows the button text, show it */
+.nav-search form input[type="submit"] {
+  font-size: .75rem !important;
+  width: auto !important;
+  padding: 0 .75em !important;
 }
 
 /* Language Selector */
@@ -330,7 +332,7 @@
 /* ── Sidebar ──────────────────────────────────────────── */
 .site-sidebar {
   width: 260px;
-  padding: 1.5rem 1rem 2rem;
+  padding: 1.25rem .875rem 2rem;
   border-right: 1px solid var(--bd);
   position: sticky;
   top: 60px;
@@ -346,48 +348,78 @@
 .site-sidebar::-webkit-scrollbar-track { background: transparent; }
 .site-sidebar::-webkit-scrollbar-thumb { background: var(--bd); border-radius: 2px; }
 
-.sidebar-section { margin-bottom: 1.5rem; }
+.sidebar-section { margin-bottom: 1.25rem; }
 
 .sidebar-label {
-  font-size: .65rem;
+  display: flex;
+  align-items: center;
+  gap: .35rem;
+  font-size: .63rem;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: .1em;
   color: var(--fg-4);
-  margin: 0 0 .6rem .1rem;
-  display: block;
+  margin: 0 0 .5rem .05rem;
 }
 
-/* Sidebar TOC */
-#sidebar-toc .toc-title {
-  font-size: .65rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: .1em;
-  color: var(--fg-4);
-  margin: 0 0 .6rem;
+/* ── Sidebar TOC — "On this page" ─────────────────────── */
+#sidebar-toc {
+  background: var(--bg-raised);
+  border: 1px solid var(--bd);
+  border-radius: var(--r);
+  overflow: hidden;
+  margin-bottom: 1.25rem;
 }
+
+#sidebar-toc > .sidebar-label {
+  padding: .55em .85em;
+  margin: 0;
+  background: var(--bg-subtle);
+  border-bottom: 1px solid var(--bd);
+  font-size: .62rem;
+  letter-spacing: .1em;
+  color: var(--fg-3);
+  gap: .4rem;
+}
+
+#sidebar-toc .toc-title { display: none; } /* hidden – we use sidebar-label */
+
 #sidebar-toc ul {
   list-style: none;
-  padding: 0;
+  padding: .35rem 0;
   margin: 0;
 }
 #sidebar-toc ul li { margin: 0; }
 #sidebar-toc ul li a {
   display: block;
-  padding: .28em .5em .28em .6em;
-  font-size: .82rem;
-  color: var(--fg-3);
+  padding: .3em .85em .3em .85em;
+  font-size: .81rem;
+  color: var(--fg-2);
   text-decoration: none;
-  border-radius: var(--r2);
   border-left: 2px solid transparent;
-  transition: all var(--t);
-  line-height: 1.4;
+  transition: background var(--t), color var(--t), border-left-color var(--t);
+  line-height: 1.45;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
-#sidebar-toc ul li a:hover   { background: var(--bg-raised); color: var(--pr); border-left-color: var(--pr); }
-#sidebar-toc ul li ul li a   { padding-left: 1.4em; font-size: .79rem; color: var(--fg-4); }
-#sidebar-toc ul li ul li a:hover { color: var(--pr); }
-#sidebar-toc ul li ul li ul li a { padding-left: 2.2em; font-size: .77rem; }
+#sidebar-toc ul li a:hover {
+  background: var(--bg-card);
+  color: var(--pr);
+  border-left-color: var(--pr);
+}
+/* Level 2 */
+#sidebar-toc ul li ul li a {
+  padding-left: 1.55em;
+  font-size: .78rem;
+  color: var(--fg-3);
+}
+/* Level 3+ */
+#sidebar-toc ul li ul li ul li a {
+  padding-left: 2.25em;
+  font-size: .76rem;
+  color: var(--fg-4);
+}
 
 /* Sidebar tools */
 .sidebar-tools { display: flex; flex-direction: column; gap: .2rem; }
@@ -506,11 +538,72 @@
 
 /* ── TOC active link ─────────────────────────────────── */
 #sidebar-toc ul li a.toc-active {
-  background: var(--bg-raised);
+  background: var(--bg-card);
   color: var(--pr);
   border-left-color: var(--pr);
-  font-weight: 500;
+  font-weight: 600;
 }
+
+/* ── Mobile TOC Bar ──────────────────────────────────── */
+.mobile-toc-bar {
+  background: var(--bg-card);
+  border-bottom: 1px solid var(--bd);
+  transition: background var(--t), border-color var(--t);
+}
+
+.mobile-toc-toggle {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  width: 100%;
+  padding: .6rem 1.25rem;
+  background: transparent;
+  border: none;
+  color: var(--fg-2);
+  font-size: .82rem;
+  font-weight: 600;
+  font-family: inherit;
+  cursor: pointer;
+  text-align: left;
+  transition: color var(--t), background var(--t);
+}
+.mobile-toc-toggle:hover { background: var(--bg-raised); color: var(--pr); }
+.mobile-toc-toggle svg:first-child { color: var(--pr); flex-shrink: 0; }
+
+.mobile-toc-chevron {
+  margin-left: auto;
+  transition: transform .2s ease;
+  flex-shrink: 0;
+}
+.mobile-toc-toggle[aria-expanded="true"] .mobile-toc-chevron { transform: rotate(180deg); }
+
+.mobile-toc-content {
+  overflow: hidden;
+  max-height: 0;
+  transition: max-height .3s cubic-bezier(.4,0,.2,1);
+  border-top: 0px solid var(--bd);
+}
+.mobile-toc-content.is-open {
+  max-height: 400px;
+  border-top-width: 1px;
+}
+.mobile-toc-content ul {
+  list-style: none;
+  padding: .4rem 0;
+  margin: 0;
+}
+.mobile-toc-content ul li a {
+  display: block;
+  padding: .32em 1.5em;
+  font-size: .84rem;
+  color: var(--fg-2);
+  text-decoration: none;
+  border-left: 2px solid transparent;
+  transition: all var(--t);
+}
+.mobile-toc-content ul li a:hover { background: var(--bg-raised); color: var(--pr); border-left-color: var(--pr); }
+.mobile-toc-content ul li ul li a { padding-left: 2.4em; font-size: .8rem; color: var(--fg-3); }
+.mobile-toc-content ul li ul li ul li a { padding-left: 3.3em; font-size: .78rem; }
 
 /* ── Hide legacy DokuWiki layout elements ────────────── */
 div.dokuwiki .header,

@@ -175,11 +175,17 @@ body.menu-open { overflow: hidden; }
   .site-sidebar { width: 220px; }
 }
 
+/* ── Mobile TOC Bar: visible on mobile only ──────────── */
+.mobile-toc-bar { display: none; }
+
 /* ── Breakpoint: hide sidebar, show hamburger (≤900px) ── */
 @media (max-width: 900px) {
   /* Layout resets */
   .site-body { grid-template-columns: 1fr; }
   .site-sidebar { display: none !important; }
+
+  /* Show mobile TOC bar when it has content */
+  .mobile-toc-bar { display: block; }
 
   /* Header */
   .hamburger { display: flex; }
