@@ -175,8 +175,8 @@ $tools = ['edit','history','recent','media','index','admin'];
 
       <!-- User Area -->
       <div class="user-area">
-        <?php if (tpl_userinfo()): ?>
-          <span class="user-info" aria-hidden="true"><?php tpl_userinfo() ?></span>
+        <?php ob_start(); tpl_userinfo(); $__ui = ob_get_clean(); if ($__ui): ?>
+          <span class="user-info" aria-hidden="true"><?php echo $__ui ?></span>
         <?php endif ?>
         <?php tpl_button('profile') ?>
         <?php tpl_button('login') ?>
@@ -248,18 +248,16 @@ $tools = ['edit','history','recent','media','index','admin'];
       <footer class="page-footer">
         <div class="footer-meta">
           <div class="meta-left">
-            <span class="meta-user"><?php tpl_userinfo() ?></span>
-            <?php if (tpl_userinfo()): ?>
+            <?php ob_start(); tpl_userinfo(); $__fui = ob_get_clean(); if ($__fui): ?>
+              <span class="meta-user"><?php echo $__fui ?></span>
               <span class="meta-sep" aria-hidden="true">&middot;</span>
             <?php endif ?>
             <span class="meta-pageinfo"><?php tpl_pageinfo() ?></span>
           </div>
           <div class="meta-right">
-            <?php tpl_button('edit') ?>
             <?php tpl_button('history') ?>
             <?php tpl_button('revert') ?>
             <?php tpl_button('subscribe') ?>
-            <?php tpl_button('top') ?>
           </div>
         </div>
         <?php @include(dirname(__FILE__) . '/pagefooter.html') ?>
