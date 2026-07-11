@@ -260,10 +260,12 @@ body.menu-open { overflow: hidden; }
   select           { width: 100%; }
 }
 
-/* ── Ensure drawer never shows on desktop ────────────── */
+/* ── Ensure drawer, overlay AND hamburger never show on desktop ─ */
 @media (min-width: 901px) {
   .side-drawer,
-  .mobile-overlay { display: none !important; }
+  .mobile-overlay,
+  .hamburger,
+  #hamburger-btn { display: none !important; }
 }
 
 /* ── RTL responsive ───────────────────────────────────── */
