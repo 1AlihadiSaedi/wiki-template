@@ -244,25 +244,6 @@ $tools = ['edit','history','recent','media','index','admin'];
 
       <?php tpl_flush() ?>
 
-      <!-- Page Footer -->
-      <footer class="page-footer">
-        <div class="footer-meta">
-          <div class="meta-left">
-            <?php ob_start(); tpl_userinfo(); $__fui = ob_get_clean(); if ($__fui): ?>
-              <span class="meta-user"><?php echo $__fui ?></span>
-              <span class="meta-sep" aria-hidden="true">&middot;</span>
-            <?php endif ?>
-            <span class="meta-pageinfo"><?php tpl_pageinfo() ?></span>
-          </div>
-          <div class="meta-right">
-            <?php tpl_button('history') ?>
-            <?php tpl_button('revert') ?>
-            <?php tpl_button('subscribe') ?>
-          </div>
-        </div>
-        <?php @include(dirname(__FILE__) . '/pagefooter.html') ?>
-        <?php tpl_license(false) ?>
-      </footer>
     </div>
 
   </div><!-- .site-body -->
@@ -274,7 +255,9 @@ $tools = ['edit','history','recent','media','index','admin'];
 
 <!-- ===== Floating Action Buttons ===== -->
 <div class="fab-group" id="fab-group" dir="<?php echo $dir_attr ?>">
-  <?php tpl_button('edit') ?>
+  <div class="fab-edit-wrap" id="fab-edit-wrap">
+    <?php tpl_button('edit') ?>
+  </div>
   <button class="fab-top" id="fab-top" aria-label="Back to top" title="Back to top">
     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
       <path d="M18 15l-6-6-6 6"/>
@@ -506,6 +489,18 @@ $tools = ['edit','history','recent','media','index','admin'];
     window.addEventListener('scroll', function () {
       siteHeader.classList.toggle('scrolled', window.scrollY > 4);
     }, { passive: true });
+  }
+
+  /* ── FAB: inject edit icon ────────────────────────── */
+  var fabEditInput = document.querySelector('.fab-group form input.button, .fab-group .button');
+  if (fabEditInput && fabEditInput.id !== 'fab-top') {
+    var fabForm = fabEditInput.parentNode;
+    fabForm.style.position = 'relative';
+    var icon = document.createElement('span');
+    icon.className = 'fab-edit-icon';
+    icon.setAttribute('aria-hidden', 'true');
+    icon.innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9M16.5 3.5a2.121 2.121 0 113 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>';
+    fabForm.insertBefore(icon, fabEditInput);
   }
 
   /* ── FAB: back-to-top visibility + click ─────────── */

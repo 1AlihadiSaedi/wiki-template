@@ -4,6 +4,22 @@ $tgt = ($conf['target']['extern']) ? 'target="' . $conf['target']['extern'] . '"
 <div class="site-footer">
   <div class="footerinc">
     <div class="footerinc-inner">
+      <div class="footer-meta">
+        <div class="meta-left">
+          <?php ob_start(); tpl_userinfo(); $__fui = ob_get_clean(); if ($__fui): ?>
+            <span class="meta-user"><?php echo $__fui ?></span>
+            <span class="meta-sep" aria-hidden="true">&middot;</span>
+          <?php endif ?>
+          <span class="meta-pageinfo"><?php tpl_pageinfo() ?></span>
+        </div>
+        <div class="meta-right">
+          <?php tpl_button('history') ?>
+          <?php tpl_button('revert') ?>
+          <?php tpl_button('subscribe') ?>
+        </div>
+      </div>
+      <?php @include(dirname(__FILE__) . '/pagefooter.html') ?>
+      <?php tpl_license(false) ?>
       <span class="footer-powered">
         <a <?php echo $tgt ?> href="https://www.dokuwiki.org/" class="footer-link">Driven by DokuWiki</a>
         <?php if ($conf['allowdebug']): ?>
