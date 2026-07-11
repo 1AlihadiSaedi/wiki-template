@@ -11,6 +11,10 @@ $logo_path = DOKU_TPL . 'images/logo.png';
 $is_rtl    = ($dir_attr === 'rtl');
 $body_cls  = $is_rtl ? ' class="rtl-page"' : '';
 
+// Are we in edit/preview mode?
+global $ACT;
+$is_editing = (isset($ACT) && ($ACT === 'edit' || $ACT === 'preview'));
+
 // Page tools available?
 $tools = ['edit','history','recent','media','index','admin'];
 ?><!DOCTYPE html>
@@ -255,7 +259,7 @@ $tools = ['edit','history','recent','media','index','admin'];
 
 <!-- ===== Floating Action Buttons ===== -->
 <div class="fab-group" id="fab-group" dir="<?php echo $dir_attr ?>">
-  <div class="fab-edit-wrap" id="fab-edit-wrap">
+  <div class="fab-edit-wrap" id="fab-edit-wrap" data-mode="<?php echo $is_editing ? 'edit' : 'view' ?>">
     <?php tpl_button('edit') ?>
   </div>
   <button class="fab-top" id="fab-top" aria-label="Back to top" title="Back to top">
@@ -491,18 +495,21 @@ $tools = ['edit','history','recent','media','index','admin'];
     }, { passive: true });
   }
 
-  /* ── FAB: inject edit icon ────────────────────────── */
+  /* ── FAB: inject edit/back icon ──────────────────── */
   var fabEditWrap = document.getElementById('fab-edit-wrap');
   if (fabEditWrap) {
-    var fabForm = fabEditWrap.querySelector('form');
-    var fabEditInput = fabEditWrap.querySelector('input.button, .button, button');
-    if (fabForm && fabEditInput) {
-      var icon = document.createElement('span');
-      icon.className = 'fab-edit-icon';
-      icon.setAttribute('aria-hidden', 'true');
-      icon.innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9M16.5 3.5a2.121 2.121 0 113 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>';
-      fabForm.insertBefore(icon, fabEditInput);
+    var mode = fabEditWrap.getAttribute('data-mode') || 'view';
+    var svg;
+    if (mode === 'edit') {
+      svg = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>';
+    } else {
+      svg = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9M16.5 3.5a2.121 2.121 0 113 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>';
     }
+    var icon = document.createElement('span');
+    icon.className = 'fab-edit-icon';
+    icon.setAttribute('aria-hidden', 'true');
+    icon.innerHTML = svg;
+    fabEditWrap.appendChild(icon);
   }
 
   /* ── FAB: back-to-top visibility + click ─────────── */
