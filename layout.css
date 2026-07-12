@@ -222,32 +222,27 @@
   gap: 2px;
   flex-shrink: 0;
 }
-.header-actions form,
-.header-actions .plugin_block { display: inline-flex; }
-.header-actions input.button,
-.header-actions button {
-  font-size: .76rem;
-  padding: .32em .65em;
-  background: transparent !important;
-  border: 1px solid transparent !important;
+.header-action-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border: 1px solid transparent;
   border-radius: var(--r2);
+  background: transparent;
+  color: var(--fg-3);
+  text-decoration: none;
   cursor: pointer;
-  color: var(--fg-3) !important;
-  white-space: nowrap;
   transition: all var(--t);
-  box-shadow: none !important;
-  transform: none !important;
-  font-family: inherit;
-  font-weight: 500;
+  flex-shrink: 0;
 }
-.header-actions input.button:hover,
-.header-actions button:hover {
-  background: var(--bg-raised) !important;
-  color: var(--fg) !important;
-  border-color: var(--bd) !important;
-  transform: none !important;
-  box-shadow: none !important;
+.header-action-btn:hover {
+  background: var(--bg-raised);
+  color: var(--fg);
+  border-color: var(--bd);
 }
+.header-action-btn svg { display: block; }
 
 /* ── Floating Action Buttons (fixed, not sticky) ────── */
 .fab-group {
@@ -268,10 +263,30 @@
   align-items: center;
   justify-content: center;
 }
-.fab-edit-wrap form {
-  display: flex !important;
-  align-items: center;
-  justify-content: center;
+.fab-edit-link {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 42px !important;
+  height: 42px !important;
+  padding: 0 !important;
+  font-size: 0 !important;
+  border: 1px solid var(--bd) !important;
+  border-radius: 50% !important;
+  background: var(--bg-card) !important;
+  color: var(--fg-2) !important;
+  text-decoration: none !important;
+  cursor: pointer;
+  box-shadow: none !important;
+  transition: all var(--t) !important;
+  transform: none !important;
+}
+.fab-edit-link:hover {
+  background: var(--bg-raised) !important;
+  border-color: var(--pr) !important;
+  color: var(--pr) !important;
+  box-shadow: var(--sh-1) !important;
+  transform: translateY(-1px) !important;
 }
 .fab-edit-icon {
   position: absolute;
@@ -292,53 +307,19 @@
   align-items: flex-start;
 }
 
-/* Shared FAB button style */
-.fab-group form,
-.fab-group .plugin_block { display: flex; }
-
-.fab-group input.button,
-.fab-group button,
-.fab-group .button {
-  display: inline-flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  gap: .35em;
-  width: 42px !important;
-  height: 42px !important;
-  padding: 0 !important;
-  font-size: 0 !important;
-  font-weight: 600 !important;
-  font-family: inherit !important;
-  color: var(--fg-2) !important;
-  background: var(--bg-card) !important;
-  border: 1px solid var(--bd) !important;
-  border-radius: 50% !important;
-  cursor: pointer;
-  white-space: nowrap;
-  box-shadow: none !important;
-  transition: all var(--t) !important;
-  transform: none !important;
-  overflow: visible;
-}
-.fab-group button svg,
-.fab-group input.button svg {
-  font-size: 16px !important;
-  line-height: 1 !important;
-}
-.fab-group input.button:hover,
-.fab-group button:hover {
-  background: var(--bg-raised) !important;
-  border-color: var(--pr) !important;
-  color: var(--pr) !important;
-  box-shadow: var(--sh-1) !important;
-  transform: translateY(-1px) !important;
-}
-
 /* Back-to-top: icon only, circular */
 .fab-top {
   width: 42px !important;
+  height: 42px !important;
   padding: 0 !important;
+  border: 1px solid var(--bd) !important;
   border-radius: 50% !important;
+  background: var(--bg-card) !important;
+  color: var(--fg-2) !important;
+  cursor: pointer;
+  box-shadow: none !important;
+  transition: all var(--t) !important;
+  transform: none !important;
   opacity: 0;
   pointer-events: none;
   transition: opacity .2s ease, transform .2s ease, background var(--t), border-color var(--t) !important;
@@ -347,8 +328,15 @@
   opacity: 1;
   pointer-events: auto;
 }
-[data-theme="dark"] .fab-group input.button,
-[data-theme="dark"] .fab-group button {
+.fab-top:hover {
+  background: var(--bg-raised) !important;
+  border-color: var(--pr) !important;
+  color: var(--pr) !important;
+  box-shadow: var(--sh-1) !important;
+  transform: translateY(-1px) !important;
+}
+[data-theme="dark"] .fab-edit-link,
+[data-theme="dark"] .fab-top {
   background: var(--bg-raised) !important;
   border-color: var(--bd) !important;
   color: var(--fg-2) !important;
