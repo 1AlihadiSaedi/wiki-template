@@ -174,14 +174,8 @@ html[dir="rtl"] .side-drawer.is-open { right: 0; }
 
 body.menu-open { overflow: hidden; }
 
-/* ── TOC Bar: hidden until JS fills it ──────────────── */
-.toc-bar { display: none; }
-
 /* ── Breakpoint: show hamburger, hide desktop nav (≤900px) ── */
 @media (max-width: 900px) {
-
-  /* Show TOC bar when it has content */
-  .toc-bar { display: block; }
 
   /* Header */
   .hamburger { display: flex; }
