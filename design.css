@@ -470,22 +470,43 @@ div.dokuwiki .toolbutton:active {
 }
 
 /* ── Section edit buttons ─────────────────────────────── */
-div.dokuwiki .secedit {
+div.dokuwiki .secedit,
+div.dokuwiki .btn_secedit,
+div.dokuwiki form.btn_secedit {
   margin-top: 1em;
+  max-width: 100%;
+  overflow: hidden;
 }
-div.dokuwiki .secedit input.button {
+div.dokuwiki .secedit input.button,
+div.dokuwiki .secedit button,
+div.dokuwiki .btn_secedit input.button,
+div.dokuwiki .btn_secedit button,
+div.dokuwiki form.btn_secedit button[type="submit"] {
+  font-family: inherit;
   font-size: .75rem;
-  padding: .2em .5em;
+  font-weight: 500;
+  padding: .25em .6em;
   background: transparent;
   border: 1px solid var(--bd);
   color: var(--fg-4);
   border-radius: var(--r2);
+  cursor: pointer;
+  white-space: nowrap;
   transition: all var(--t);
+  box-shadow: none;
+  transform: none;
+  max-width: 100%;
 }
-div.dokuwiki .secedit input.button:hover {
+div.dokuwiki .secedit input.button:hover,
+div.dokuwiki .secedit button:hover,
+div.dokuwiki .btn_secedit input.button:hover,
+div.dokuwiki .btn_secedit button:hover,
+div.dokuwiki form.btn_secedit button[type="submit"]:hover {
   background: var(--bg-raised);
   border-color: var(--pr);
   color: var(--pr);
+  transform: none;
+  box-shadow: none;
 }
 
 /* ── Forms ────────────────────────────────────────────── */
