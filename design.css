@@ -144,6 +144,23 @@ div.dokuwiki a:active { color: var(--pr-hover); }
 div.dokuwiki a.urlextern::after,
 div.dokuwiki a.interwiki::after { display: none; }
 
+/* Existing wiki pages (green) */
+div.dokuwiki a.wikilink1 {
+  color: var(--pr);
+  text-decoration: none;
+}
+div.dokuwiki a.wikilink1:hover { text-decoration: underline; }
+
+/* Non-existing / broken wiki pages (red, dashed underline) */
+div.dokuwiki a.wikilink2 {
+  color: #dc2626;
+  text-decoration: none;
+  border-bottom: 1px dashed #dc2626;
+}
+div.dokuwiki a.wikilink2:hover { color: #b91c1c; border-bottom-color: #b91c1c; }
+[data-theme="dark"] div.dokuwiki a.wikilink2 { color: #f87171; border-bottom-color: #f87171; }
+[data-theme="dark"] div.dokuwiki a.wikilink2:hover { color: #fca5a5; border-bottom-color: #fca5a5; }
+
 /* ── Lists ────────────────────────────────────────────── */
 div.dokuwiki ul,
 div.dokuwiki ol {
@@ -375,6 +392,102 @@ div.dokuwiki button.button:hover {
   box-shadow: none;
 }
 
+/* ── Action buttons (Save, Cancel, Preview, etc.) ──────── */
+div.dokuwiki .button,
+div.dokuwiki #wiki__editform input.button,
+div.dokuwiki #dw__editform input.button {
+  font-family: inherit;
+  font-weight: 500;
+  font-size: .85rem;
+  padding: .4em .8em;
+  background: var(--bg-raised);
+  color: var(--fg-2);
+  border: 1px solid var(--bd);
+  border-radius: var(--r2);
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all var(--t);
+  box-shadow: none;
+  transform: none;
+}
+div.dokuwiki .button:hover,
+div.dokuwiki #wiki__editform input.button:hover,
+div.dokuwiki #dw__editform input.button:hover {
+  background: var(--bg-card);
+  border-color: var(--pr);
+  color: var(--pr);
+  transform: none;
+  box-shadow: none;
+}
+
+/* Primary action button (Save) */
+div.dokuwiki #wiki__editform input#edbtn__save,
+div.dokuwiki #dw__editform input#edbtn__save,
+div.dokuwiki input#edbtn__save {
+  background: var(--pr) !important;
+  color: #fff !important;
+  border-color: var(--pr) !important;
+  font-weight: 600 !important;
+}
+div.dokuwiki #wiki__editform input#edbtn__save:hover,
+div.dokuwiki #dw__editform input#edbtn__save:hover,
+div.dokuwiki input#edbtn__save:hover {
+  background: var(--pr-hover) !important;
+  border-color: var(--pr-hover) !important;
+  color: #fff !important;
+}
+[data-theme="dark"] div.dokuwiki input#edbtn__save { color: #0c1a12 !important; }
+
+/* ── Toolbar buttons (edit mode) ──────────────────────── */
+div.dokuwiki .toolbutton {
+  font-family: inherit;
+  font-size: .8rem;
+  padding: .3em .55em;
+  background: var(--bg-raised);
+  color: var(--fg-3);
+  border: 1px solid var(--bd);
+  border-radius: var(--r2);
+  cursor: pointer;
+  transition: all var(--t);
+  box-shadow: none;
+  transform: none;
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+}
+div.dokuwiki .toolbutton:hover {
+  background: var(--bg-card);
+  border-color: var(--pr);
+  color: var(--pr);
+  transform: none;
+  box-shadow: none;
+}
+div.dokuwiki .toolbutton:active {
+  background: var(--bg-subtle);
+  transform: none;
+  box-shadow: none;
+}
+
+/* ── Section edit buttons ─────────────────────────────── */
+div.dokuwiki .secedit {
+  margin-top: 1em;
+}
+div.dokuwiki .secedit input.button {
+  font-size: .75rem;
+  padding: .2em .5em;
+  background: transparent;
+  border: 1px solid var(--bd);
+  color: var(--fg-4);
+  border-radius: var(--r2);
+  transition: all var(--t);
+}
+div.dokuwiki .secedit input.button:hover {
+  background: var(--bg-raised);
+  border-color: var(--pr);
+  color: var(--pr);
+}
+
 /* ── Forms ────────────────────────────────────────────── */
 div.dokuwiki form {}
 div.dokuwiki fieldset {
@@ -555,8 +668,6 @@ div.dokuwiki #media__manager { font-size: .9rem; }
 div.dokuwiki #media__content { background: var(--bg-card); border: 1px solid var(--bd); border-radius: var(--r); padding: 1em; }
 
 /* ── Misc / cleanup ────────────────────────────────────── */
-div.dokuwiki .secedit { margin-top: 1em; }
-div.dokuwiki .secedit input.button { font-size: .75rem; padding: .2em .5em; }
 div.dokuwiki .section_highlight { background: var(--bg-subtle); border-radius: var(--r2); }
 
 /* ── RTL fixes ────────────────────────────────────────── */
