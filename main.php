@@ -142,8 +142,12 @@ $tools = ['edit','history','recent','media','index','admin'];
       <nav class="desktop-nav" aria-label="Main navigation">
         <div class="nav-search"><?php tpl_searchform() ?></div>
         <div class="header-actions">
-          <?php tpl_button('media') ?>
-          <?php tpl_button('admin') ?>
+          <a href="<?php echo wl($ID, 'do=media') ?>" class="header-action-btn" title="<?php echo $lang['btn_media'] ?>" aria-label="<?php echo $lang['btn_media'] ?>">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+          </a>
+          <a href="<?php echo wl('', 'do=admin') ?>" class="header-action-btn" title="<?php echo $lang['btn_admin'] ?>" aria-label="<?php echo $lang['btn_admin'] ?>">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7v10l10 5 10-5V7L12 2z"/><path d="M2 7l10 5 10-5M12 22V12"/></svg>
+          </a>
         </div>
       </nav>
 
@@ -264,7 +268,7 @@ $tools = ['edit','history','recent','media','index','admin'];
 <div class="fab-group" id="fab-group" dir="<?php echo $dir_attr ?>">
   <?php if ($show_edit_fab): ?>
   <div class="fab-edit-wrap" id="fab-edit-wrap" data-mode="<?php echo $is_editing ? 'edit' : 'view' ?>">
-    <?php tpl_button('edit') ?>
+    <a href="<?php echo wl($ID, 'do=edit') ?>" class="fab-edit-link" id="fab-edit-link" title="<?php echo $lang['btn_edit'] ?>" aria-label="<?php echo $lang['btn_edit'] ?>"></a>
   </div>
   <?php endif; ?>
   <button class="fab-top" id="fab-top" aria-label="Back to top" title="Back to top">
