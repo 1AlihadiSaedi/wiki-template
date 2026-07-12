@@ -85,20 +85,25 @@ $tools = ['edit','history','recent','media','index','admin'];
     <div class="drawer-section">
       <span class="drawer-label">Navigation</span>
       <div class="drawer-buttons">
-        <?php tpl_button('history') ?>
-        <?php tpl_button('recent') ?>
-        <?php tpl_button('media') ?>
-        <?php tpl_button('index') ?>
-        <?php tpl_button('admin') ?>
+        <a href="<?php echo wl($ID,'do=revisions') ?>" class="drawer-link-btn"><?php echo $lang['btn_revs'] ?></a>
+        <a href="<?php echo wl('','do=recent') ?>" class="drawer-link-btn"><?php echo $lang['btn_recent'] ?></a>
+        <a href="<?php echo wl($ID,'do=media') ?>" class="drawer-link-btn"><?php echo $lang['btn_media'] ?></a>
+        <a href="<?php echo wl('','do=index') ?>" class="drawer-link-btn"><?php echo $lang['btn_index'] ?></a>
+        <?php if (isset($INFO) && $INFO['isadmin']): ?>
+        <a href="<?php echo wl('','do=admin') ?>" class="drawer-link-btn"><?php echo $lang['btn_admin'] ?></a>
+        <?php endif ?>
       </div>
     </div>
     <div class="drawer-section">
       <span class="drawer-label">Account</span>
       <div class="drawer-userinfo"><?php tpl_userinfo() ?></div>
       <div class="drawer-buttons">
-        <?php tpl_button('profile') ?>
-        <?php tpl_button('login') ?>
-        <?php tpl_button('subscribe') ?>
+        <?php ob_start(); tpl_userinfo(); $__dui = ob_get_clean(); if ($__dui): ?>
+          <a href="<?php echo wl($ID,'do=profile') ?>" class="drawer-link-btn"><?php echo $lang['btn_profile'] ?></a>
+          <a href="<?php echo wl($ID,'do=logout') ?>" class="drawer-link-btn"><?php echo $lang['btn_logout'] ?></a>
+        <?php else: ?>
+          <a href="<?php echo wl($ID,'do=login') ?>" class="drawer-link-btn drawer-link-btn--primary"><?php echo $lang['btn_login'] ?></a>
+        <?php endif ?>
       </div>
     </div>
   </div>
@@ -188,9 +193,11 @@ $tools = ['edit','history','recent','media','index','admin'];
       <div class="user-area">
         <?php ob_start(); tpl_userinfo(); $__ui = ob_get_clean(); if ($__ui): ?>
           <span class="user-info" aria-hidden="true"><?php echo $__ui ?></span>
+          <a href="<?php echo wl($ID,'do=profile') ?>" class="user-area-btn" title="<?php echo $lang['btn_profile'] ?>"><?php echo $lang['btn_profile'] ?></a>
+          <a href="<?php echo wl($ID,'do=logout') ?>" class="user-area-btn" title="<?php echo $lang['btn_logout'] ?>"><?php echo $lang['btn_logout'] ?></a>
+        <?php else: ?>
+          <a href="<?php echo wl($ID,'do=login') ?>" class="user-area-btn user-area-btn--primary" title="<?php echo $lang['btn_login'] ?>"><?php echo $lang['btn_login'] ?></a>
         <?php endif ?>
-        <?php tpl_button('profile') ?>
-        <?php tpl_button('login') ?>
       </div>
 
       <!-- Theme Toggle -->

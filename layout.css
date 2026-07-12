@@ -404,21 +404,31 @@
   border-left: 1px solid var(--bd);
 }
 .user-info { font-size: .75rem; color: var(--fg-4); white-space: nowrap; max-width: 140px; overflow: hidden; text-overflow: ellipsis; }
-.user-area input.button,
-.user-area button {
+.user-area-btn {
+  font-family: inherit;
   font-size: .78rem;
+  font-weight: 500;
   padding: .3em .6em;
   background: transparent;
   border: 1px solid transparent;
   border-radius: var(--r2);
   cursor: pointer;
   color: var(--fg-3);
+  text-decoration: none;
   transition: all var(--t);
   box-shadow: none;
   transform: none;
+  white-space: nowrap;
 }
-.user-area input.button:hover,
-.user-area button:hover { background: var(--bg-raised); color: var(--fg); border-color: var(--bd); transform: none; box-shadow: none; }
+.user-area-btn:hover { background: var(--bg-raised); color: var(--fg); border-color: var(--bd); transform: none; box-shadow: none; }
+.user-area-btn--primary {
+  background: var(--pr);
+  color: #fff;
+  border-color: var(--pr);
+  font-weight: 600;
+}
+.user-area-btn--primary:hover { background: var(--pr-hover); color: #fff; border-color: var(--pr-hover); }
+[data-theme="dark"] .user-area-btn--primary { color: #0c1a12; }
 
 /* Theme toggle */
 .theme-toggle {
@@ -636,3 +646,31 @@ div.dokuwiki .logo { display: none; }
 }
 .lang-btn:hover  { background: var(--bg-raised); border-color: var(--pr); }
 .lang-btn.active { background: var(--pr); color: #fff; border-color: var(--pr); }
+
+/* ── Drawer link buttons ────────────────────────────── */
+.drawer-link-btn {
+  font-family: inherit;
+  font-size: .84rem;
+  font-weight: 500;
+  padding: .4em .75em;
+  border: 1px solid var(--bd);
+  border-radius: var(--r2);
+  background: var(--bg-raised);
+  color: var(--fg-2);
+  text-decoration: none;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all var(--t);
+  box-shadow: none;
+  transform: none;
+  display: inline-block;
+}
+.drawer-link-btn:hover { background: var(--bg-subtle); border-color: var(--pr); color: var(--pr); transform: none; box-shadow: none; }
+.drawer-link-btn--primary {
+  background: var(--pr);
+  color: #fff;
+  border-color: var(--pr);
+  font-weight: 600;
+}
+.drawer-link-btn--primary:hover { background: var(--pr-hover); color: #fff; border-color: var(--pr-hover); }
+[data-theme="dark"] .drawer-link-btn--primary { color: #0c1a12; }
