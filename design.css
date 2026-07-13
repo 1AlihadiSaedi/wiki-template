@@ -375,55 +375,65 @@ html[dir="rtl"] div.dokuwiki img.mediaright { float: left;  margin: 0 1.5em 1em 
 /* ── Buttons (global reset) ────────────────────────────── */
 div.dokuwiki input.button,
 div.dokuwiki button.button {
-  font-family: inherit;
-  font-weight: 500;
-  font-size: .85rem;
-  padding: .4em .8em;
-  background: var(--bg-raised);
-  color: var(--fg-2);
-  border: 1px solid var(--bd);
-  border-radius: var(--r2);
-  cursor: pointer;
-  white-space: nowrap;
-  transition: all var(--t);
-  box-shadow: none;
-  transform: none;
+  font-family: inherit !important;
+  font-weight: 500 !important;
+  font-size: .85rem !important;
+  padding: .4em .8em !important;
+  background: var(--bg-raised) !important;
+  color: var(--fg-2) !important;
+  border: 1px solid var(--bd) !important;
+  border-radius: var(--r2) !important;
+  cursor: pointer !important;
+  white-space: nowrap !important;
+  transition: all var(--t) !important;
+  box-shadow: none !important;
+  transform: none !important;
+  -webkit-appearance: none !important;
+  appearance: none !important;
 }
 div.dokuwiki input.button:hover,
 div.dokuwiki button.button:hover {
-  background: var(--bg-card);
-  border-color: var(--pr);
-  color: var(--pr);
-  transform: none;
-  box-shadow: none;
+  background: var(--bg-card) !important;
+  border-color: var(--pr) !important;
+  color: var(--pr) !important;
+  transform: none !important;
+  box-shadow: none !important;
 }
 
 /* ── Action buttons (Save, Cancel, Preview, etc.) ──────── */
 div.dokuwiki .button,
 div.dokuwiki #wiki__editform input.button,
-div.dokuwiki #dw__editform input.button {
-  font-family: inherit;
-  font-weight: 500;
-  font-size: .85rem;
-  padding: .4em .8em;
-  background: var(--bg-raised);
-  color: var(--fg-2);
-  border: 1px solid var(--bd);
-  border-radius: var(--r2);
-  cursor: pointer;
-  white-space: nowrap;
-  transition: all var(--t);
-  box-shadow: none;
-  transform: none;
+div.dokuwiki #dw__editform input.button,
+div.dokuwiki #dw__editform button,
+div.dokuwiki .editButtons input.button,
+div.dokuwiki .editButtons button {
+  font-family: inherit !important;
+  font-weight: 500 !important;
+  font-size: .85rem !important;
+  padding: .4em .8em !important;
+  background: var(--bg-raised) !important;
+  color: var(--fg-2) !important;
+  border: 1px solid var(--bd) !important;
+  border-radius: var(--r2) !important;
+  cursor: pointer !important;
+  white-space: nowrap !important;
+  transition: all var(--t) !important;
+  box-shadow: none !important;
+  transform: none !important;
+  -webkit-appearance: none !important;
+  appearance: none !important;
 }
 div.dokuwiki .button:hover,
 div.dokuwiki #wiki__editform input.button:hover,
-div.dokuwiki #dw__editform input.button:hover {
-  background: var(--bg-card);
-  border-color: var(--pr);
-  color: var(--pr);
-  transform: none;
-  box-shadow: none;
+div.dokuwiki #dw__editform input.button:hover,
+div.dokuwiki #dw__editform button:hover,
+div.dokuwiki .editButtons input.button:hover,
+div.dokuwiki .editButtons button:hover {
+  background: var(--bg-card) !important;
+  border-color: var(--pr) !important;
+  color: var(--pr) !important;
+  transform: none !important;
+  box-shadow: none !important;
 }
 
 /* Primary action button (Save) */

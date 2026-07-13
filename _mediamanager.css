@@ -60,376 +60,112 @@
 }
 #mediamanager__page .panelHeader form.options { float: none; margin: 0; }
 #mediamanager__page .panelHeader ul { list-style: none; margin: 0; padding: 0; display: flex; gap: .25rem; }
-#mediamanager__page .panelHeader ul li { float: none; color: var(--fg-3); line-height: 1; padding: 0; }
-
-/* ── Panel content ───────────────────────────────────── */
-#mediamanager__page .panelContent {
-  overflow-y: auto;
-  overflow-x: hidden;
-  padding: 0;
-  margin: 0;
-  background: var(--bg-card);
-  border-radius: 0 0 var(--r) var(--r);
-  border: 1px solid var(--bd);
-  max-height: calc(100vh - 220px);
-  min-height: 100px;
-}
-/* Last panel (file detail) removes extra margins */
-#mediamanager__page .file .panelHeader,
-#mediamanager__page .file .panelContent { /* no overrides needed */ }
-
-/* Resize handle */
-#mediamanager__page .ui-resizable-e {
-  width: 5px; right: 0;
-  background: var(--bd) url(images/resizecol.png) center/contain no-repeat;
-  border-radius: 0 var(--r) var(--r) 0;
-  cursor: col-resize;
-}
-#mediamanager__page .ui-resizable-e:hover { background-color: var(--pr-light); }
-
-/* ── Namespace tree ──────────────────────────────────── */
-[dir=rtl] #mediamanager__page .namespaces { text-align: right; }
-#mediamanager__page .namespaces h2 {
-  font-size: .82rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: .06em;
-  color: var(--fg-4);
-  display: block;
-  padding: .5em .85em;
-  margin: 0;
-  background: transparent;
-  border: none;
-  border-bottom: 1px solid var(--bd);
-}
-#mediamanager__page .namespaces ul {
-  list-style: none;
-  margin: 0;
-  padding: .35rem 0;
-}
-[dir=rtl] #mediamanager__page .namespaces ul { margin-left: 0; margin-right: .2em; }
-#mediamanager__page .namespaces ul ul { margin-left: 1em; padding: 0; }
-[dir=rtl] #mediamanager__page .namespaces ul ul { margin-left: 0; margin-right: 1em; }
-#mediamanager__page .namespaces ul ul li { margin: 0; }
-#mediamanager__page .namespaces ul li a {
-  display: block;
-  padding: .28em .85em;
-  font-size: .82rem;
-  color: var(--fg-2);
+#mediamanager__page .panelHeader ul li { margin: 0; padding: 0; }
+#mediamanager__page .panelHeader a {
+  color: var(--fg-3);
+  font-size: .78rem;
   text-decoration: none;
-  border-left: 2px solid transparent;
-  transition: background var(--t), color var(--t), border-left-color var(--t);
+  padding: .2em .4em;
+  border-radius: var(--r3);
+  transition: all var(--t);
 }
-#mediamanager__page .namespaces ul li a:hover {
-  background: var(--bg-raised);
-  color: var(--pr);
-  border-left-color: var(--pr);
-}
-#mediamanager__page .namespaces ul .selected {
-  background: var(--pr-light);
-  border-radius: var(--r2);
-}
-#mediamanager__page .namespaces ul .selected a { color: var(--pr); font-weight: 600; border-left-color: var(--pr); }
+#mediamanager__page .panelHeader a:hover { background: var(--bg-card); color: var(--pr); }
 
-/* ── File list ───────────────────────────────────────── */
-[dir=rtl] #mediamanager__page .panelContent { text-align: right; }
-
-/* Thumbnail grid */
-#mediamanager__page .filelist .thumbs {
-  list-style: none;
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
-  gap: .5rem;
+/* ── Panel content ────────────────────────────────────── */
+#mediamanager__page .panelContent {
+  background: var(--bg-card);
+  border: 1px solid var(--bd);
+  border-top: none;
+  border-radius: 0 0 var(--r) var(--r);
   padding: .75rem;
-  margin: 0;
+  min-height: 200px;
+  overflow: auto;
+  max-height: 60vh;
 }
-#mediamanager__page .filelist .thumbs li {
+
+/* ── Namespaces tree ──────────────────────────────────── */
+#mediamanager__page .namespaces .panelContent ul { list-style: none; padding: 0; margin: 0; }
+#mediamanager__page .namespaces .panelContent li {
+  padding: .25em .5em;
+  font-size: .82rem;
+  cursor: pointer;
+  border-radius: var(--r3);
+  transition: background var(--t);
+}
+#mediamanager__page .namespaces .panelContent li:hover { background: var(--bg-raised); }
+#mediamanager__page .namespaces .panelContent li.selected { background: var(--pr-soft); color: var(--pr); font-weight: 600; }
+#mediamanager__page .namespaces .panelContent li a { color: inherit; text-decoration: none; }
+
+/* ── File list ────────────────────────────────────────── */
+#mediamanager__page .filelist .panelContent ul { list-style: none; padding: 0; margin: 0; }
+#mediamanager__page .filelist .panelContent li {
   display: flex;
-  flex-direction: column;
   align-items: center;
-  background: var(--bg-raised);
+  gap: .5rem;
+  padding: .4em .5em;
+  font-size: .82rem;
+  border-radius: var(--r3);
+  transition: background var(--t);
+}
+#mediamanager__page .filelist .panelContent li:hover { background: var(--bg-raised); }
+#mediamanager__page .filelist .panelContent li.selected { background: var(--pr-soft); }
+#mediamanager__page .filelist .panelContent li a { color: var(--fg-2); text-decoration: none; }
+#mediamanager__page .filelist .panelContent li.selected a { color: var(--pr); font-weight: 600; }
+
+/* ── File detail panel ────────────────────────────────── */
+#mediamanager__page .file .panelContent { padding: 1rem; }
+#mediamanager__page .file .panelContent dl { display: grid; grid-template-columns: auto 1fr; gap: .3em .8em; margin: 0; }
+#mediamanager__page .file .panelContent dt { font-weight: 600; color: var(--fg-3); font-size: .78rem; }
+#mediamanager__page .file .panelContent dd { margin: 0; color: var(--fg-2); font-size: .82rem; }
+
+/* ── Upload area ──────────────────────────────────────── */
+#mediamanager__page .upload {
+  margin-top: 1rem;
+  background: var(--bg-card);
   border: 1px solid var(--bd);
   border-radius: var(--r);
-  padding: .5rem;
-  text-align: center;
-  line-height: 1.3;
-  transition: all var(--t);
-  cursor: pointer;
-  min-height: 0;
-  width: auto;
+  padding: 1rem 1.25rem;
 }
-#mediamanager__page .filelist .thumbs li:hover {
-  border-color: var(--pr);
-  background: var(--bg-subtle);
-  box-shadow: var(--sh-1);
-  transform: translateY(-1px);
-}
-#mediamanager__page .filelist .thumbs li .name,
-#mediamanager__page .filelist .thumbs li .size,
-#mediamanager__page .filelist .thumbs li .filesize,
-#mediamanager__page .filelist .thumbs li .date {
-  display: block;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  width: 100%;
-  white-space: nowrap;
-  font-size: .73rem;
-}
-#mediamanager__page .filelist .thumbs li .name { padding: .3rem 0 .1rem; font-weight: 600; color: var(--fg-2); }
-#mediamanager__page .filelist .thumbs li .date { color: var(--fg-4); font-style: italic; white-space: normal; font-size: .68rem; }
-
-/* Row list */
-#mediamanager__page .filelist .rows {
-  list-style: none;
-  padding: .35rem 0;
-  margin: 0;
-}
-#mediamanager__page .filelist .rows li {
-  display: flex;
-  align-items: center;
-  gap: .5rem;
-  padding: .35em .85em;
-  border-bottom: 1px solid var(--bd);
-  background: var(--bg-card);
-  transition: background var(--t);
-  max-height: none;
-  overflow: visible;
-  position: static;
-}
-#mediamanager__page .filelist .rows li:last-child { border-bottom: none; }
-#mediamanager__page .filelist .rows li:hover { background: var(--bg-raised); }
-#mediamanager__page .filelist .rows li:nth-child(2n+1) { background: var(--bg-raised); }
-#mediamanager__page .filelist .rows li:nth-child(2n+1):hover { background: var(--bg-subtle); }
-
-#mediamanager__page .filelist .rows li dt { float: none; width: 36px; height: 36px; flex-shrink: 0; text-align: center; }
-#mediamanager__page .filelist .rows li dt a { display: flex; align-items: center; justify-content: center; width: 36px; height: 36px; }
-#mediamanager__page .filelist .rows li dt a img { max-width: 32px; max-height: 32px; border-radius: var(--r2); }
-
-#mediamanager__page .filelist .rows li .name,
-#mediamanager__page .filelist .rows li .size,
-#mediamanager__page .filelist .rows li .filesize,
-#mediamanager__page .filelist .rows li .date {
-  float: none;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  margin: 0;
+#mediamanager__page .upload legend {
+  font-weight: 600;
+  font-size: .9rem;
   color: var(--fg);
-  font-size: .82rem;
+  padding: 0 .5em;
+  margin-bottom: .5em;
 }
-#mediamanager__page .filelist .rows li .name { flex: 1; min-width: 0; font-weight: 600; color: var(--fg-2); }
-#mediamanager__page .filelist .rows li .size,
-#mediamanager__page .filelist .rows li .filesize { flex: 0 0 60px; text-align: right; color: var(--fg-4); font-size: .76rem; }
-#mediamanager__page .filelist .rows li .date { flex: 0 0 100px; text-align: right; font-style: italic; color: var(--fg-4); font-size: .76rem; white-space: normal; }
+#mediamanager__page .upload p { font-size: .82rem; color: var(--fg-3); margin: .5em 0; }
 
-#mediamanager__page .filelist .panelContent ul li:hover { background-color: var(--bg-subtle); }
-
-/* ── File detail panel ───────────────────────────────── */
-#mediamanager__page .file ul.actions {
-  display: flex;
-  flex-wrap: wrap;
-  gap: .3rem;
-  justify-content: center;
-  padding: .6rem .75rem;
-  margin: 0;
+/* ── Tabs ──────────────────────────────────────────────── */
+#mediamanager__page ul.tabs {
+  display: flex !important;
+  gap: 2px;
   border-bottom: 1px solid var(--bd);
+  margin: 0 0 1rem;
+  padding: 0;
   list-style: none;
 }
-#mediamanager__page .file ul.actions li { display: inline-flex; }
-
-#mediamanager__page .file div.image {
-  padding: .75rem;
-  text-align: center;
-  border-bottom: 1px solid var(--bd);
-  background: var(--bg-raised);
-}
-#mediamanager__page .file div.image img {
-  max-width: 100%;
-  height: auto;
-  border-radius: var(--r2);
-  box-shadow: var(--sh-1);
-}
-
-#mediamanager__page .file dl { margin: 0; }
-#mediamanager__page .file dl dt {
-  font-weight: 700;
-  font-size: .75rem;
-  text-transform: uppercase;
-  letter-spacing: .05em;
+#mediamanager__page ul.tabs li { margin: 0; padding: 0; }
+#mediamanager__page ul.tabs a {
   display: block;
+  padding: .5em 1em;
   background: var(--bg-raised);
-  padding: .35em .85em;
+  border: 1px solid var(--bd);
+  border-bottom: none;
+  border-radius: var(--r2) var(--r2) 0 0;
   color: var(--fg-3);
-  border-bottom: 1px solid var(--bd);
-  border-top: 1px solid var(--bd);
-  margin-top: .5rem;
+  font-size: .85rem;
+  font-weight: 500;
+  text-decoration: none;
+  transition: all var(--t);
 }
-#mediamanager__page .file dl dt:first-child { margin-top: 0; border-top: none; }
-#mediamanager__page .file dl dd {
-  display: block;
+#mediamanager__page ul.tabs a:hover { background: var(--bg-card); color: var(--fg); }
+#mediamanager__page ul.tabs .active a,
+#mediamanager__page ul.tabs li.active a {
   background: var(--bg-card);
-  padding: .35em .85em;
-  color: var(--fg);
-  font-size: .84rem;
-}
-
-/* Meta form */
-#mediamanager__page form.meta div.row  { margin-bottom: .5rem; padding: 0 .85rem; }
-#mediamanager__page form.meta label span { display: block; font-size: .78rem; font-weight: 600; color: var(--fg-3); margin-bottom: .25rem; }
-#mediamanager__page form.meta input   { width: 100% !important; box-sizing: border-box; }
-#mediamanager__page form.meta input.button { width: auto !important; }
-#mediamanager__page form.meta textarea.edit { height: 5em; width: 100% !important; min-width: 100% !important; max-width: 100% !important; }
-
-/* Changes form */
-#mediamanager__page form.changes ul { margin-left: .85rem; list-style: none; }
-#mediamanager__page form.changes ul li div.li div { font-size: .82em; color: var(--fg-3); padding-left: 1rem; }
-
-/* Upload area */
-#mediamanager__page div.upload { padding: .5rem .85rem .25rem; }
-#media__content #mediamanager__uploader { border-bottom: 1px solid var(--bd); padding-bottom: .5rem; }
-
-/* Diff */
-#mediamanager__diff table { table-layout: fixed; width: 100%; }
-#mediamanager__diff td,
-#mediamanager__diff th { width: 48%; margin: 0 .35rem .5rem 0; padding: 0; vertical-align: top; text-align: left; }
-#mediamanager__diff th { font-weight: 600; color: var(--fg-2); font-size: .82rem; }
-#mediamanager__diff th a { font-weight: 700; color: var(--pr); }
-#mediamanager__diff dl dd strong { background: var(--pr-light); color: var(--fg); font-weight: 400; border-radius: var(--r2); padding: 0 .2em; }
-#mediamanager__diff div.slider { margin: .5rem .85rem; width: calc(100% - 1.7rem); }
-#mediamanager__page .file form.diffView { margin-bottom: .5rem; display: block; padding: 0 .85rem; }
-
-/* ── Responsive ──────────────────────────────────────── */
-@media screen and (max-width: 800px) {
-  #mediamanager__page .panelWrapper {
-    flex-direction: column;
-  }
-  #mediamanager__page .namespaces,
-  #mediamanager__page .filelist,
-  #mediamanager__page .file {
-    flex: none;
-    width: 100% !important;
-    min-width: 0 !important;
-  }
-  #mediamanager__page .panelContent { max-height: 300px; }
-  #mediamanager__page .filelist .panelContent { max-height: 400px; }
-  #mediamanager__page .filelist .thumbs { grid-template-columns: repeat(auto-fill, minmax(80px, 1fr)); }
-}
-
-/* ── Upload button & media action buttons ─────────────── */
-#mediamanager__upload_button,
-.qq-upload-action {
-  font-family: inherit !important;
-  font-size: .82rem !important;
-  font-weight: 600 !important;
-  padding: .4em .9em !important;
-  background: var(--pr) !important;
-  color: #fff !important;
-  border: none !important;
-  border-radius: var(--r2) !important;
-  cursor: pointer !important;
-  box-shadow: none !important;
-  transform: none !important;
-  -webkit-appearance: none !important;
-  appearance: none !important;
-  transition: background var(--t) !important;
-}
-#mediamanager__upload_button:hover,
-.qq-upload-action:hover {
-  background: var(--pr-hover) !important;
-}
-[data-theme="dark"] #mediamanager__upload_button,
-[data-theme="dark"] .qq-upload-action {
-  color: #0c1a12 !important;
-}
-
-/* qq-upload button (Select files…) */
-.qq-upload-button {
-  font-family: inherit !important;
-  font-size: .82rem !important;
-  font-weight: 500 !important;
-  padding: .4em .9em !important;
-  background: var(--bg-raised) !important;
-  color: var(--fg-2) !important;
-  border: 1px solid var(--bd) !important;
-  border-radius: var(--r2) !important;
-  cursor: pointer !important;
-  box-shadow: none !important;
-  transition: all var(--t) !important;
-}
-.qq-upload-button:hover {
-  background: var(--bg-subtle) !important;
-  border-color: var(--pr) !important;
-  color: var(--pr) !important;
-}
-
-/* Media popup dialog buttons */
-#media__popup_content .button {
-  font-family: inherit !important;
-  font-size: .8rem !important;
-  padding: .3em .6em !important;
-  background: var(--bg-raised) !important;
-  color: var(--fg-2) !important;
-  border: 1px solid var(--bd) !important;
-  border-radius: var(--r2) !important;
-  cursor: pointer !important;
-  box-shadow: none !important;
-  transform: none !important;
-  transition: all var(--t) !important;
-  display: inline-flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-}
-#media__popup_content .button:hover {
-  background: var(--bg-card) !important;
-  border-color: var(--pr) !important;
-  color: var(--pr) !important;
-}
-#media__popup_content .button img {
-  width: 16px !important;
-  height: 16px !important;
-}
-#media__sendbtn {
-  background: var(--pr) !important;
-  color: #fff !important;
-  border-color: var(--pr) !important;
-  font-weight: 600 !important;
-}
-#media__sendbtn:hover {
-  background: var(--pr-hover) !important;
-  border-color: var(--pr-hover) !important;
-}
-[data-theme="dark"] #media__sendbtn { color: #0c1a12 !important; }
-
-/* Media popup dialog styling */
-.ui-dialog {
-  border: 1px solid var(--bd) !important;
-  border-radius: var(--r) !important;
-  background: var(--bg-card) !important;
-  box-shadow: var(--sh-3) !important;
-  font-family: inherit !important;
-}
-.ui-dialog .ui-dialog-titlebar {
-  background: var(--bg-raised) !important;
-  border-bottom: 1px solid var(--bd) !important;
-  color: var(--fg) !important;
-  font-weight: 600 !important;
-}
-.ui-dialog .ui-dialog-title { font-size: .9rem !important; }
-.ui-dialog .ui-button {
-  background: var(--bg-raised) !important;
-  border: 1px solid var(--bd) !important;
-  border-radius: var(--r2) !important;
-  box-shadow: none !important;
-}
-.ui-dialog .ui-button:hover {
-  background: var(--bg-subtle) !important;
-  border-color: var(--pr) !important;
-}
-.ui-dialog label {
-  display: inline-block !important;
-  font-weight: 600 !important;
-  color: var(--fg-2) !important;
-  margin-right: .5em !important;
+  color: var(--pr);
+  font-weight: 600;
+  border-bottom: 1px solid var(--bg-card);
+  margin-bottom: -1px;
 }
 
 /* Tabs in media manager */
@@ -444,4 +180,250 @@
   border-bottom: none;
   border-radius: var(--r2) var(--r2) 0 0;
   margin-bottom: -1px;
+}
+
+/* ── Media Manager search form (#dw__mediasearch) ──────── */
+#dw__mediasearch {
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: stretch !important;
+  gap: .35rem !important;
+  width: 100% !important;
+  margin: 0 0 .5rem 0 !important;
+}
+#dw__mediasearch input.edit,
+#dw__mediasearch input[type="text"],
+#dw__mediasearch input[type="search"] {
+  flex: 1 1 auto !important;
+  min-width: 0 !important;
+  height: 34px !important;
+  padding: 0 .7em !important;
+  font-size: .82rem !important;
+  font-family: inherit !important;
+  color: var(--fg) !important;
+  background: var(--bg-card) !important;
+  border: 1.5px solid var(--bd) !important;
+  border-radius: var(--r2) !important;
+  outline: none !important;
+  box-shadow: none !important;
+  transition: border-color var(--t), box-shadow var(--t) !important;
+}
+#dw__mediasearch input.edit:focus,
+#dw__mediasearch input[type="text"]:focus,
+#dw__mediasearch input[type="search"]:focus {
+  border-color: var(--pr) !important;
+  box-shadow: 0 0 0 3px var(--pr-ring) !important;
+}
+#dw__mediasearch button[type="submit"],
+#dw__mediasearch input[type="submit"],
+#dw__mediasearch button,
+#dw__mediasearch input.button {
+  flex: 0 0 auto !important;
+  height: 34px !important;
+  min-width: 0 !important;
+  padding: 0 1em !important;
+  font-size: .8rem !important;
+  font-weight: 600 !important;
+  font-family: inherit !important;
+  color: #fff !important;
+  background: var(--pr) !important;
+  border: none !important;
+  border-radius: var(--r2) !important;
+  cursor: pointer !important;
+  white-space: nowrap !important;
+  box-shadow: none !important;
+  transform: none !important;
+  -webkit-appearance: none !important;
+  appearance: none !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  transition: background var(--t) !important;
+}
+#dw__mediasearch button[type="submit"]:hover,
+#dw__mediasearch input[type="submit"]:hover,
+#dw__mediasearch button:hover,
+#dw__mediasearch input.button:hover {
+  background: var(--pr-hover) !important;
+  transform: none !important;
+  box-shadow: none !important;
+}
+[data-theme="dark"] #dw__mediasearch button[type="submit"],
+[data-theme="dark"] #dw__mediasearch input[type="submit"],
+[data-theme="dark"] #dw__mediasearch button,
+[data-theme="dark"] #dw__mediasearch input.button {
+  color: #0c1a12 !important;
+}
+
+/* ── Upload buttons ────────────────────────────────────── */
+#mediamanager__upload_button, .qq-upload-action {
+  font-family: inherit !important;
+  font-size: .82rem !important;
+  font-weight: 600 !important;
+  padding: .4em .9em !important;
+  background: var(--pr) !important;
+  color: #fff !important;
+  border: none !important;
+  border-radius: var(--r2) !important;
+  cursor: pointer !important;
+  box-shadow: none !important;
+  transform: none !important;
+  -webkit-appearance: none !important;
+  appearance: none !important;
+  transition: background var(--t) !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+#mediamanager__upload_button:hover, .qq-upload-action:hover {
+  background: var(--pr-hover) !important;
+  transform: none !important;
+  box-shadow: none !important;
+}
+[data-theme="dark"] #mediamanager__upload_button,
+[data-theme="dark"] .qq-upload-action { color: #0c1a12 !important; }
+
+.qq-upload-button {
+  font-family: inherit !important;
+  font-size: .82rem !important;
+  font-weight: 500 !important;
+  padding: .4em .9em !important;
+  background: var(--bg-raised) !important;
+  color: var(--fg-2) !important;
+  border: 1px solid var(--bd) !important;
+  border-radius: var(--r2) !important;
+  cursor: pointer !important;
+  box-shadow: none !important;
+  transform: none !important;
+  transition: all var(--t) !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+.qq-upload-button:hover {
+  background: var(--bg-card) !important;
+  border-color: var(--pr) !important;
+  color: var(--pr) !important;
+  transform: none !important;
+  box-shadow: none !important;
+}
+
+/* ── Media popup dialog buttons ────────────────────────── */
+#media__popup_content .button,
+#media__popup_content input.button,
+#media__popup_content button {
+  font-family: inherit !important;
+  font-size: .8rem !important;
+  font-weight: 500 !important;
+  padding: .35em .75em !important;
+  background: var(--bg-raised) !important;
+  color: var(--fg-2) !important;
+  border: 1px solid var(--bd) !important;
+  border-radius: var(--r2) !important;
+  cursor: pointer !important;
+  box-shadow: none !important;
+  transform: none !important;
+  -webkit-appearance: none !important;
+  appearance: none !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  transition: all var(--t) !important;
+}
+#media__popup_content .button:hover,
+#media__popup_content input.button:hover,
+#media__popup_content button:hover {
+  background: var(--bg-card) !important;
+  border-color: var(--pr) !important;
+  color: var(--pr) !important;
+  transform: none !important;
+  box-shadow: none !important;
+}
+
+/* Primary send button in media popup */
+#media__sendbtn {
+  background: var(--pr) !important;
+  color: #fff !important;
+  border-color: var(--pr) !important;
+  font-weight: 600 !important;
+}
+#media__sendbtn:hover {
+  background: var(--pr-hover) !important;
+  border-color: var(--pr-hover) !important;
+  color: #fff !important;
+}
+[data-theme="dark"] #media__sendbtn { color: #0c1a12 !important; }
+
+/* ── jQuery UI Dialog overrides ────────────────────────── */
+.ui-dialog {
+  border: 1px solid var(--bd) !important;
+  border-radius: var(--r) !important;
+  background: var(--bg-card) !important;
+  box-shadow: var(--sh-3) !important;
+  font-family: inherit !important;
+}
+.ui-dialog-titlebar {
+  background: var(--bg-raised) !important;
+  color: var(--fg) !important;
+  border-bottom: 1px solid var(--bd) !important;
+  border-radius: var(--r) var(--r) 0 0 !important;
+  padding: .6em 1em !important;
+  font-weight: 600 !important;
+}
+.ui-dialog-title { font-size: .9rem !important; font-weight: 600 !important; }
+.ui-dialog-content { padding: 1em 1.25em !important; font-size: .85rem !important; color: var(--fg-2) !important; }
+.ui-dialog-buttonpane {
+  border-top: 1px solid var(--bd) !important;
+  background: var(--bg-raised) !important;
+  padding: .5em 1em !important;
+  margin-top: 0 !important;
+}
+.ui-dialog-buttonpane button {
+  font-family: inherit !important;
+  font-size: .82rem !important;
+  font-weight: 500 !important;
+  padding: .4em .9em !important;
+  background: var(--bg-raised) !important;
+  color: var(--fg-2) !important;
+  border: 1px solid var(--bd) !important;
+  border-radius: var(--r2) !important;
+  cursor: pointer !important;
+  box-shadow: none !important;
+  transform: none !important;
+  -webkit-appearance: none !important;
+  appearance: none !important;
+  transition: all var(--t) !important;
+}
+.ui-dialog-buttonpane button:hover {
+  background: var(--bg-card) !important;
+  border-color: var(--pr) !important;
+  color: var(--pr) !important;
+  transform: none !important;
+  box-shadow: none !important;
+}
+.ui-dialog-buttonpane button.ui-state-active,
+.ui-dialog-buttonpane button.primary {
+  background: var(--pr) !important;
+  color: #fff !important;
+  border-color: var(--pr) !important;
+  font-weight: 600 !important;
+}
+[data-theme="dark"] .ui-dialog-buttonpane button.ui-state-active,
+[data-theme="dark"] .ui-dialog-buttonpane button.primary { color: #0c1a12 !important; }
+.ui-widget-overlay { background: rgba(0,0,0,.45) !important; opacity: 1 !important; }
+
+/* ── Responsive ────────────────────────────────────────── */
+@media (max-width: 900px) {
+  #mediamanager__page .panelWrapper {
+    flex-direction: column;
+  }
+  #mediamanager__page .namespaces,
+  #mediamanager__page .filelist,
+  #mediamanager__page .file {
+    flex: 1 1 100%;
+    width: 100%;
+  }
+  #mediamanager__page .namespaces { order: 1; }
+  #mediamanager__page .filelist   { order: 2; }
+  #mediamanager__page .file       { order: 3; }
 }
