@@ -6,8 +6,9 @@
 if (!defined('DOKU_INC')) die();
 
 $dir_attr  = $lang['direction'];
-$has_logo  = @file_exists(__DIR__ . '/images/logo.png');
-$logo_path = DOKU_TPL . 'images/logo.png';
+$logo_id   = 'wiki:logo.png';
+$has_logo  = @file_exists(mediaFN($logo_id));
+$logo_path = ml($logo_id);
 $is_rtl    = ($dir_attr === 'rtl');
 $body_cls  = $is_rtl ? ' class="rtl-page"' : '';
 
@@ -24,7 +25,7 @@ $tools = ['edit','history','recent','media','admin'];
 <html lang="<?php echo $conf['lang'] ?>" dir="<?php echo $dir_attr ?>">
 <head>
 <meta charset="utf-8">
-<title><?php tpl_pagetitle() ?> [<?php echo strip_tags($conf['title']) ?>]</title>
+<title><?php echo tpl_pagetitle() ?> [<?php echo strip_tags($conf['title']) ?>]</title>
 
 <!-- Anti-flash: set theme BEFORE any CSS loads -->
 <script>
