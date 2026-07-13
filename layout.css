@@ -404,50 +404,12 @@
   left: 1.5rem;
 }
 
-.fab-edit-wrap {
-  position: relative;
-  display: inline-flex;
-  align-items: center;
-}
-.fab-edit-wrap form,
-.fab-edit-wrap > a {
-  position: relative;
-  display: inline-flex;
-  align-items: center;
-}
-.fab-edit-icon {
-  position: absolute;
-  left: .9em;
-  top: 50%;
-  transform: translateY(-50%);
-  pointer-events: none;
-  color: var(--fg-2);
-  display: inline-flex;
-  transition: color var(--t);
-}
-.fab-edit-container[dir="rtl"] .fab-edit-icon {
-  left: auto;
-  right: .9em;
-}
-.fab-edit-wrap input.button,
-.fab-edit-wrap a.button { padding-left: 2.5em !important; }
-.fab-edit-container[dir="rtl"] .fab-edit-wrap input.button,
-.fab-edit-container[dir="rtl"] .fab-edit-wrap a.button { padding-left: 1.1em !important; padding-right: 2.5em !important; }
-.fab-edit-wrap:hover .fab-edit-icon { color: var(--pr); }
-
-.fab-edit-wrap form,
-.fab-edit-wrap .plugin_block,
-.fab-edit-wrap > a { display: flex; }
-
-.fab-edit-wrap input.button,
-.fab-edit-wrap a.button,
-.fab-edit-wrap .button {
+.fab-edit-btn {
   display: inline-flex !important;
   align-items: center !important;
-  justify-content: center !important;
-  gap: .35em;
+  gap: .45em !important;
   height: 42px !important;
-  padding: 0 1.1em !important;
+  padding: 0 1.2em !important;
   font-size: .8rem !important;
   font-weight: 600 !important;
   font-family: inherit !important;
@@ -455,23 +417,36 @@
   background: var(--bg-card) !important;
   border: 1px solid var(--bd) !important;
   border-radius: 999px !important;
-  cursor: pointer;
-  white-space: nowrap;
+  cursor: pointer !important;
+  white-space: nowrap !important;
+  text-decoration: none !important;
   box-shadow: var(--sh-2) !important;
   transition: all var(--t) !important;
   transform: none !important;
+  -webkit-appearance: none !important;
+  appearance: none !important;
 }
-.fab-edit-wrap input.button:hover,
-.fab-edit-wrap a.button:hover {
+.fab-edit-btn:hover {
   background: var(--bg-raised) !important;
   border-color: var(--pr) !important;
   color: var(--pr) !important;
   box-shadow: var(--sh-3) !important;
   transform: translateY(-1px) !important;
+  text-decoration: none !important;
+}
+.fab-edit-btn .fab-edit-icon {
+  display: inline-flex;
+  flex-shrink: 0;
+  transition: color var(--t);
+}
+.fab-edit-btn .fab-edit-label {
+  line-height: 1;
+}
+.fab-edit-btn:hover .fab-edit-icon {
+  color: var(--pr);
 }
 
-[data-theme="dark"] .fab-edit-wrap input.button,
-[data-theme="dark"] .fab-edit-wrap a.button {
+[data-theme="dark"] .fab-edit-btn {
   background: var(--bg-raised) !important;
   border-color: var(--bd) !important;
   color: var(--fg-2) !important;
