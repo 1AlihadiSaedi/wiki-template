@@ -144,14 +144,21 @@ html[dir="rtl"] .side-drawer.is-open { right: 0; }
   background: var(--pr) !important;
   color: #fff !important;
   border: none !important;
-  cursor: pointer;
-  font-size: .88rem;
-  transition: background var(--t);
+  cursor: pointer !important;
+  font-size: .88rem !important;
+  font-family: inherit !important;
+  font-weight: 600 !important;
+  transition: background var(--t) !important;
   box-shadow: none !important;
   transform: none !important;
+  -webkit-appearance: none !important;
+  appearance: none !important;
   display: inline-flex !important;
   align-items: center !important;
   justify-content: center !important;
+  white-space: nowrap !important;
+  min-width: 0 !important;
+  height: 100% !important;
 }
 .drawer-section #dw__search button:hover { background: var(--pr-hover) !important; }
 [data-theme="dark"] .drawer-section #dw__search button { color: #0c1a12 !important; }
@@ -228,6 +235,7 @@ body.menu-open { overflow: hidden; }
   div.dokuwiki .page {
     padding: 1.1rem .85rem 2rem;
     font-size: .92rem;
+    overflow-x: hidden;
   }
   div.dokuwiki h1 { font-size: 1.45rem; }
   div.dokuwiki h2 { font-size: 1.2rem; }

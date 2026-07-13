@@ -195,14 +195,16 @@
   background: var(--pr) !important;
   border: none !important;
   border-radius: 0 999px 999px 0 !important;
-  cursor: pointer;
-  white-space: nowrap;
+  cursor: pointer !important;
+  white-space: nowrap !important;
   box-shadow: none !important;
   transform: none !important;
   transition: background var(--t) !important;
   display: inline-flex !important;
   align-items: center !important;
   justify-content: center !important;
+  -webkit-appearance: none !important;
+  appearance: none !important;
 }
 .nav-search form input[type="submit"]:hover,
 .nav-search form button[type="submit"]:hover {
@@ -735,13 +737,15 @@ div.dokuwiki .logo { display: none; }
   border: none !important;
   border-radius: 0 999px 999px 0 !important;
   cursor: pointer !important;
-  white-space: nowrap;
+  white-space: nowrap !important;
   box-shadow: none !important;
   transform: none !important;
   transition: background var(--t) !important;
   display: inline-flex !important;
   align-items: center !important;
   justify-content: center !important;
+  -webkit-appearance: none !important;
+  appearance: none !important;
 }
 .drawer-section form input[type="submit"]:hover,
 .drawer-section form button[type="submit"]:hover,
