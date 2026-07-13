@@ -66,7 +66,7 @@
   display: block;
   width: 18px;
   height: 1.5px;
-  background: var(--fg-2);
+  background: var(--fg-3);
   border-radius: 2px;
   transition: all .3s cubic-bezier(.68,-.55,.265,1.55);
 }
@@ -360,7 +360,8 @@
 .header-actions form,
 .header-actions .plugin_block { display: inline-flex; }
 .header-actions input.button,
-.header-actions button {
+.header-actions button,
+.header-action-btn {
   font-size: .76rem;
   padding: .32em .65em;
   background: transparent !important;
@@ -374,14 +375,20 @@
   transform: none !important;
   font-family: inherit;
   font-weight: 500;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none !important;
 }
 .header-actions input.button:hover,
-.header-actions button:hover {
+.header-actions button:hover,
+.header-action-btn:hover {
   background: var(--bg-raised) !important;
   color: var(--fg) !important;
   border-color: var(--bd) !important;
   transform: none !important;
   box-shadow: none !important;
+  text-decoration: none !important;
 }
 
 /* ── Floating Action Buttons (fixed, not sticky) ────── */
@@ -724,7 +731,7 @@
   transition: color var(--t), background var(--t);
 }
 .mobile-toc-toggle:hover { background: var(--bg-raised); color: var(--pr); }
-.mobile-toc-toggle svg:first-child { color: var(--pr); flex-shrink: 0; }
+.mobile-toc-toggle svg:first-child { color: var(--fg-3); flex-shrink: 0; }
 
 .mobile-toc-chevron {
   margin-left: auto;
