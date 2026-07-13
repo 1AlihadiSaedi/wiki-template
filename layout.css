@@ -1,1 +1,814 @@
-$(cat /tmp/cc-agent/68775058/project/layout.css)
+/* =====================================================
+   Green Silk – Layout v3
+   Header, sidebar, content, footer, navigation
+   ===================================================== */
+
+/* ── Skip link ───────────────────────────────────────── */
+.skip-link {
+  position: absolute;
+  top: -100%;
+  left: 1rem;
+  z-index: 9999;
+  background: var(--pr);
+  color: #fff;
+  padding: .5em 1em;
+  border-radius: 0 0 var(--r) var(--r);
+  font-size: .9rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: top var(--t);
+}
+.skip-link:focus { top: 0; }
+
+/* ── Site Header ─────────────────────────────────────── */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  height: 60px;
+  background: color-mix(in srgb, var(--bg-card) 88%, transparent);
+  border-bottom: 1px solid var(--bd);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  transition: background var(--t), border-color var(--t);
+}
+
+.header-inner {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 1.25rem;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+}
+
+/* Hamburger */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 4px;
+  width: 38px;
+  height: 38px;
+  padding: 0;
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: var(--r2);
+  cursor: pointer;
+  transition: background var(--t), border-color var(--t);
+  flex-shrink: 0;
+}
+.hamburger:hover { background: var(--bg-raised); border-color: var(--bd); }
+
+.hamburger-line {
+  display: block;
+  width: 18px;
+  height: 1.5px;
+  background: var(--fg-2);
+  border-radius: 2px;
+  transition: all .3s cubic-bezier(.68,-.55,.265,1.55);
+}
+.hamburger.is-active .hamburger-line:nth-child(1) { transform: translateY(5.5px) rotate(45deg); }
+.hamburger.is-active .hamburger-line:nth-child(2) { opacity: 0; transform: scaleX(0); }
+.hamburger.is-active .hamburger-line:nth-child(3) { transform: translateY(-5.5px) rotate(-45deg); }
+
+/* Branding */
+.site-branding {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  margin-right: .25rem;
+}
+
+.site-logo {
+  width: 28px;
+  height: 28px;
+  border-radius: var(--r2);
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
+.site-title {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--fg);
+  text-decoration: none !important;
+  letter-spacing: -.025em;
+  white-space: nowrap;
+  transition: color var(--t);
+}
+.site-title:hover { color: var(--pr); }
+
+/* Page name pill */
+.page-name {
+  flex: 1;
+  min-width: 0;
+  font-size: .82rem;
+  color: var(--fg-3);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.page-name-sep { margin: 0 .35rem; color: var(--bd-strong); }
+.page-name a   { color: var(--fg-3); text-decoration: none; }
+.page-name a:hover { color: var(--pr); }
+
+/* ── Desktop nav: search + quick action buttons ─────── */
+.desktop-nav {
+  display: flex;
+  align-items: center;
+  gap: .4rem;
+  flex-shrink: 0;
+}
+
+.nav-search {
+  width: 220px;
+  flex-shrink: 0;
+}
+
+/* ── Search bar ─────────────────────────────────────────
+   DokuWiki outputs: form#dw__search > div.no + input.edit#qsearch__in + button[submit]
+   Core CSS uses #dw__search ID selector — we must match it.
+   ─────────────────────────────────────────────────────── */
+.nav-search #dw__search,
+.nav-search form {
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: stretch !important;
+  direction: ltr !important;
+  width: 100% !important;
+  height: 34px !important;
+  background: var(--bg-raised) !important;
+  border: 1.5px solid var(--bd) !important;
+  border-radius: 999px !important;
+  overflow: hidden !important;
+  box-shadow: none !important;
+  transition: border-color var(--t), box-shadow var(--t) !important;
+}
+.nav-search #dw__search:focus-within,
+.nav-search form:focus-within {
+  border-color: var(--pr) !important;
+  box-shadow: 0 0 0 3px var(--pr-ring) !important;
+}
+
+/* DokuWiki wraps hidden fields in div.no — collapse it */
+.nav-search #dw__search div.no,
+.nav-search form div.no {
+  display: contents !important;
+}
+.nav-search #dw__search div.no input[type="hidden"],
+.nav-search form div.no input[type="hidden"] { display: none !important; }
+
+/* Text input — DokuWiki uses class="edit" on the input */
+.nav-search #dw__search input.edit,
+.nav-search #dw__search input[type="text"],
+.nav-search #dw__search input[type="search"],
+.nav-search form input.edit,
+.nav-search form input[type="text"],
+.nav-search form input[type="search"] {
+  flex: 1 1 auto !important;
+  min-width: 0 !important;
+  height: 100% !important;
+  padding: 0 .8em !important;
+  font-size: .82rem !important;
+  font-family: inherit !important;
+  color: var(--fg) !important;
+  background: transparent !important;
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+  border-radius: 0 !important;
+  transform: none !important;
+  transition: none !important;
+}
+.nav-search #dw__search input.edit::placeholder,
+.nav-search #dw__search input[type="text"]::placeholder,
+.nav-search #dw__search input[type="search"]::placeholder,
+.nav-search form input.edit::placeholder,
+.nav-search form input[type="text"]::placeholder,
+.nav-search form input[type="search"]::placeholder {
+  color: var(--fg-4) !important;
+}
+
+/* Submit button — must use #dw__search ID to match DokuWiki core specificity */
+.nav-search #dw__search input[type="submit"],
+.nav-search #dw__search button[type="submit"],
+.nav-search #dw__search button,
+.nav-search form input[type="submit"],
+.nav-search form button[type="submit"],
+.nav-search form button {
+  flex: 0 0 auto !important;
+  height: 100% !important;
+  min-width: 0 !important;
+  padding: 0 .9em !important;
+  font-size: .78rem !important;
+  font-weight: 600 !important;
+  font-family: inherit !important;
+  color: #fff !important;
+  background: var(--pr) !important;
+  border: none !important;
+  border-radius: 0 999px 999px 0 !important;
+  cursor: pointer !important;
+  white-space: nowrap !important;
+  box-shadow: none !important;
+  transform: none !important;
+  -webkit-appearance: none !important;
+  appearance: none !important;
+  transition: background var(--t) !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+.nav-search #dw__search input[type="submit"]:hover,
+.nav-search #dw__search button[type="submit"]:hover,
+.nav-search #dw__search button:hover,
+.nav-search form input[type="submit"]:hover,
+.nav-search form button[type="submit"]:hover,
+.nav-search form button:hover {
+  background: var(--pr-hover) !important;
+  transform: none !important;
+  box-shadow: none !important;
+}
+[data-theme="dark"] .nav-search #dw__search input[type="submit"],
+[data-theme="dark"] .nav-search #dw__search button[type="submit"],
+[data-theme="dark"] .nav-search #dw__search button,
+[data-theme="dark"] .nav-search form input[type="submit"],
+[data-theme="dark"] .nav-search form button[type="submit"],
+[data-theme="dark"] .nav-search form button {
+  color: #0c1a12 !important;
+}
+
+/* Hide search suggestions dropdown in header */
+.nav-search #qsearch__out { display: none !important; }
+
+/* ── Drawer search (inside .drawer-section) ──────────────
+   Same #dw__search form, but scoped to drawer context.
+   ─────────────────────────────────────────────────────── */
+.drawer-section #dw__search,
+.drawer-section form {
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: stretch !important;
+  direction: ltr !important;
+  width: 100% !important;
+  height: 34px !important;
+  background: var(--bg-raised) !important;
+  border: 1.5px solid var(--bd) !important;
+  border-radius: 999px !important;
+  overflow: hidden !important;
+  box-shadow: none !important;
+  transition: border-color var(--t), box-shadow var(--t) !important;
+}
+.drawer-section #dw__search:focus-within,
+.drawer-section form:focus-within {
+  border-color: var(--pr) !important;
+  box-shadow: 0 0 0 3px var(--pr-ring) !important;
+}
+.drawer-section #dw__search div.no,
+.drawer-section form div.no {
+  display: contents !important;
+}
+.drawer-section #dw__search div.no input[type="hidden"],
+.drawer-section form div.no input[type="hidden"] { display: none !important; }
+.drawer-section #dw__search input.edit,
+.drawer-section #dw__search input[type="text"],
+.drawer-section #dw__search input[type="search"],
+.drawer-section form input.edit,
+.drawer-section form input[type="text"],
+.drawer-section form input[type="search"] {
+  flex: 1 1 auto !important;
+  min-width: 0 !important;
+  height: 100% !important;
+  padding: 0 .8em !important;
+  font-size: .82rem !important;
+  font-family: inherit !important;
+  color: var(--fg) !important;
+  background: transparent !important;
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+  border-radius: 0 !important;
+  transform: none !important;
+  transition: none !important;
+}
+.drawer-section #dw__search input.edit::placeholder,
+.drawer-section #dw__search input[type="text"]::placeholder,
+.drawer-section #dw__search input[type="search"]::placeholder,
+.drawer-section form input.edit::placeholder,
+.drawer-section form input[type="text"]::placeholder,
+.drawer-section form input[type="search"]::placeholder {
+  color: var(--fg-4) !important;
+}
+.drawer-section #dw__search input[type="submit"],
+.drawer-section #dw__search button[type="submit"],
+.drawer-section #dw__search button,
+.drawer-section form input[type="submit"],
+.drawer-section form button[type="submit"],
+.drawer-section form button {
+  flex: 0 0 auto !important;
+  height: 100% !important;
+  min-width: 0 !important;
+  padding: 0 .9em !important;
+  font-size: .78rem !important;
+  font-weight: 600 !important;
+  font-family: inherit !important;
+  color: #fff !important;
+  background: var(--pr) !important;
+  border: none !important;
+  border-radius: 0 999px 999px 0 !important;
+  cursor: pointer !important;
+  white-space: nowrap !important;
+  box-shadow: none !important;
+  transform: none !important;
+  -webkit-appearance: none !important;
+  appearance: none !important;
+  transition: background var(--t) !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+.drawer-section #dw__search input[type="submit"]:hover,
+.drawer-section #dw__search button[type="submit"]:hover,
+.drawer-section #dw__search button:hover,
+.drawer-section form input[type="submit"]:hover,
+.drawer-section form button[type="submit"]:hover,
+.drawer-section form button:hover {
+  background: var(--pr-hover) !important;
+  transform: none !important;
+  box-shadow: none !important;
+}
+[data-theme="dark"] .drawer-section #dw__search input[type="submit"],
+[data-theme="dark"] .drawer-section #dw__search button[type="submit"],
+[data-theme="dark"] .drawer-section #dw__search button,
+[data-theme="dark"] .drawer-section form input[type="submit"],
+[data-theme="dark"] .drawer-section form button[type="submit"],
+[data-theme="dark"] .drawer-section form button {
+  color: #0c1a12 !important;
+}
+.drawer-section #qsearch__out { display: none !important; }
+
+/* ── Header quick-action buttons (Admin, Media) ─────── */
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  flex-shrink: 0;
+}
+.header-actions form,
+.header-actions .plugin_block { display: inline-flex; }
+.header-actions input.button,
+.header-actions button {
+  font-size: .76rem;
+  padding: .32em .65em;
+  background: transparent !important;
+  border: 1px solid transparent !important;
+  border-radius: var(--r2);
+  cursor: pointer;
+  color: var(--fg-3) !important;
+  white-space: nowrap;
+  transition: all var(--t);
+  box-shadow: none !important;
+  transform: none !important;
+  font-family: inherit;
+  font-weight: 500;
+}
+.header-actions input.button:hover,
+.header-actions button:hover {
+  background: var(--bg-raised) !important;
+  color: var(--fg) !important;
+  border-color: var(--bd) !important;
+  transform: none !important;
+  box-shadow: none !important;
+}
+
+/* ── Floating Action Buttons (fixed, not sticky) ────── */
+.fab-group {
+  position: fixed;
+  bottom: 1.5rem;
+  right: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: .5rem;
+  z-index: 90;
+}
+
+/* Edit FAB: icon + label pill */
+.fab-edit-wrap form,
+.fab-edit-wrap > a {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+}
+.fab-edit-icon {
+  position: absolute;
+  left: .9em;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+  color: var(--fg-2);
+  display: inline-flex;
+  transition: color var(--t);
+}
+.fab-group[dir="rtl"] .fab-edit-icon {
+  left: auto;
+  right: .9em;
+}
+.fab-edit-wrap input.button,
+.fab-edit-wrap a.button { padding-left: 2.5em !important; }
+.fab-group[dir="rtl"] .fab-edit-wrap input.button,
+.fab-group[dir="rtl"] .fab-edit-wrap a.button { padding-left: 1.1em !important; padding-right: 2.5em !important; }
+.fab-edit-wrap:hover .fab-edit-icon { color: var(--pr); }
+/* RTL: move to left side */
+.fab-group[dir="rtl"] {
+  right: auto;
+  left: 1.5rem;
+  align-items: flex-start;
+}
+
+/* Shared FAB button style */
+.fab-group form,
+.fab-group .plugin_block,
+.fab-group .fab-edit-wrap > a { display: flex; }
+
+.fab-group input.button,
+.fab-group button,
+.fab-group .button {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: .35em;
+  height: 42px !important;
+  padding: 0 1.1em !important;
+  font-size: .8rem !important;
+  font-weight: 600 !important;
+  font-family: inherit !important;
+  color: var(--fg-2) !important;
+  background: var(--bg-card) !important;
+  border: 1px solid var(--bd) !important;
+  border-radius: 999px !important;
+  cursor: pointer;
+  white-space: nowrap;
+  box-shadow: var(--sh-2) !important;
+  transition: all var(--t) !important;
+  transform: none !important;
+}
+.fab-group input.button:hover,
+.fab-group button:hover {
+  background: var(--bg-raised) !important;
+  border-color: var(--pr) !important;
+  color: var(--pr) !important;
+  box-shadow: var(--sh-3) !important;
+  transform: translateY(-1px) !important;
+}
+
+/* Back-to-top: icon only, circular */
+.fab-top {
+  width: 42px !important;
+  padding: 0 !important;
+  border-radius: 50% !important;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .2s ease, transform .2s ease, background var(--t), border-color var(--t) !important;
+}
+.fab-top.is-visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+[data-theme="dark"] .fab-group input.button,
+[data-theme="dark"] .fab-group button {
+  background: var(--bg-raised) !important;
+  border-color: var(--bd) !important;
+  color: var(--fg-2) !important;
+}
+
+/* Language Selector */
+.lang-selector { position: relative; flex-shrink: 0; }
+
+.lang-toggle {
+  display: flex;
+  align-items: center;
+  gap: .35rem;
+  padding: .3em .6em;
+  border: 1px solid transparent;
+  border-radius: var(--r2);
+  background: transparent;
+  color: var(--fg-3);
+  cursor: pointer;
+  font-size: .78rem;
+  transition: all var(--t);
+}
+.lang-toggle:hover { background: var(--bg-raised); border-color: var(--bd); color: var(--fg); }
+.lang-current { font-weight: 700; font-size: .72rem; letter-spacing: .04em; }
+
+.lang-dropdown {
+  position: absolute;
+  top: calc(100% + .4rem);
+  right: 0;
+  min-width: 140px;
+  background: var(--bg-card);
+  border: 1px solid var(--bd);
+  border-radius: var(--r);
+  box-shadow: var(--sh-3);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-6px) scale(.97);
+  transition: all .18s ease;
+  z-index: 300;
+  overflow: hidden;
+}
+.lang-dropdown.is-open { opacity: 1; visibility: visible; transform: translateY(0) scale(1); }
+
+.lang-option {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  padding: .5em 1em;
+  color: var(--fg);
+  text-decoration: none;
+  font-size: .84rem;
+  transition: background var(--t);
+  border-left: 2px solid transparent;
+}
+.lang-option:hover { background: var(--bg-raised); border-left-color: var(--pr); }
+.lang-option.active { background: var(--bg-subtle); border-left-color: var(--pr); font-weight: 600; color: var(--pr); }
+
+/* User area */
+.user-area {
+  display: flex;
+  align-items: center;
+  gap: .25rem;
+  flex-shrink: 0;
+  padding-left: .6rem;
+  margin-left: .1rem;
+  border-left: 1px solid var(--bd);
+}
+.user-info { font-size: .75rem; color: var(--fg-4); white-space: nowrap; max-width: 140px; overflow: hidden; text-overflow: ellipsis; }
+.user-area input.button,
+.user-area button {
+  font-size: .78rem;
+  padding: .3em .6em;
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: var(--r2);
+  cursor: pointer;
+  color: var(--fg-3);
+  transition: all var(--t);
+  box-shadow: none;
+  transform: none;
+}
+.user-area input.button:hover,
+.user-area button:hover { background: var(--bg-raised); color: var(--fg); border-color: var(--bd); transform: none; box-shadow: none; }
+
+/* Theme toggle */
+.theme-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  border: 1px solid transparent;
+  border-radius: var(--r2);
+  background: transparent;
+  color: var(--fg-3);
+  cursor: pointer;
+  transition: all var(--t);
+  flex-shrink: 0;
+}
+.theme-toggle:hover { background: var(--bg-raised); color: var(--fg); border-color: var(--bd); }
+[data-theme="light"] .theme-icon-dark,
+[data-theme="dark"]  .theme-icon-light { display: none; }
+
+/* ── Breadcrumbs ──────────────────────────────────────── */
+.breadcrumbs-bar {
+  background: var(--bg-card);
+  border-bottom: 1px solid var(--bd);
+  padding: .45rem 1.25rem;
+  transition: background var(--t), border-color var(--t);
+}
+.breadcrumbs-bar .breadcrumbs-inner {
+  max-width: 1440px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  gap: .3rem;
+  font-size: .78rem;
+  color: var(--fg-4);
+  flex-wrap: wrap;
+}
+.breadcrumbs-bar .breadcrumbs { margin: 0; padding: 0; }
+.breadcrumbs-bar a            { color: var(--pr); text-decoration: none; }
+.breadcrumbs-bar a:hover      { text-decoration: underline; }
+
+/* ── Main Layout — single column (sidebar removed) ───── */
+.site-body {
+  max-width: 1440px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+/* ── Content Area ─────────────────────────────────────── */
+.site-content {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.page-content { flex: 1; }
+
+/* ── Page Footer (merged into site-footer) ──────────── */
+
+.footer-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: .5rem;
+  font-size: .78rem;
+  color: var(--fg-4);
+  padding-bottom: .75rem;
+  border-bottom: 1px solid var(--bd);
+  margin-bottom: .75rem;
+}
+
+.meta-left  { display: flex; align-items: center; gap: .4rem; flex-wrap: wrap; }
+.meta-right { display: flex; align-items: center; gap: 1px; }
+.meta-sep   { color: var(--bd-strong); }
+
+.meta-right input.button,
+.meta-right button {
+  font-size: .75rem;
+  padding: .25em .5em;
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: var(--r2);
+  cursor: pointer;
+  color: var(--fg-4);
+  transition: all var(--t);
+  box-shadow: none;
+  transform: none;
+}
+.meta-right input.button:hover,
+.meta-right button:hover { background: var(--bg-raised); color: var(--fg-2); border-color: var(--bd); transform: none; box-shadow: none; }
+
+/* ── Site Footer (merged: page meta + powered by) ───── */
+.site-footer {
+  background: var(--bg-card);
+  border-top: 1px solid var(--bd);
+  padding: 1.25rem 2rem;
+  margin-top: auto;
+  transition: background var(--t), border-color var(--t);
+}
+
+.footerinc { margin: 0; border: none; padding: 0; }
+
+.footerinc-inner {
+  max-width: 1440px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: .75rem;
+  font-size: .78rem;
+  color: var(--fg-4);
+}
+
+.footerinc-inner .license { font-size: .75rem; opacity: .85; }
+.footerinc-inner .footer-powered { margin-top: .25rem; }
+
+.footer-link { color: var(--fg-4); text-decoration: none; transition: color var(--t); }
+.footer-link:hover { color: var(--pr); }
+.footer-sep   { color: var(--bd-strong); }
+.footer-debug { font-family: 'SF Mono', monospace; font-size: .72em; color: var(--fg-4); opacity: .7; }
+
+/* ── Header scroll shadow ────────────────────────────── */
+.site-header.scrolled {
+  background: color-mix(in srgb, var(--bg-card) 96%, transparent);
+  box-shadow: var(--sh-2);
+}
+
+/* ── TOC active link ─────────────────────────────────── */
+#sidebar-toc ul li a.toc-active {
+  background: var(--bg-card);
+  color: var(--pr);
+  border-left-color: var(--pr);
+  font-weight: 600;
+}
+
+/* ── Mobile TOC Bar ──────────────────────────────────── */
+.mobile-toc-bar {
+  background: var(--bg-card);
+  border-bottom: 1px solid var(--bd);
+  transition: background var(--t), border-color var(--t);
+}
+
+.mobile-toc-toggle {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  width: 100%;
+  padding: .6rem 1.25rem;
+  background: transparent;
+  border: none;
+  color: var(--fg-2);
+  font-size: .82rem;
+  font-weight: 600;
+  font-family: inherit;
+  cursor: pointer;
+  text-align: left;
+  transition: color var(--t), background var(--t);
+}
+.mobile-toc-toggle:hover { background: var(--bg-raised); color: var(--pr); }
+.mobile-toc-toggle svg:first-child { color: var(--pr); flex-shrink: 0; }
+
+.mobile-toc-chevron {
+  margin-left: auto;
+  transition: transform .2s ease;
+  flex-shrink: 0;
+}
+.mobile-toc-toggle[aria-expanded="true"] .mobile-toc-chevron { transform: rotate(180deg); }
+
+.mobile-toc-content {
+  overflow: hidden;
+  max-height: 0;
+  transition: max-height .3s cubic-bezier(.4,0,.2,1);
+  border-top: 0px solid var(--bd);
+}
+.mobile-toc-content.is-open {
+  max-height: 400px;
+  border-top-width: 1px;
+}
+.mobile-toc-content ul {
+  list-style: none;
+  padding: .4rem 0;
+  margin: 0;
+}
+.mobile-toc-content ul li a {
+  display: block;
+  padding: .32em 1.5em;
+  font-size: .84rem;
+  color: var(--fg-2);
+  text-decoration: none;
+  border-left: 2px solid transparent;
+  transition: all var(--t);
+}
+.mobile-toc-content ul li a:hover { background: var(--bg-raised); color: var(--pr); border-left-color: var(--pr); }
+.mobile-toc-content ul li ul li a { padding-left: 2.4em; font-size: .8rem; color: var(--fg-3); }
+.mobile-toc-content ul li ul li ul li a { padding-left: 3.3em; font-size: .78rem; }
+
+/* ── Hide legacy DokuWiki layout elements ────────────── */
+div.dokuwiki .header,
+div.dokuwiki .bar,
+div.dokuwiki .stylehead,
+div.dokuwiki .pagename,
+div.dokuwiki .logo { display: none; }
+
+/* ── Drawer link buttons (outside div.dokuwiki) ────────── */
+.drawer-link-btn {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: .35em !important;
+  font-family: inherit !important;
+  font-size: .78rem !important;
+  font-weight: 500 !important;
+  padding: .4em .7em !important;
+  background: var(--bg-card) !important;
+  color: var(--fg-2) !important;
+  border: 1px solid var(--bd) !important;
+  border-radius: var(--r2) !important;
+  cursor: pointer !important;
+  white-space: nowrap !important;
+  text-decoration: none !important;
+  box-shadow: none !important;
+  transform: none !important;
+  -webkit-appearance: none !important;
+  appearance: none !important;
+  transition: all var(--t) !important;
+}
+.drawer-link-btn:hover {
+  background: var(--bg-raised) !important;
+  border-color: var(--pr) !important;
+  color: var(--pr) !important;
+  transform: none !important;
+  box-shadow: none !important;
+}
+
+/* ── Language buttons (in sidebar) ──────────────────── */
+.lang-buttons { display: flex; flex-wrap: wrap; gap: .3rem; }
+.lang-btn {
+  padding: .3em .65em;
+  border: 1px solid var(--bd);
+  border-radius: var(--r2);
+  color: var(--fg-2);
+  text-decoration: none;
+  font-size: .78rem;
+  font-weight: 500;
+  transition: all var(--t);
+  background: var(--bg-card);
+}
+.lang-btn:hover  { background: var(--bg-raised); border-color: var(--pr); }
+.lang-btn.active { background: var(--pr); color: #fff; border-color: var(--pr); }
