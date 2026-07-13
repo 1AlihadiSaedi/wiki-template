@@ -157,9 +157,8 @@ $tools = ['edit','history','recent','media','admin'];
     $lang_options = [];
     if ($conf['lang']) $lang_options[$conf['lang']] = strtoupper($conf['lang']);
     $translation_plugin = plugin_load('helper','translation');
-    if ($translation_plugin) {
-      $langs = $translation_plugin->availabel;
-      foreach ($langs as $l) $lang_options[$l] = strtoupper($l);
+    if ($translation_plugin && !empty($translation_plugin->translations)) {
+      foreach ($translation_plugin->translations as $l) $lang_options[$l] = strtoupper($l);
     }
     if (count($lang_options) > 1):
     ?>
@@ -288,7 +287,7 @@ $tools = ['edit','history','recent','media','admin'];
   var btn = document.getElementById('hamburger-btn'),
       drw = document.getElementById('side-drawer'),
       ov  = document.getElementById('mobile-overlay'),
-      cls  = document.getElementById('drawer-close');
+      cls = document.getElementById('drawer-close');
 
   if (btn && drw && ov) {
     function open()  { drw.classList.add('is-open'); ov.classList.add('is-visible'); document.body.classList.add('menu-open'); btn.classList.add('is-active'); }
