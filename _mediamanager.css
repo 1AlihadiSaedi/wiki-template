@@ -314,3 +314,134 @@
   #mediamanager__page .filelist .panelContent { max-height: 400px; }
   #mediamanager__page .filelist .thumbs { grid-template-columns: repeat(auto-fill, minmax(80px, 1fr)); }
 }
+
+/* ── Upload button & media action buttons ─────────────── */
+#mediamanager__upload_button,
+.qq-upload-action {
+  font-family: inherit !important;
+  font-size: .82rem !important;
+  font-weight: 600 !important;
+  padding: .4em .9em !important;
+  background: var(--pr) !important;
+  color: #fff !important;
+  border: none !important;
+  border-radius: var(--r2) !important;
+  cursor: pointer !important;
+  box-shadow: none !important;
+  transform: none !important;
+  -webkit-appearance: none !important;
+  appearance: none !important;
+  transition: background var(--t) !important;
+}
+#mediamanager__upload_button:hover,
+.qq-upload-action:hover {
+  background: var(--pr-hover) !important;
+}
+[data-theme="dark"] #mediamanager__upload_button,
+[data-theme="dark"] .qq-upload-action {
+  color: #0c1a12 !important;
+}
+
+/* qq-upload button (Select files…) */
+.qq-upload-button {
+  font-family: inherit !important;
+  font-size: .82rem !important;
+  font-weight: 500 !important;
+  padding: .4em .9em !important;
+  background: var(--bg-raised) !important;
+  color: var(--fg-2) !important;
+  border: 1px solid var(--bd) !important;
+  border-radius: var(--r2) !important;
+  cursor: pointer !important;
+  box-shadow: none !important;
+  transition: all var(--t) !important;
+}
+.qq-upload-button:hover {
+  background: var(--bg-subtle) !important;
+  border-color: var(--pr) !important;
+  color: var(--pr) !important;
+}
+
+/* Media popup dialog buttons */
+#media__popup_content .button {
+  font-family: inherit !important;
+  font-size: .8rem !important;
+  padding: .3em .6em !important;
+  background: var(--bg-raised) !important;
+  color: var(--fg-2) !important;
+  border: 1px solid var(--bd) !important;
+  border-radius: var(--r2) !important;
+  cursor: pointer !important;
+  box-shadow: none !important;
+  transform: none !important;
+  transition: all var(--t) !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+#media__popup_content .button:hover {
+  background: var(--bg-card) !important;
+  border-color: var(--pr) !important;
+  color: var(--pr) !important;
+}
+#media__popup_content .button img {
+  width: 16px !important;
+  height: 16px !important;
+}
+#media__sendbtn {
+  background: var(--pr) !important;
+  color: #fff !important;
+  border-color: var(--pr) !important;
+  font-weight: 600 !important;
+}
+#media__sendbtn:hover {
+  background: var(--pr-hover) !important;
+  border-color: var(--pr-hover) !important;
+}
+[data-theme="dark"] #media__sendbtn { color: #0c1a12 !important; }
+
+/* Media popup dialog styling */
+.ui-dialog {
+  border: 1px solid var(--bd) !important;
+  border-radius: var(--r) !important;
+  background: var(--bg-card) !important;
+  box-shadow: var(--sh-3) !important;
+  font-family: inherit !important;
+}
+.ui-dialog .ui-dialog-titlebar {
+  background: var(--bg-raised) !important;
+  border-bottom: 1px solid var(--bd) !important;
+  color: var(--fg) !important;
+  font-weight: 600 !important;
+}
+.ui-dialog .ui-dialog-title { font-size: .9rem !important; }
+.ui-dialog .ui-button {
+  background: var(--bg-raised) !important;
+  border: 1px solid var(--bd) !important;
+  border-radius: var(--r2) !important;
+  box-shadow: none !important;
+}
+.ui-dialog .ui-button:hover {
+  background: var(--bg-subtle) !important;
+  border-color: var(--pr) !important;
+}
+.ui-dialog label {
+  display: inline-block !important;
+  font-weight: 600 !important;
+  color: var(--fg-2) !important;
+  margin-right: .5em !important;
+}
+
+/* Tabs in media manager */
+#mediamanager__page ul.tabs li strong {
+  display: block;
+  padding: .5em 1em;
+  background: var(--bg-card);
+  color: var(--pr);
+  font-weight: 600;
+  font-size: .85rem;
+  border: 1px solid var(--bd);
+  border-bottom: none;
+  border-radius: var(--r2) var(--r2) 0 0;
+  margin-bottom: -1px;
+}

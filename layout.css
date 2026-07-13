@@ -130,35 +130,44 @@
 }
 
 /* ── Search bar ─────────────────────────────────────────
-   Scoped to .nav-search so it doesn't hit the drawer form.
-   DokuWiki outputs: form > div.no (hidden fields) + input.edit + input.button[submit]
+   Uses #dw__search ID to match DokuWiki core CSS specificity.
+   DokuWiki outputs: form#dw__search > div.no (hidden fields) + input.edit + button[submit]
    ─────────────────────────────────────────────────────── */
+.nav-search #dw__search,
 .nav-search form {
   display: flex !important;
   flex-direction: row !important;
   align-items: stretch !important;
   direction: ltr !important;
-  width: 100%;
-  height: 34px;
-  background: var(--bg-raised);
-  border: 1.5px solid var(--bd);
-  border-radius: 999px;
-  overflow: hidden;
-  box-shadow: none;
-  transition: border-color var(--t), box-shadow var(--t);
+  width: 100% !important;
+  height: 34px !important;
+  background: var(--bg-raised) !important;
+  border: 1.5px solid var(--bd) !important;
+  border-radius: 999px !important;
+  overflow: hidden !important;
+  box-shadow: none !important;
+  transition: border-color var(--t), box-shadow var(--t) !important;
+  margin: 0 !important;
+  padding: 0 !important;
 }
+.nav-search #dw__search:focus-within,
 .nav-search form:focus-within {
-  border-color: var(--pr);
-  box-shadow: 0 0 0 3px var(--pr-ring);
+  border-color: var(--pr) !important;
+  box-shadow: 0 0 0 3px var(--pr-ring) !important;
 }
 
 /* DokuWiki wraps hidden fields in div.no — collapse it */
+.nav-search #dw__search div.no,
 .nav-search form div.no {
-  display: contents; /* keeps hidden inputs in the form flow without adding a box */
+  display: contents !important;
 }
-.nav-search form div.no input[type="hidden"] { display: none; }
+.nav-search #dw__search div.no input[type="hidden"],
+.nav-search form div.no input[type="hidden"] { display: none !important; }
 
 /* Text input */
+.nav-search #dw__search input[type="text"],
+.nav-search #dw__search input[type="search"],
+.nav-search #dw__search input.edit,
 .nav-search form input[type="text"],
 .nav-search form input[type="search"] {
   flex: 1 1 auto !important;
@@ -176,12 +185,17 @@
   transform: none !important;
   transition: none !important;
 }
+.nav-search #dw__search input[type="text"]::placeholder,
+.nav-search #dw__search input[type="search"]::placeholder,
 .nav-search form input[type="text"]::placeholder,
 .nav-search form input[type="search"]::placeholder {
-  color: var(--fg-4);
+  color: var(--fg-4) !important;
 }
 
-/* Submit button — reset all global .button overrides, then style */
+/* Submit button — use #dw__search ID to beat DokuWiki core */
+.nav-search #dw__search input[type="submit"],
+.nav-search #dw__search button[type="submit"],
+.nav-search #dw__search button,
 .nav-search form input[type="submit"],
 .nav-search form button[type="submit"] {
   flex: 0 0 auto !important;
@@ -206,16 +220,25 @@
   -webkit-appearance: none !important;
   appearance: none !important;
 }
+.nav-search #dw__search input[type="submit"]:hover,
+.nav-search #dw__search button[type="submit"]:hover,
+.nav-search #dw__search button:hover,
 .nav-search form input[type="submit"]:hover,
 .nav-search form button[type="submit"]:hover {
   background: var(--pr-hover) !important;
   transform: none !important;
   box-shadow: none !important;
 }
+[data-theme="dark"] .nav-search #dw__search input[type="submit"],
+[data-theme="dark"] .nav-search #dw__search button[type="submit"],
+[data-theme="dark"] .nav-search #dw__search button,
 [data-theme="dark"] .nav-search form input[type="submit"],
 [data-theme="dark"] .nav-search form button[type="submit"] {
   color: #0c1a12 !important;
 }
+
+/* Hide the ajax search popup inside nav-search */
+.nav-search #qsearch__out { display: none !important; }
 
 /* ── Header quick-action buttons (Admin, Media) ─────── */
 .header-actions {
@@ -678,28 +701,37 @@ div.dokuwiki .logo { display: none; }
 [data-theme="dark"] .drawer-link-btn--primary { color: #0c1a12; }
 
 /* ── Drawer search form ─────────────────────────────── */
+.drawer-section #dw__search,
 .drawer-section form {
   display: flex !important;
   flex-direction: row !important;
   align-items: stretch !important;
   direction: ltr !important;
-  width: 100%;
-  height: 36px;
-  background: var(--bg-raised);
-  border: 1.5px solid var(--bd);
-  border-radius: 999px;
-  overflow: hidden;
-  box-shadow: none;
-  transition: border-color var(--t), box-shadow var(--t);
+  width: 100% !important;
+  height: 36px !important;
+  background: var(--bg-raised) !important;
+  border: 1.5px solid var(--bd) !important;
+  border-radius: 999px !important;
+  overflow: hidden !important;
+  box-shadow: none !important;
+  transition: border-color var(--t), box-shadow var(--t) !important;
+  margin: 0 !important;
+  padding: 0 !important;
 }
+.drawer-section #dw__search:focus-within,
 .drawer-section form:focus-within {
-  border-color: var(--pr);
-  box-shadow: 0 0 0 3px var(--pr-ring);
+  border-color: var(--pr) !important;
+  box-shadow: 0 0 0 3px var(--pr-ring) !important;
 }
+.drawer-section #dw__search div.no,
 .drawer-section form div.no {
-  display: contents;
+  display: contents !important;
 }
-.drawer-section form div.no input[type="hidden"] { display: none; }
+.drawer-section #dw__search div.no input[type="hidden"],
+.drawer-section form div.no input[type="hidden"] { display: none !important; }
+.drawer-section #dw__search input[type="text"],
+.drawer-section #dw__search input[type="search"],
+.drawer-section #dw__search input.edit,
 .drawer-section form input[type="text"],
 .drawer-section form input[type="search"],
 .drawer-section form input.edit {
@@ -718,10 +750,15 @@ div.dokuwiki .logo { display: none; }
   transform: none !important;
   transition: none !important;
 }
+.drawer-section #dw__search input[type="text"]::placeholder,
+.drawer-section #dw__search input[type="search"]::placeholder,
 .drawer-section form input[type="text"]::placeholder,
 .drawer-section form input[type="search"]::placeholder {
-  color: var(--fg-4);
+  color: var(--fg-4) !important;
 }
+.drawer-section #dw__search input[type="submit"],
+.drawer-section #dw__search button[type="submit"],
+.drawer-section #dw__search button,
 .drawer-section form input[type="submit"],
 .drawer-section form button[type="submit"],
 .drawer-section form button {
@@ -747,6 +784,9 @@ div.dokuwiki .logo { display: none; }
   -webkit-appearance: none !important;
   appearance: none !important;
 }
+.drawer-section #dw__search input[type="submit"]:hover,
+.drawer-section #dw__search button[type="submit"]:hover,
+.drawer-section #dw__search button:hover,
 .drawer-section form input[type="submit"]:hover,
 .drawer-section form button[type="submit"]:hover,
 .drawer-section form button:hover {
@@ -754,8 +794,14 @@ div.dokuwiki .logo { display: none; }
   transform: none !important;
   box-shadow: none !important;
 }
+[data-theme="dark"] .drawer-section #dw__search input[type="submit"],
+[data-theme="dark"] .drawer-section #dw__search button[type="submit"],
+[data-theme="dark"] .drawer-section #dw__search button,
 [data-theme="dark"] .drawer-section form input[type="submit"],
 [data-theme="dark"] .drawer-section form button[type="submit"],
 [data-theme="dark"] .drawer-section form button {
   color: #0c1a12 !important;
 }
+
+/* Hide the ajax search popup inside drawer */
+.drawer-section #qsearch__out { display: none !important; }
