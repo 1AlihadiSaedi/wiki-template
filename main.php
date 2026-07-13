@@ -80,7 +80,7 @@ $tools = ['edit','history','recent','media','admin'];
       <span class="drawer-label">Navigation</span>
       <div class="drawer-buttons">
         <?php if (isset($INFO) && $INFO['exists']): ?>
-        <a href="<?php echo wl($ID,'do=history') ?>" class="drawer-link-btn"><?php echo $lang['btn_history'] ?></a>
+        <a href="<?php echo wl($ID,'do=history') ?>" class="drawer-link-btn"><?php echo $lang['btn_revs'] ?></a>
         <?php endif; ?>
         <a href="<?php echo wl('','do=recent') ?>" class="drawer-link-btn"><?php echo $lang['btn_recent'] ?></a>
         <a href="<?php echo wl($ID,'do=media') ?>" class="drawer-link-btn"><?php echo $lang['btn_media'] ?></a>
@@ -248,7 +248,7 @@ $tools = ['edit','history','recent','media','admin'];
         </div>
         <div class="meta-right">
           <?php if (isset($INFO) && $INFO['exists']): ?>
-            <a href="<?php echo wl($ID,'do=history') ?>" class="header-action-btn"><?php echo $lang['btn_history'] ?></a>
+            <a href="<?php echo wl($ID,'do=history') ?>" class="header-action-btn"><?php echo $lang['btn_revs'] ?></a>
             <?php if ($INFO['writable']): ?>
               <a href="<?php echo wl($ID,'do=edit') ?>" class="header-action-btn"><?php echo $lang['btn_edit'] ?></a>
             <?php endif; ?>
