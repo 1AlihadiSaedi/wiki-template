@@ -407,18 +407,16 @@
 .fab-edit-btn {
   display: inline-flex !important;
   align-items: center !important;
-  gap: .45em !important;
+  justify-content: center !important;
+  width: 42px !important;
   height: 42px !important;
-  padding: 0 1.2em !important;
-  font-size: .8rem !important;
-  font-weight: 600 !important;
+  padding: 0 !important;
+  border-radius: 50% !important;
   font-family: inherit !important;
   color: var(--fg-2) !important;
   background: var(--bg-card) !important;
   border: 1px solid var(--bd) !important;
-  border-radius: 999px !important;
   cursor: pointer !important;
-  white-space: nowrap !important;
   text-decoration: none !important;
   box-shadow: var(--sh-2) !important;
   transition: all var(--t) !important;
@@ -438,9 +436,6 @@
   display: inline-flex;
   flex-shrink: 0;
   transition: color var(--t);
-}
-.fab-edit-btn .fab-edit-label {
-  line-height: 1;
 }
 .fab-edit-btn:hover .fab-edit-icon {
   color: var(--pr);
