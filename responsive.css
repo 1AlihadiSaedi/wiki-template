@@ -67,7 +67,7 @@ html[dir="rtl"] .side-drawer.is-open { right: 0; }
   font-size: 1rem;
   font-weight: 700;
 }
-.drawer-logo-img { width: 24px; height: 24px; border-radius: var(--r2); }
+.drawer-logo-img { width: 32px; height: 32px; border-radius: var(--r2); }
 .drawer-logo a   { color: var(--fg); text-decoration: none; }
 
 .drawer-close {
@@ -147,6 +147,9 @@ body.menu-open { overflow: hidden; }
   }
   div.dokuwiki .page form.btn_secedit { max-width: 100%; overflow: hidden; }
 
+  /* Reduce site-body padding on mobile */
+  .site-body { padding: 0 .75rem; }
+
   /* TOC */
   div.dokuwiki #dw__toc {
     float: none;
@@ -188,7 +191,7 @@ body.menu-open { overflow: hidden; }
   .hamburger     { width: 34px; height: 34px; }
   .hamburger-line { width: 16px; }
   .site-title    { font-size: .92rem; }
-  .site-logo     { width: 24px; height: 24px; }
+  .site-logo     { width: 28px; height: 28px; }
 
   div.dokuwiki .page {
     padding: 1.1rem .85rem 2rem;
