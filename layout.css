@@ -84,8 +84,8 @@
 }
 
 .site-logo {
-  width: 28px;
-  height: 28px;
+  width: 36px;
+  height: 36px;
   border-radius: var(--r2);
   object-fit: contain;
   flex-shrink: 0;
@@ -404,6 +404,11 @@
 }
 
 /* Edit FAB: icon + label pill */
+.fab-edit-wrap {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+}
 .fab-edit-wrap form,
 .fab-edit-wrap > a {
   position: relative;
@@ -616,6 +621,7 @@
   max-width: 1440px;
   margin: 0 auto;
   width: 100%;
+  padding: 0 2rem;
 }
 
 /* ── Content Area ─────────────────────────────────────── */
