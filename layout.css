@@ -391,19 +391,19 @@
   text-decoration: none !important;
 }
 
-/* ── Floating Action Buttons (fixed, not sticky) ────── */
-.fab-group {
+/* ── Floating Edit Button (mid-screen, side edge) ───── */
+.fab-edit-container {
   position: fixed;
-  bottom: 1.5rem;
+  top: 50%;
   right: 1.5rem;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  gap: .5rem;
+  transform: translateY(-50%);
   z-index: 90;
 }
+.fab-edit-container[dir="rtl"] {
+  right: auto;
+  left: 1.5rem;
+}
 
-/* Edit FAB: icon + label pill */
 .fab-edit-wrap {
   position: relative;
   display: inline-flex;
@@ -425,30 +425,23 @@
   display: inline-flex;
   transition: color var(--t);
 }
-.fab-group[dir="rtl"] .fab-edit-icon {
+.fab-edit-container[dir="rtl"] .fab-edit-icon {
   left: auto;
   right: .9em;
 }
 .fab-edit-wrap input.button,
 .fab-edit-wrap a.button { padding-left: 2.5em !important; }
-.fab-group[dir="rtl"] .fab-edit-wrap input.button,
-.fab-group[dir="rtl"] .fab-edit-wrap a.button { padding-left: 1.1em !important; padding-right: 2.5em !important; }
+.fab-edit-container[dir="rtl"] .fab-edit-wrap input.button,
+.fab-edit-container[dir="rtl"] .fab-edit-wrap a.button { padding-left: 1.1em !important; padding-right: 2.5em !important; }
 .fab-edit-wrap:hover .fab-edit-icon { color: var(--pr); }
-/* RTL: move to left side */
-.fab-group[dir="rtl"] {
-  right: auto;
-  left: 1.5rem;
-  align-items: flex-start;
-}
 
-/* Shared FAB button style */
-.fab-group form,
-.fab-group .plugin_block,
-.fab-group .fab-edit-wrap > a { display: flex; }
+.fab-edit-wrap form,
+.fab-edit-wrap .plugin_block,
+.fab-edit-wrap > a { display: flex; }
 
-.fab-group input.button,
-.fab-group button,
-.fab-group .button {
+.fab-edit-wrap input.button,
+.fab-edit-wrap a.button,
+.fab-edit-wrap .button {
   display: inline-flex !important;
   align-items: center !important;
   justify-content: center !important;
@@ -468,8 +461,8 @@
   transition: all var(--t) !important;
   transform: none !important;
 }
-.fab-group input.button:hover,
-.fab-group button:hover {
+.fab-edit-wrap input.button:hover,
+.fab-edit-wrap a.button:hover {
   background: var(--bg-raised) !important;
   border-color: var(--pr) !important;
   color: var(--pr) !important;
@@ -477,11 +470,32 @@
   transform: translateY(-1px) !important;
 }
 
-/* Back-to-top: icon only, circular */
+[data-theme="dark"] .fab-edit-wrap input.button,
+[data-theme="dark"] .fab-edit-wrap a.button {
+  background: var(--bg-raised) !important;
+  border-color: var(--bd) !important;
+  color: var(--fg-2) !important;
+}
+
+/* ── Back-to-top button (bottom corner, circular) ───── */
 .fab-top {
+  position: fixed;
+  bottom: 1.5rem;
+  right: 1.5rem;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
   width: 42px !important;
+  height: 42px !important;
   padding: 0 !important;
   border-radius: 50% !important;
+  font-family: inherit !important;
+  color: var(--fg-2) !important;
+  background: var(--bg-card) !important;
+  border: 1px solid var(--bd) !important;
+  cursor: pointer;
+  box-shadow: var(--sh-2) !important;
+  z-index: 90;
   opacity: 0;
   pointer-events: none;
   transition: opacity .2s ease, transform .2s ease, background var(--t), border-color var(--t) !important;
@@ -490,8 +504,14 @@
   opacity: 1;
   pointer-events: auto;
 }
-[data-theme="dark"] .fab-group input.button,
-[data-theme="dark"] .fab-group button {
+.fab-top:hover {
+  background: var(--bg-raised) !important;
+  border-color: var(--pr) !important;
+  color: var(--pr) !important;
+  box-shadow: var(--sh-3) !important;
+  transform: translateY(-1px) !important;
+}
+[data-theme="dark"] .fab-top {
   background: var(--bg-raised) !important;
   border-color: var(--bd) !important;
   color: var(--fg-2) !important;
