@@ -65,7 +65,7 @@ $tools = ['edit','history','recent','media','admin'];
 <nav class="side-drawer" id="side-drawer" aria-label="Menu" dir="<?php echo $dir_attr ?>">
   <div class="drawer-header">
     <div class="drawer-logo">
-      <img src="<?php echo $logo_path ?>" alt="" class="drawer-logo-img" width="24" height="24">
+      <img src="<?php echo $logo_path ?>" alt="" class="drawer-logo-img" width="32" height="32">
       <a href="<?php echo wl() ?>"><?php echo $conf['title'] ?></a>
     </div>
     <button class="drawer-close" id="drawer-close" aria-label="Close menu">
@@ -120,7 +120,7 @@ $tools = ['edit','history','recent','media','admin'];
     <!-- Logo + Title -->
     <div class="site-branding">
       <?php if ($has_logo): ?>
-        <img src="<?php echo $logo_path ?>" alt="" class="site-logo" width="28" height="28">
+        <img src="<?php echo $logo_path ?>" alt="" class="site-logo" width="36" height="36">
       <?php endif; ?>
       <a href="<?php echo wl() ?>" class="site-title"><?php echo $conf['title'] ?></a>
     </div>
