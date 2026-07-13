@@ -155,18 +155,31 @@ $tools = ['edit','history','recent','media','admin'];
 
     <!-- Language Selector -->
     <?php
+    $lang_names = [
+      'en' => 'English', 'fa' => 'فارسی', 'fr' => 'Français', 'de' => 'Deutsch',
+      'es' => 'Español', 'it' => 'Italiano', 'pt' => 'Português', 'ru' => 'Русский',
+      'ar' => 'العربية', 'tr' => 'Türkçe', 'nl' => 'Nederlands', 'pl' => 'Polski',
+      'ja' => '日本語', 'zh' => '中文', 'ko' => '한국어', 'he' => 'עברית',
+      'sv' => 'Svenska', 'da' => 'Dansk', 'no' => 'Norsk', 'fi' => 'Suomi',
+      'cs' => 'Čeština', 'el' => 'Ελληνικά', 'hu' => 'Magyar', 'ro' => 'Română',
+      'uk' => 'Українська', 'id' => 'Indonesia', 'vi' => 'Tiếng Việt', 'th' => 'ไทย',
+    ];
     $lang_options = [];
-    if ($conf['lang']) $lang_options[$conf['lang']] = strtoupper($conf['lang']);
+    if ($conf['lang']) {
+      $lang_options[$conf['lang']] = isset($lang_names[$conf['lang']]) ? $lang_names[$conf['lang']] : strtoupper($conf['lang']);
+    }
     $translation_plugin = plugin_load('helper','translation');
     if ($translation_plugin && !empty($translation_plugin->translations)) {
-      foreach ($translation_plugin->translations as $l) $lang_options[$l] = strtoupper($l);
+      foreach ($translation_plugin->translations as $l) {
+        $lang_options[$l] = isset($lang_names[$l]) ? $lang_names[$l] : strtoupper($l);
+      }
     }
     if (count($lang_options) > 1):
     ?>
     <div class="lang-selector">
       <button class="lang-toggle" id="lang-toggle">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
-        <span class="lang-current"><?php echo strtoupper($conf['lang']) ?></span>
+        <span class="lang-current"><?php echo isset($lang_names[$conf['lang']]) ? $lang_names[$conf['lang']] : strtoupper($conf['lang']) ?></span>
       </button>
       <div class="lang-dropdown" id="lang-dropdown">
         <?php foreach ($lang_options as $code => $label): ?>
@@ -274,12 +287,10 @@ $has_toc = (isset($INFO) && $INFO['exists'] && !$is_editing && !empty($TOC));
 <!-- Floating Edit Button (mid-screen, only on editable pages) -->
 <?php if ($show_edit_fab && isset($INFO) && $INFO['exists'] && $INFO['writable']): ?>
 <div class="fab-edit-container" dir="<?php echo $dir_attr ?>">
-  <div class="fab-edit-wrap">
-    <span class="fab-edit-icon">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
-    </span>
-    <?php tpl_link(wl($ID, 'do=edit'), $lang['btn_edit'], 'class="button fab-edit-btn"') ?>
-  </div>
+  <a href="<?php echo wl($ID, 'do=edit') ?>" class="fab-edit-btn" title="<?php echo $lang['btn_edit'] ?>">
+    <svg class="fab-edit-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+    <span class="fab-edit-label"><?php echo $lang['btn_edit'] ?></span>
+  </a>
 </div>
 <?php endif; ?>
 
